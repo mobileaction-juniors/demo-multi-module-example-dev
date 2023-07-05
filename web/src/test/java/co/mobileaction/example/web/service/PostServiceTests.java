@@ -74,4 +74,26 @@ public class PostServiceTests
 
         assertThat(list).hasSize(3);
     }
+
+    @Test
+    public void deletePostsByUserId_UserFound_DeletePost()
+    {
+        postService.deletePostsByUserId(1L);
+
+        List<Post> list = postRepository.findAll();
+
+        assertThat(list).hasSize(2);
+    }
+
+    @Test
+    public void deletePostsByUserId_UserNotFound_Ignore()
+    {
+        postService.deletePostsByUserId(10L);
+
+        List<Post> list = postRepository.findAll();
+
+        assertThat(list).hasSize(4);
+    }
 }
+
+

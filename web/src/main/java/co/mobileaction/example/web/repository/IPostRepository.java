@@ -2,6 +2,8 @@ package co.mobileaction.example.web.repository;
 
 import co.mobileaction.example.web.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -13,4 +15,8 @@ import java.util.List;
 public interface IPostRepository extends JpaRepository<Post, Long>
 {
     List<Post> findAllByUserId(Long userId);
+
+    @Modifying
+    @Query(value="delete from posts p where p.user_id= :userId", nativeQuery = true)
+    void deletePostsByUserId(Long userId);
 }
