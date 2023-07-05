@@ -1,6 +1,7 @@
 package co.mobileaction.example.worker.queue;
 
 import co.mobileaction.example.common.dto.QueueRequestDto;
+import co.mobileaction.example.common.dto.UserRequestDto;
 import co.mobileaction.example.worker.service.IPostRequestHandlerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

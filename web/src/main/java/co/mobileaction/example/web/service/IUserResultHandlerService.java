@@ -5,11 +5,11 @@ import co.mobileaction.example.common.dto.UserDto;
 import co.mobileaction.example.web.exception.AlreadyExistException;
 
 /**
- * @author sa
- * @date 17.05.2021
- * @time 17:39
+ * @author elif
+ * @date 05.07.2023
+ * @time 17.15
  */
-public interface IPostResultHandlerService
+public interface IUserResultHandlerService
 {
-    void executeMessage(PostDto postDto);
+    void executeMessage(UserDto userDto) throws AlreadyExistException;
 }

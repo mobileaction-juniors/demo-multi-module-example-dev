@@ -4,12 +4,11 @@ import co.mobileaction.example.common.dto.QueueRequestDto;
 import co.mobileaction.example.common.dto.UserRequestDto;
 
 /**
- * @author sa
- * @date 17.05.2021
- * @time 16:56
+ * @author elif
+ * @date 05.07.2023
+ * @time 17.00
  */
-public interface IPostRequestHandlerService
+public interface IUserRequestHandlerService
 {
-    void executeMessage(QueueRequestDto request);
-
+    void executeMessage(UserRequestDto request);
 }

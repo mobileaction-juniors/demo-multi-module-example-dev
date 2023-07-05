@@ -16,17 +16,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class PostRequestHandlerService implements IPostRequestHandlerService
+public class UserRequestHandlerService implements IUserRequestHandlerService
 {
-    private final AmqpTemplate resultQueueTemplate;
+    private final AmqpTemplate userResultQueueTemplate;
 
     private final ICrawlerClient crawlerClient;
 
     @Override
-    public void executeMessage(QueueRequestDto request)
+    public void executeMessage(UserRequestDto request)
     {
-        PostDto post = crawlerClient.fetchPost(request.getPostId());
+        try {
+            UserDto user = crawlerClient.fetchUser(request.getUserId());
 
-        resultQueueTemplate.convertAndSend(post);
+            userResultQueueTemplate.convertAndSend(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

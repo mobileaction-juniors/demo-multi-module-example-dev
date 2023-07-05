@@ -15,23 +15,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class PostResultHandlerService implements IPostResultHandlerService
+public class UserResultHandlerService implements IUserResultHandlerService
 {
-    private final IPostService postService;
+    private final IUserService userService;
 
     @Override
-    public void executeMessage(PostDto postDto)
+    public void executeMessage(UserDto userDto) throws AlreadyExistException
     {
-        postService.savePost(convertFrom(postDto));
+        userService.saveUser(convertFrom(userDto));
     }
 
-    private Post convertFrom(PostDto postDto)
+    private User convertFrom(UserDto userDto)
     {
-        return Post.builder()
-                .id(postDto.getId())
-                .userId(postDto.getUserId())
-                .title(postDto.getTitle())
-                .body(postDto.getBody())
+        return User.builder()
+                .id(userDto.getId())
+                .name(userDto.getName())
+                .username(userDto.getUsername())
+                .email(userDto.getEmail())
                 .build();
     }
 }

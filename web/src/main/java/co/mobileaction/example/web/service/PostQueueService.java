@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.LongStream;
 
 /**
@@ -17,6 +18,7 @@ import java.util.stream.LongStream;
 public class PostQueueService implements IPostQueueService
 {
     private final AmqpTemplate requestQueueTemplate;
+    private final IPostService postService;
 
     @Override
     public void sendPostRequestForAllItems()

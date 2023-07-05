@@ -3,6 +3,7 @@ package co.mobileaction.example.web.queue;
 import co.mobileaction.example.common.dto.PostDto;
 import co.mobileaction.example.common.dto.UserDto;
 import co.mobileaction.example.web.service.IPostResultHandlerService;
+import co.mobileaction.example.web.service.IUserResultHandlerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -10,21 +11,21 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 /**
- * @author sa
- * @date 17.05.2021
- * @time 17:38
+ * @author elif
+ * @date 05.07.2023
+ * @time 14.38
  */
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PostResultQueueHandler
+public class UserResultQueueHandler
 {
-    private final AmqpTemplate resultProblemQueueTemplate;
+    private final AmqpTemplate userResultProblemQueueTemplate;
 
-    private final IPostResultHandlerService resultHandlerService;
+    private final IUserResultHandlerService resultHandlerService;
 
-    @RabbitListener(queues = "${messaging.queue.result}", containerFactory = "resultQueueListener")
-    public void handleMessage(PostDto result)
+    @RabbitListener(queues = "${messaging.queue.user.result}", containerFactory = "resultQueueListener")
+    public void handleMessage(UserDto result)
     {
         try
         {
@@ -34,7 +35,7 @@ public class PostResultQueueHandler
         {
             log.error("Could not handle result for postId: {}", result.getId(), e);
 
-            resultProblemQueueTemplate.convertAndSend(result);
+            userResultProblemQueueTemplate.convertAndSend(result);
         }
     }
 }
