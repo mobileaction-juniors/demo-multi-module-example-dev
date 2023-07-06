@@ -69,14 +69,14 @@ public class PostControllerTests extends ControllerTestsBase
 
     @Test
     public void deletePostByUserId_ShouldReturnFalse_WhenUserDoesNotExist() throws Exception {
-        var userId = 999L;
+        var userId = 998L;
         doThrow(new IllegalStateException()).when(postService).deletePostByUserId(userId);
 
-        this.mockMvc.perform(delete("/api/posts/user/999"))
+        this.mockMvc.perform(delete("/api/posts/user/998"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("false"));
 
-        verify(postService).deletePostByUserId(999L);
+        verify(postService).deletePostByUserId(998L);
     }
 
 }
