@@ -81,8 +81,5 @@ public class WebApplicationConfig
     {
         SpringApplication.run(WebApplicationConfig.class, args);
     }
-    @GetMapping
-    public List<String> getPosts() {
-        return List.of("Hello", "World");
-    }
+
 }
