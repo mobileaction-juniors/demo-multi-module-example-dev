@@ -1,7 +1,6 @@
 package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.common.dto.PostDto;
-import co.mobileaction.example.web.exception.NotFoundException;
 
 /**
  * @author sa
@@ -10,5 +9,5 @@ import co.mobileaction.example.web.exception.NotFoundException;
  */
 public interface IPostResultHandlerService
 {
-    void executeMessage(PostDto postDto) throws NotFoundException;
+    void executeMessage(PostDto postDto);
 }

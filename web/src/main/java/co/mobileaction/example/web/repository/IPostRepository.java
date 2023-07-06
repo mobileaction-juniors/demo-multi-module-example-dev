@@ -19,6 +19,6 @@ public interface IPostRepository extends JpaRepository<Post, Long>
     @Transactional
     List<Post> deleteByUserId(Long userId);
 
-    @Query("SELECT DISTINCT p.user FROM Post p")
+    @Query("SELECT DISTINCT p.userId FROM Post p")
     List<Long> findDistinctUserIds();
 }

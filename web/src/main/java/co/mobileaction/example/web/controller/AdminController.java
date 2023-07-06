@@ -32,7 +32,7 @@ public class AdminController
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("queue/user")
+    @PostMapping("queue/users")
     public ResponseEntity<Boolean> registerUserWithQueue()
     {
         userQueueService.sendUserRequestForAllPosts();

@@ -1,7 +1,6 @@
 package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.web.exception.AlreadyExistException;
-import co.mobileaction.example.web.exception.NotFoundException;
 import co.mobileaction.example.web.model.User;
 import co.mobileaction.example.web.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,20 +29,6 @@ public class UserService implements IUserService
         }
 
         userRepository.save(user);
-    }
-
-    @Override
-    public User getUserReference(Long id) throws NotFoundException
-    {
-        // check if user already exists
-        boolean userExists = userExist(id);
-
-        if (!userExists)
-        {
-            throw new NotFoundException("user", "id", id);
-        }
-
-        return userRepository.getReferenceById(id);
     }
 
     @Override

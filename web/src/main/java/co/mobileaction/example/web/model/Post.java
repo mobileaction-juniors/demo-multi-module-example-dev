@@ -23,9 +23,8 @@ public class Post
     @Id
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "title")
     private String title;

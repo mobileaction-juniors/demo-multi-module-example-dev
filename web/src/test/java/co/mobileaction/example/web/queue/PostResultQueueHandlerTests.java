@@ -1,7 +1,6 @@
 package co.mobileaction.example.web.queue;
 
 import co.mobileaction.example.common.dto.PostDto;
-import co.mobileaction.example.web.exception.NotFoundException;
 import co.mobileaction.example.web.service.IPostResultHandlerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,7 +30,7 @@ public class PostResultQueueHandlerTests
     private AmqpTemplate resultProblemQueueTemplate;
 
     @Test
-    public void handleMessage_success() throws NotFoundException
+    public void handleMessage_success()
     {
         PostDto dto = new PostDto();
 
@@ -41,7 +40,7 @@ public class PostResultQueueHandlerTests
     }
 
     @Test
-    public void handleMessage_fail() throws NotFoundException
+    public void handleMessage_fail()
     {
         PostDto dto = new PostDto();
 
