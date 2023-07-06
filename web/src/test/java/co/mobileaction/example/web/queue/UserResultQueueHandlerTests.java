@@ -14,9 +14,9 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 
 /**
- * @author sa
- * @date 17.05.2021
- * @time 19:11
+ * @author elif
+ * @date 06.07.2023
+ * @time 15.54
  */
 @ExtendWith(MockitoExtension.class)
 public class UserResultQueueHandlerTests

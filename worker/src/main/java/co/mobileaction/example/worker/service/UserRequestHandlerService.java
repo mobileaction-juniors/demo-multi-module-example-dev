@@ -10,9 +10,9 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.stereotype.Service;
 
 /**
- * @author sa
- * @date 17.05.2021
- * @time 16:55
+ * @author elif
+ * @date 06.07.2023
+ * @time 15.56
  */
 @Service
 @RequiredArgsConstructor

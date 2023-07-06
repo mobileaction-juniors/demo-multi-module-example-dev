@@ -6,9 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * @author sa
- * @date 17.05.2021
- * @time 13:38
+ * @author elif
+ * @date 06.07.2023
+ * @time 15.54
  */
 @Getter
 @NoArgsConstructor
