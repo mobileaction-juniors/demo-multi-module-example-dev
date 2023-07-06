@@ -1,8 +1,6 @@
 package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.common.dto.PostDto;
-import co.mobileaction.example.common.dto.UserDto;
-import co.mobileaction.example.web.exception.AlreadyExistException;
 import co.mobileaction.example.web.exception.NotFoundException;
 
 /**
