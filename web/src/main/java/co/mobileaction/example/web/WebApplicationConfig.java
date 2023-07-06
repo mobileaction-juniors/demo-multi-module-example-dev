@@ -1,5 +1,7 @@
 package co.mobileaction.example.web;
 
+import co.mobileaction.example.web.model.Post;
+import co.mobileaction.example.web.repository.IPostRepository;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -10,7 +12,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
 /**
  * @author sa
  * @date 17.05.2021
@@ -77,5 +80,9 @@ public class WebApplicationConfig
     public static void main(String[] args)
     {
         SpringApplication.run(WebApplicationConfig.class, args);
+    }
+    @GetMapping
+    public List<String> getPosts() {
+        return List.of("Hello", "World");
     }
 }

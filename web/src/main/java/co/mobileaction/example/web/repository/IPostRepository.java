@@ -4,6 +4,7 @@ import co.mobileaction.example.web.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author sa
@@ -13,4 +14,6 @@ import java.util.List;
 public interface IPostRepository extends JpaRepository<Post, Long>
 {
     List<Post> findAllByUserId(Long userId);
+
+    void deletePostByUserId(Long userId);
 }

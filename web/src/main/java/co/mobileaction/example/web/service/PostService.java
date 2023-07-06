@@ -5,7 +5,6 @@ import co.mobileaction.example.web.repository.IPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -41,5 +40,18 @@ public class PostService implements IPostService
     public void deletePost(Long postId)
     {
         postRepository.deleteById(postId);
+    }
+
+    @Override
+    public void deletePostByUserId(Long userId) {
+        List<Post> postIds = postRepository.findAllByUserId(userId);
+        if(postIds.size() == 0)
+        {
+            throw new IllegalStateException("User with id " + userId + " does not exists");
+        }
+
+        for(Post p: postIds){
+            postRepository.deleteById(p.getId());
+        }
     }
 }

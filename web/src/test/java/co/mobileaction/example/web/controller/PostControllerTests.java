@@ -33,6 +33,7 @@ public class PostControllerTests extends ControllerTestsBase
     @MockBean
     private IPostService postService;
 
+
     @Test
     public void getPosts() throws Exception
     {
@@ -57,4 +58,23 @@ public class PostControllerTests extends ControllerTestsBase
 
         verify(postService).deletePost(1L);
     }
+
+    @Test
+    public void deletePostByUserId_ShouldReturnTrue_WhenUserExists() throws Exception
+    {
+        this.mockMvc.perform(delete("/api/posts/user/1"))
+                .andExpect(status().isOk());
+
+        verify(postService).deletePostByUserId(1L);
+    }
+
+    @Test
+    public void deletePostByUserId_ShouldReturnFalse_WhenUserDoesNotExist() throws Exception {
+        this.mockMvc.perform(delete("/api/posts/user/999"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("false"));
+
+        verify(postService).deletePostByUserId(999L);
+    }
+
 }
