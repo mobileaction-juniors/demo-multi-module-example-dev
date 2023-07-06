@@ -10,5 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface IUserRepository extends JpaRepository<User, Long>
 {
-    boolean existsById(int id);
+    boolean existsById(Long id);
+    User getReferenceById(Long id);
 }

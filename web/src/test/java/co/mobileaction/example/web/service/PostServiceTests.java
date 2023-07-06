@@ -1,8 +1,11 @@
 package co.mobileaction.example.web.service;
 
+import co.mobileaction.example.web.exception.NotFoundException;
 import co.mobileaction.example.web.model.Post;
+import co.mobileaction.example.web.model.User;
 import co.mobileaction.example.web.repository.IPostRepository;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +15,7 @@ import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author sa
@@ -19,11 +23,15 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @time 19:19
  */
 @DataJpaTest
+@Sql("/data/users.sql")
 @Sql("/data/posts.sql")
 public class PostServiceTests
 {
     @Autowired
     private IPostService postService;
+
+    @Autowired
+    private IUserService userService;
 
     @Autowired
     private IPostRepository postRepository;
@@ -52,7 +60,7 @@ public class PostServiceTests
     public void savePost()
     {
         Post post = Post.builder()
-                .userId(5L)
+                .user(new User(1L, "test", "test", "test"))
                 .id(5L)
                 .body("body-5")
                 .title("title-5")
@@ -61,7 +69,23 @@ public class PostServiceTests
         postService.savePost(post);
 
         List<Post> list = postRepository.findAll();
+        assertThat(list).hasSize(5);
+    }
 
+    @Test
+    public void savePost_UserNotExist_ExceptionThrown()
+    {
+        Post post = Post.builder()
+                .user(new User(10L, "test", "test", "test"))
+                .id(5L)
+                .body("body-5")
+                .title("title-5")
+                .build();
+
+        Mockito.doThrow(NotFoundException.class).when(postService).savePost(post);
+        assertThrows(NotFoundException.class, () -> postService.savePost(post));
+
+        List<Post> list = postRepository.findAll();
         assertThat(list).hasSize(5);
     }
 

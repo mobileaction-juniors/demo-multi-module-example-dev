@@ -3,6 +3,7 @@ package co.mobileaction.example.web.service;
 import co.mobileaction.example.common.dto.PostDto;
 import co.mobileaction.example.common.dto.UserDto;
 import co.mobileaction.example.web.exception.AlreadyExistException;
+import co.mobileaction.example.web.exception.NotFoundException;
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.model.User;
 import lombok.RequiredArgsConstructor;
@@ -18,18 +19,21 @@ import org.springframework.stereotype.Service;
 public class PostResultHandlerService implements IPostResultHandlerService
 {
     private final IPostService postService;
+    private final IUserService userService;
 
     @Override
-    public void executeMessage(PostDto postDto)
+    public void executeMessage(PostDto postDto) throws NotFoundException
     {
         postService.savePost(convertFrom(postDto));
     }
 
-    private Post convertFrom(PostDto postDto)
+    private Post convertFrom(PostDto postDto) throws NotFoundException
     {
+        User user = userService.getUserReference(postDto.getUserId());
+
         return Post.builder()
                 .id(postDto.getId())
-                .userId(postDto.getUserId())
+                .user(user)
                 .title(postDto.getTitle())
                 .body(postDto.getBody())
                 .build();

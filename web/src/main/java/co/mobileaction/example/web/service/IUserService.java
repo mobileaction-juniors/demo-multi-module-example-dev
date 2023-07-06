@@ -1,6 +1,7 @@
 package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.web.exception.AlreadyExistException;
+import co.mobileaction.example.web.exception.NotFoundException;
 import co.mobileaction.example.web.model.User;
 
 /**
@@ -11,4 +12,8 @@ import co.mobileaction.example.web.model.User;
 public interface IUserService
 {
     void saveUser(User user) throws AlreadyExistException;
+
+    User getUserReference(Long id) throws NotFoundException;
+
+    boolean userExist(Long id);
 }

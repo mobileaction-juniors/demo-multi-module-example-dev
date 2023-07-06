@@ -2,6 +2,7 @@ package co.mobileaction.example.web.queue;
 
 import co.mobileaction.example.common.dto.PostDto;
 import co.mobileaction.example.common.dto.UserDto;
+import co.mobileaction.example.web.exception.NotFoundException;
 import co.mobileaction.example.web.service.IPostResultHandlerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,12 @@ public class PostResultQueueHandler
         try
         {
             resultHandlerService.executeMessage(result);
+        }
+        catch (NotFoundException e)
+        {
+            log.error("Could not handle result for postId: {} because {}", result.getId(), e.getMessage());
+
+            resultProblemQueueTemplate.convertAndSend(result);
         }
         catch (Exception e)
         {
