@@ -34,7 +34,7 @@ public class UserRequestQueueHandler
         }
         catch (Exception e)
         {
-            log.error("Could not handle request for postId: {}", request.getUserId(), e);
+            log.error("Could not handle request for userId: {}", request.getUserId(), e);
 
             userRequestProblemQueueTemplate.convertAndSend(request);
         }
