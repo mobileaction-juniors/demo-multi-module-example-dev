@@ -1,6 +1,8 @@
 package co.mobileaction.example.web.controller;
 
+import co.mobileaction.example.web.repository.IPostRepository;
 import co.mobileaction.example.web.service.IPostQueueService;
+import co.mobileaction.example.web.service.user.IUserQueueService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +22,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AdminController
 {
-    private final IPostQueueService queueService;
+    private final IPostQueueService postQueueService;
+    private final IUserQueueService userQueueService;
+    private final IPostRepository postRepository;
 
     @PostMapping("queue/posts")
     public ResponseEntity<Boolean> createQueueRequests()
     {
-        queueService.sendPostRequestForAllItems();
+        postQueueService.sendPostRequestForAllItems();
+
+        return ResponseEntity.ok(true);
+    }
+
+    @PostMapping("queue/users")
+    public ResponseEntity<Boolean> createQueueUserRequests()
+    {
+        userQueueService.sendUserRequestForAllItems(postRepository.findAllDistinctUserIds());
 
         return ResponseEntity.ok(true);
     }
