@@ -1,7 +1,6 @@
 package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.common.dto.PostDto;
-import co.mobileaction.example.web.exception.NotFoundException;
 import co.mobileaction.example.web.model.Post;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,7 +31,7 @@ public class PostResultHandlerServiceTests
     private ArgumentCaptor<Post> postArgumentCaptor;
 
     @Test
-    public void savePost() throws NotFoundException
+    public void savePost()
     {
         PostDto post = PostDto.builder()
                 .userId(5L)
