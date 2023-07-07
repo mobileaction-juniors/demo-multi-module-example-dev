@@ -1,6 +1,6 @@
 package co.mobileaction.example.worker.queue;
 
-import co.mobileaction.example.common.dto.QueueRequestDto;
+import co.mobileaction.example.common.dto.QueueRequestPostDto;
 import co.mobileaction.example.worker.service.IPostRequestHandlerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,7 +32,7 @@ public class PostRequestQueueHandlerTests
     @Test
     public void handleMessage_success()
     {
-        QueueRequestDto dto = new QueueRequestDto(1L);
+        QueueRequestPostDto dto = new QueueRequestPostDto(1L);
 
         postRequestQueueHandler.handleMessage(dto);
 
@@ -42,7 +42,7 @@ public class PostRequestQueueHandlerTests
     @Test
     public void handleMessage_fail()
     {
-        QueueRequestDto dto = new QueueRequestDto(1L);
+        QueueRequestPostDto dto = new QueueRequestPostDto(1L);
 
         doThrow(RuntimeException.class).when(service).executeMessage(dto);
 

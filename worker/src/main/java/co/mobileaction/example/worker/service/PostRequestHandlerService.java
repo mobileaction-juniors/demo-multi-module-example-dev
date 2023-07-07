@@ -1,7 +1,7 @@
 package co.mobileaction.example.worker.service;
 
 import co.mobileaction.example.common.dto.PostDto;
-import co.mobileaction.example.common.dto.QueueRequestDto;
+import co.mobileaction.example.common.dto.QueueRequestPostDto;
 import co.mobileaction.example.worker.client.ICrawlerClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -21,7 +21,7 @@ public class PostRequestHandlerService implements IPostRequestHandlerService
     private final ICrawlerClient crawlerClient;
 
     @Override
-    public void executeMessage(QueueRequestDto request)
+    public void executeMessage(QueueRequestPostDto request)
     {
         PostDto post = crawlerClient.fetchPost(request.getPostId());
 

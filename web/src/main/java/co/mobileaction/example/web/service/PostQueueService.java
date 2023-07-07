@@ -1,6 +1,6 @@
 package co.mobileaction.example.web.service;
 
-import co.mobileaction.example.common.dto.QueueRequestDto;
+import co.mobileaction.example.common.dto.QueueRequestPostDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class PostQueueService implements IPostQueueService
     public void sendPostRequestForAllItems()
     {
         LongStream.rangeClosed(1, 100)
-                .mapToObj(QueueRequestDto::new)
+                .mapToObj(QueueRequestPostDto::new)
                 .forEach(requestQueueTemplate::convertAndSend);
     }
 }

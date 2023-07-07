@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class QueueRequestDto
+public class QueueRequestPostDto
 {
     private Long postId;
 }

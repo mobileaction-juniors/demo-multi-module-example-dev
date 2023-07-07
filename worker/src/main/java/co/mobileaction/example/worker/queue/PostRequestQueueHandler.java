@@ -1,6 +1,6 @@
 package co.mobileaction.example.worker.queue;
 
-import co.mobileaction.example.common.dto.QueueRequestDto;
+import co.mobileaction.example.common.dto.QueueRequestPostDto;
 import co.mobileaction.example.worker.service.IPostRequestHandlerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ public class PostRequestQueueHandler
     private final IPostRequestHandlerService requestHandlerService;
 
     @RabbitListener(queues = "${messaging.queue.request}", containerFactory = "requestQueueListener")
-    public void handleMessage(QueueRequestDto request)
+    public void handleMessage(QueueRequestPostDto request)
     {
         try
         {
