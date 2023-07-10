@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/demo-multi-module-example.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/demo-multi-module-example.common.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/web/demo-multi-module-example.web.main.iml" filepath="$PROJECT_DIR$/.idea/modules/web/demo-multi-module-example.web.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/web/demo-multi-module-example.web.test.iml" filepath="$PROJECT_DIR$/.idea/modules/web/demo-multi-module-example.web.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/worker/demo-multi-module-example.worker.main.iml" filepath="$PROJECT_DIR$/.idea/modules/worker/demo-multi-module-example.worker.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/worker/demo-multi-module-example.worker.test.iml" filepath="$PROJECT_DIR$/.idea/modules/worker/demo-multi-module-example.worker.test.iml" />
     </modules>
   </component>
 </project>

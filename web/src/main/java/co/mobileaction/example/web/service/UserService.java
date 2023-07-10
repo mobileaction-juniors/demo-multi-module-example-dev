@@ -24,7 +24,7 @@ public class UserService implements IUserService
     @Override
     public List<User> findUsers(Pageable pageable) { return userRepository.findAll(pageable).getContent(); }
 
-
+    public List<Long> findAllDistinctUserIds() { return userRepository.findAllDistinctUserIds(); }
 
 
 }

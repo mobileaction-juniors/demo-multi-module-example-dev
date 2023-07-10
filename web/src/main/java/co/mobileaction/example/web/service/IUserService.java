@@ -11,4 +11,6 @@ public interface IUserService
 
     List<User> findUsers(Pageable pageable);
 
+    List<Long> findAllDistinctUserIds();
+
 }
