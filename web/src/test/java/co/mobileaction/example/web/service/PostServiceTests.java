@@ -81,7 +81,7 @@ public class PostServiceTests
     @Test
     public void deleteUserPost()
     {
-        postService.deleteUserPost(1L);
+        postService.deleteUserPosts(1L);
 
         List<Post> list = postRepository.findAll();
 

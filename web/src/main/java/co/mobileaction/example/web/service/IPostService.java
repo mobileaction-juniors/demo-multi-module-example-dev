@@ -4,6 +4,7 @@ import co.mobileaction.example.web.model.Post;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author sa
@@ -20,7 +21,7 @@ public interface IPostService
 
     void deletePost(Long postId);
 
-    void deleteUserPost(Long userId);
+    void deleteUserPosts(Long userId);
 
-    List<Long> findAllDistinctUserIds();
+    Set<Long> findAllDistinctUserIds();
 }

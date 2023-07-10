@@ -75,7 +75,7 @@ public class WorkerAppConfig
 
     @Bean
     public AmqpTemplate userRequestProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
-                                                    MessageConverter messageConverter)
+                                                        MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_USER_REQUEST_PROBLEM_QUEUE);

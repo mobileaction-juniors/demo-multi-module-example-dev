@@ -4,6 +4,7 @@ import co.mobileaction.example.common.dto.UserDto;
 import co.mobileaction.example.common.dto.UserRequestDto;
 import co.mobileaction.example.worker.client.ICrawlerClient;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
  * @date 06.07.2023
  * @time 15.56
  */
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserRequestHandlerService implements IUserRequestHandlerService
@@ -23,12 +26,8 @@ public class UserRequestHandlerService implements IUserRequestHandlerService
     @Override
     public void executeMessage(UserRequestDto request)
     {
-        try {
-            UserDto user = crawlerClient.fetchUser(request.getUserId());
+        UserDto user = crawlerClient.fetchUser(request.getUserId());
 
-            userResultQueueTemplate.convertAndSend(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        userResultQueueTemplate.convertAndSend(user);
     }
 }

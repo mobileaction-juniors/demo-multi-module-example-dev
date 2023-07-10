@@ -45,7 +45,7 @@ public class PostController
     @DeleteMapping("user/{userId}")
     public ResponseEntity<Boolean> deleteUserPost(@PathVariable Long userId)
     {
-        postService.deleteUserPost(userId);
+        postService.deleteUserPosts(userId);
 
         return ResponseEntity.ok(true);
     }

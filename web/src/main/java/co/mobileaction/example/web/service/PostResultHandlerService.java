@@ -26,7 +26,7 @@ public class PostResultHandlerService implements IPostResultHandlerService
     {
         return Post.builder()
                 .id(postDto.getId())
-                .userId(postDto.getId())
+                .userId(postDto.getUserId())
                 .title(postDto.getTitle())
                 .body(postDto.getBody())
                 .build();

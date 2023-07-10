@@ -21,9 +21,7 @@ public class UserService implements IUserService
     public void saveUser(User user) throws AlreadyExistException
     {
         // check if user already exists
-        boolean userAlreadyExists = userExist(user.getId());
-
-        if (userAlreadyExists)
+        if (userExist(user.getId()))
         {
             throw new AlreadyExistException("user");
         }

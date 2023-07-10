@@ -5,8 +5,10 @@ import co.mobileaction.example.web.repository.IPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author sa
@@ -44,13 +46,14 @@ public class PostService implements IPostService
     }
 
     @Override
-    public void deleteUserPost(Long userId)
+    @Transactional  
+    public void deleteUserPosts(Long userId)
     {
         postRepository.deleteByUserId(userId);
     }
 
     @Override
-    public List<Long> findAllDistinctUserIds()
+    public Set<Long> findAllDistinctUserIds()
     {
         return postRepository.findDistinctUserIds();
     }

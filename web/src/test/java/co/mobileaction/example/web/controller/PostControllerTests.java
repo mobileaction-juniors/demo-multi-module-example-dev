@@ -65,6 +65,6 @@ public class PostControllerTests extends ControllerTestsBase
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
 
-        verify(postService).deleteUserPost(1L);
+        verify(postService).deleteUserPosts(1L);
     }
 }

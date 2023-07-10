@@ -1,8 +1,6 @@
 package co.mobileaction.example.web.queue;
 
-import co.mobileaction.example.common.dto.PostDto;
 import co.mobileaction.example.common.dto.UserDto;
-import co.mobileaction.example.web.service.IPostResultHandlerService;
 import co.mobileaction.example.web.service.IUserResultHandlerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +19,6 @@ import org.springframework.stereotype.Component;
 public class UserResultQueueHandler
 {
     private final AmqpTemplate userResultProblemQueueTemplate;
-
     private final IUserResultHandlerService resultHandlerService;
 
     @RabbitListener(queues = "${messaging.queue.user.result}", containerFactory = "resultQueueListener")
@@ -33,7 +30,7 @@ public class UserResultQueueHandler
         }
         catch (Exception e)
         {
-            log.error("Could not handle result for postId: {}", result.getId(), e);
+            log.error("Could not handle result for postId: {} because {}", result.getId(), e.getMessage());
 
             userResultProblemQueueTemplate.convertAndSend(result);
         }
