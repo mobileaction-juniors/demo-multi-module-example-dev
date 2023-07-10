@@ -10,4 +10,5 @@ import co.mobileaction.example.common.dto.PostDto;
 public interface IPostResultHandlerService
 {
     void executeMessage(PostDto postDto);
+
 }

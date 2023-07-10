@@ -26,3 +26,20 @@ CREATE TABLE posts (
   title varchar(255) NOT NULL,
   body varchar(255) NOT NULL
 );
+
+CREATE TABLE users (
+    id bigint PRIMARY KEY NOT NULL,
+  name varchar(255) NOT NULL,
+  email varchar(255) NOT NULL,
+  address_street varchar(255) NOT NULL,
+    address_suite varchar(255) NOT NULL,
+    address_city varchar(255) NOT NULL,
+    address_zipcode varchar(255) NOT NULL,
+    address_geo_lat varchar(255) NOT NULL,
+    address_geo_lng varchar(255) NOT NULL,
+    phone varchar(255) NOT NULL,
+    website varchar(255) NOT NULL,
+    company_name varchar(255) NOT NULL,
+    company_catchPhrase varchar(255) NOT NULL,
+    company_bs varchar(255) NOT NULL
+);

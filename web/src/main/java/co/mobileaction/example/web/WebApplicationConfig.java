@@ -38,6 +38,7 @@ public class WebApplicationConfig
     @Value("${messaging.queue.request}")
     private String MESSAGING_REQUEST_QUEUE;
 
+
     @Bean
     public AmqpTemplate resultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                    MessageConverter messageConverter)

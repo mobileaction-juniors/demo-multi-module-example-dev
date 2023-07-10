@@ -31,4 +31,5 @@ public class PostResultHandlerService implements IPostResultHandlerService
                 .body(postDto.getBody())
                 .build();
     }
+
 }

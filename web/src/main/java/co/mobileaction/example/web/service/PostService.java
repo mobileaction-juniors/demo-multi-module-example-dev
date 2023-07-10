@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -41,5 +42,12 @@ public class PostService implements IPostService
     public void deletePost(Long postId)
     {
         postRepository.deleteById(postId);
+    }
+
+
+    @Override
+    @Transactional
+    public void deletePostByUserId(Long userId) {
+            postRepository.deleteAllByUserId(userId);
     }
 }
