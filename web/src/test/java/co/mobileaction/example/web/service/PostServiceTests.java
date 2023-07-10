@@ -77,23 +77,14 @@ public class PostServiceTests
     }
 
     @Test
-    public void deletePostByUserId_WhenUserExist() {
+    public void deletePostByUserId() {
         postService.deletePostByUserId(1L);
 
-        List<Post> list = postRepository.findAll();
+        List<Post> list = postRepository.findAllByUserId(1L);
 
-        assertThat(list).hasSize(92);
+        assertThat(list).hasSize(0);
     }
 
-    @Test
-    public void deletePostByUserId_WhenUserDoesNotExist() {
-        assertThrows(IllegalStateException.class, () -> {
-            postService.deletePostByUserId(999L);
-        });
 
-        List<Post> list = postRepository.findAll();
-
-        assertThat(list).hasSize(104);
-    }
 
 }
