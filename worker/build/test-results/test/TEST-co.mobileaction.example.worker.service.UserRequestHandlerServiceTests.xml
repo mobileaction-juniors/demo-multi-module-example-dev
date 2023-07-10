@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.mobileaction.example.worker.service.UserRequestHandlerServiceTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-07-07T08:38:39" hostname="DESKTOP-56UDQ3Q" time="1.633">
+  <properties/>
+  <testcase name="test_crawlAppForAllCountries_missingApp()" classname="co.mobileaction.example.worker.service.UserRequestHandlerServiceTests" time="1.633"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

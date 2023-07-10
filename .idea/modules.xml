@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/demo-multi-module-example.iml" filepath="$PROJECT_DIR$/.idea/modules/demo-multi-module-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/demo-multi-module-example.common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/demo-multi-module-example.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/demo-multi-module-example.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/demo-multi-module-example.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/demo-multi-module-example.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/demo-multi-module-example.common.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web/demo-multi-module-example.web.iml" filepath="$PROJECT_DIR$/.idea/modules/web/demo-multi-module-example.web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web/demo-multi-module-example.web.main.iml" filepath="$PROJECT_DIR$/.idea/modules/web/demo-multi-module-example.web.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web/demo-multi-module-example.web.test.iml" filepath="$PROJECT_DIR$/.idea/modules/web/demo-multi-module-example.web.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/worker/demo-multi-module-example.worker.iml" filepath="$PROJECT_DIR$/.idea/modules/worker/demo-multi-module-example.worker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/worker/demo-multi-module-example.worker.main.iml" filepath="$PROJECT_DIR$/.idea/modules/worker/demo-multi-module-example.worker.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/worker/demo-multi-module-example.worker.test.iml" filepath="$PROJECT_DIR$/.idea/modules/worker/demo-multi-module-example.worker.test.iml" />
+    </modules>
+  </component>
+</project>

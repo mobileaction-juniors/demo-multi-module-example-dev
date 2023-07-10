@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="98a74674-2fe0-427e-b215-0f364cfef5d7" name="Changes" comment="Feat(ONB-101) - PostRepository-PostService-ServiceTests updated." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ONB-101-Gokhan-Mert-Gunes" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2S3UmooxQUNuZ2bib98VAfcIuKP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ONB-101-Gokhan-Mert-Gunes&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gokme/IdeaProjects/demo-multi-module-example-dev/web/src/test/resources/data&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;723fb03a762e48aff76a642ef171197f&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gokme\IdeaProjects\demo-multi-module-example-dev\web\src\test\resources\data" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.WebApplicationConfig">
+    <configuration name="PostControllerTests.deletePostByUserId_ShouldReturnFalse_WhenUserDoesNotExist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":web:test" />
+            <option value="--tests" />
+            <option value="&quot;co.mobileaction.example.web.controller.PostControllerTests.deletePostByUserId_ShouldReturnFalse_WhenUserDoesNotExist&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="PostControllerTests.deletePostByUserId_ShouldReturnTrue_WhenUserExists" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":web:test" />
+            <option value="--tests" />
+            <option value="&quot;co.mobileaction.example.web.controller.PostControllerTests.deletePostByUserId_ShouldReturnTrue_WhenUserExists&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="PostServiceTests.deletePost" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":web:test" />
+            <option value="--tests" />
+            <option value="&quot;co.mobileaction.example.web.service.PostServiceTests.deletePost&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="PostServiceTests.deletePostByUserId_WhenUserDoesNotExist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":web:test" />
+            <option value="--tests" />
+            <option value="&quot;co.mobileaction.example.web.service.PostServiceTests.deletePostByUserId_WhenUserDoesNotExist&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="PostServiceTests.deletePostByUserId_WhenUserExist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":web:test" />
+            <option value="--tests" />
+            <option value="&quot;co.mobileaction.example.web.service.PostServiceTests.deletePostByUserId_WhenUserExist&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="demo-multi-module-example-dev" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="demo-multi-module-example-dev" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebApplicationConfig" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="dev" />
+      <module name="demo-multi-module-example.web.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="co.mobileaction.example.web.WebApplicationConfig" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WorkerAppConfig" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="dev" />
+      <module name="demo-multi-module-example.worker.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="co.mobileaction.example.worker.WorkerAppConfig" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.PostControllerTests.deletePostByUserId_ShouldReturnFalse_WhenUserDoesNotExist" />
+      <item itemvalue="Gradle.PostControllerTests.deletePostByUserId_ShouldReturnTrue_WhenUserExists" />
+      <item itemvalue="Gradle.PostServiceTests.deletePost" />
+      <item itemvalue="Gradle.PostServiceTests.deletePostByUserId_WhenUserDoesNotExist" />
+      <item itemvalue="Gradle.PostServiceTests.deletePostByUserId_WhenUserExist" />
+      <item itemvalue="Spring Boot.WebApplicationConfig" />
+      <item itemvalue="Spring Boot.WorkerAppConfig" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.PostServiceTests.deletePostByUserId_WhenUserExist" />
+        <item itemvalue="Gradle.PostServiceTests.deletePostByUserId_WhenUserDoesNotExist" />
+        <item itemvalue="Gradle.PostServiceTests.deletePost" />
+        <item itemvalue="Gradle.PostControllerTests.deletePostByUserId_ShouldReturnTrue_WhenUserExists" />
+        <item itemvalue="Gradle.PostControllerTests.deletePostByUserId_ShouldReturnFalse_WhenUserDoesNotExist" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98a74674-2fe0-427e-b215-0f364cfef5d7" name="Changes" comment="" />
+      <created>1688374919890</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688374919890</updated>
+      <workItem from="1688374922415" duration="758000" />
+      <workItem from="1688452968733" duration="2506000" />
+      <workItem from="1688457300507" duration="47000" />
+      <workItem from="1688470642190" duration="466000" />
+      <workItem from="1688473406795" duration="1196000" />
+      <workItem from="1688480916666" duration="12000" />
+      <workItem from="1688481006983" duration="1553000" />
+      <workItem from="1688540721388" duration="1431000" />
+      <workItem from="1688542173340" duration="65000" />
+      <workItem from="1688543782321" duration="117000" />
+      <workItem from="1688543915725" duration="17300000" />
+      <workItem from="1688626114732" duration="20238000" />
+      <workItem from="1688655448082" duration="102000" />
+      <workItem from="1688714056950" duration="5336000" />
+      <workItem from="1688728654643" duration="16000" />
+      <workItem from="1688728684431" duration="867000" />
+      <workItem from="1688971734329" duration="2593000" />
+      <workItem from="1688974344935" duration="822000" />
+      <workItem from="1688975356566" duration="1242000" />
+      <workItem from="1688976612336" duration="4271000" />
+    </task>
+    <task id="LOCAL-00001" summary="Delete methods and test methods are added and Database inserted.">
+      <option name="closed" value="true" />
+      <created>1688628993260</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1688628993260</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Delete methods and test methods are added and Database inserted.">
+      <option name="closed" value="true" />
+      <created>1688629883521</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1688629883521</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Delete methods and test methods are added and Database inserted.">
+      <option name="closed" value="true" />
+      <created>1688629947712</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1688629947712</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Delete methods and test methods are added and Database inserted.">
+      <option name="closed" value="true" />
+      <created>1688630086412</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688630086412</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Feat(ONB-102) - Implemented finding user ids, created crawl request for each userId then parsed user-details and create result. Saved all to DB. Test methods are implemented.">
+      <option name="closed" value="true" />
+      <created>1688719645105</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688719645105</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Feat(ONB-101) - PostRepository-PostService-ServiceTests updated.">
+      <option name="closed" value="true" />
+      <created>1688980219087</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1688980219087</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="ONB-102-Gokhan-Mert-Gunes" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Delete methods and test methods are added and Database inserted." />
+    <MESSAGE value="User classes implemented." />
+    <MESSAGE value="Feat(ONB-102) - Implemented finding user ids, created crawl request for each userId then parsed user-details and create result. Saved all to DB. Test methods are implemented." />
+    <MESSAGE value="Feat(ONB-101) - PostRepository-PostService-ServiceTests updated." />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat(ONB-101) - PostRepository-PostService-ServiceTests updated." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/web/src/main/java/co/mobileaction/example/web/controller/PostController.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
