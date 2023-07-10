@@ -28,7 +28,7 @@ public class PostController
     private final IPostService postService;
 
     @GetMapping
-    public ResponseEntity<List<Post>> getPosts(@PageableDefault(size = 100)
+    public ResponseEntity<List<Post>> getPosts(@PageableDefault(size = 10)
                                                @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
     {
         return ResponseEntity.ok(postService.findPosts(pageable));
@@ -38,17 +38,6 @@ public class PostController
     public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
     {
         postService.deletePost(postId);
-
-        return ResponseEntity.ok(true);
-    }
-    @DeleteMapping(path = "user/{userId}")
-    public ResponseEntity<Boolean> deletePostByUserId(@PathVariable Long userId)
-    {
-        try {
-            postService.deletePostByUserId(userId);
-        } catch (Exception e) {
-            return ResponseEntity.ok(false);
-        }
 
         return ResponseEntity.ok(true);
     }

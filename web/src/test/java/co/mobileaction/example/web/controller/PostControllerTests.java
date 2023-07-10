@@ -14,7 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -31,7 +32,6 @@ public class PostControllerTests extends ControllerTestsBase
 {
     @MockBean
     private IPostService postService;
-
 
     @Test
     public void getPosts() throws Exception
@@ -57,26 +57,4 @@ public class PostControllerTests extends ControllerTestsBase
 
         verify(postService).deletePost(1L);
     }
-
-    @Test
-    public void deletePostByUserId_ShouldReturnTrue_WhenUserExists() throws Exception
-    {
-        this.mockMvc.perform(delete("/api/posts/user/1"))
-                .andExpect(status().isOk());
-
-        verify(postService).deletePostByUserId(1L);
-    }
-
-    @Test
-    public void deletePostByUserId_ShouldReturnFalse_WhenUserDoesNotExist() throws Exception {
-        var userId = 998L;
-        doThrow(new IllegalStateException()).when(postService).deletePostByUserId(userId);
-
-        this.mockMvc.perform(delete("/api/posts/user/998"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("false"));
-
-        verify(postService).deletePostByUserId(998L);
-    }
-
 }

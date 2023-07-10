@@ -12,7 +12,6 @@ import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author sa
@@ -75,16 +74,4 @@ public class PostServiceTests
 
         assertThat(list).hasSize(3);
     }
-
-    @Test
-    public void deletePostByUserId() {
-        postService.deletePostByUserId(1L);
-
-        List<Post> list = postRepository.findAllByUserId(1L);
-
-        assertThat(list).hasSize(0);
-    }
-
-
-
 }
