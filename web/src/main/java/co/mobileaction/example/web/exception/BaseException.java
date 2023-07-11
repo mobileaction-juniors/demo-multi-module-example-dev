@@ -16,9 +16,4 @@ public class BaseException extends RuntimeException
     {
         super(msg);
     }
-
-    public String getMessage()
-    {
-        return super.getMessage();
-    }
 }
