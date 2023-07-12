@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
-
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -56,5 +55,15 @@ public class PostControllerTests extends ControllerTestsBase
                 .andExpect(content().string("true"));
 
         verify(postService).deletePost(1L);
+    }
+
+    @Test
+    public void deleteAllPostsOfUser() throws Exception
+    {
+        this.mockMvc.perform(delete("/api/posts/user/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("true"));
+
+        verify(postService).deletePostByUserId(1L);
     }
 }

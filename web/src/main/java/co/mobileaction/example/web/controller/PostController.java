@@ -48,4 +48,11 @@ public class PostController
         postService.deletePostByUserId(userId);
         return ResponseEntity.ok(true);
     }
+
+    @PostMapping("queue/userIds")
+    public ResponseEntity<Boolean> queueUniqueUserIds()
+    {
+        return ResponseEntity.ok(postService.queueUniqueUserIds());
+    }
+
 }

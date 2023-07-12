@@ -1,6 +1,7 @@
 package co.mobileaction.example.worker.client;
 
 import co.mobileaction.example.common.dto.PostDto;
+import co.mobileaction.example.common.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -36,6 +37,28 @@ public class CrawlerClientTests
         when(httpRequestExecutor.executeGetRequest(url, PostDto.class)).thenReturn(post);
 
         PostDto postDto = crawlerClient.fetchPost(postId);
+
+        assertEquals(postDto.getId(), 1L);
+    }
+
+    @Test
+    public void test_fetchUser()
+    {
+        String api_url = "https://jsonplaceholder.typicode.com/users/%s";
+        Long userId = 1L;
+        String url = String.format(api_url, userId);
+
+        UserDto user = UserDto.builder()
+                .id(userId)
+                .name("name-1")
+                .username("username-1")
+                .email("email-1")
+                .phone("phone-1")
+                .build();
+
+        when(httpRequestExecutor.executeGetRequest(url, UserDto.class)).thenReturn(user);
+
+        PostDto postDto = crawlerClient.fetchPost(userId);
 
         assertEquals(postDto.getId(), 1L);
     }

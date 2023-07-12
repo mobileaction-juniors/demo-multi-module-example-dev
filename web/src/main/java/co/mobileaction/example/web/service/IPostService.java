@@ -21,4 +21,7 @@ public interface IPostService
     void deletePost(Long postId);
 
     void deletePostByUserId(Long userId);
+
+    boolean queueUniqueUserIds();
+
 }

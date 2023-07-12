@@ -19,6 +19,7 @@ import java.util.List;
 public class PostService implements IPostService
 {
     private final IPostRepository postRepository;
+    private final IPostQueueService postQueueService;
 
     @Override
     public void savePost(Post post)
@@ -49,5 +50,11 @@ public class PostService implements IPostService
     @Transactional
     public void deletePostByUserId(Long userId) {
             postRepository.deleteAllByUserId(userId);
+    }
+
+    @Override
+    public boolean queueUniqueUserIds() {
+        List<Long> userIds = postRepository.findAllDistinctUserIds();
+        return postQueueService.sendAllUniqueUserIds(userIds);
     }
 }
