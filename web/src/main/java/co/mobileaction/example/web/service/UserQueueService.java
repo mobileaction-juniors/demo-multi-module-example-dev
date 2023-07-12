@@ -13,9 +13,11 @@ import java.util.List;
 public class UserQueueService implements IUserQueueService
 {
     private final AmqpTemplate userRequestQueueTemplate;
+    private final IUserService userService;
     @Override
-    public void sendUserRequestForAllItems(List<Long> ids)
+    public void sendUserRequestForAllItems()
     {
+        List<Long> ids = userService.findAllDistinctUserIds();
         ids.stream()
                 .map(QueueRequestUserDto::new)
                 .forEach(userRequestQueueTemplate::convertAndSend);

@@ -1,6 +1,5 @@
 package co.mobileaction.example.web.controller;
 
-import co.mobileaction.example.web.repository.IUserRepository;
 import co.mobileaction.example.web.service.IPostQueueService;
 import co.mobileaction.example.web.service.IUserQueueService;
 import co.mobileaction.example.web.util.SecurityUtils;
@@ -31,10 +30,6 @@ public class AdminControllerTests extends ControllerTestsBase
     @MockBean
     private IUserQueueService userQueueService;
 
-    @MockBean
-    private IUserRepository userRepository;
-
-
     @Test
     public void createPostQueueRequests() throws Exception
     {
@@ -52,6 +47,6 @@ public class AdminControllerTests extends ControllerTestsBase
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
 
-        verify(userQueueService).sendUserRequestForAllItems(userRepository.findAllDistinctUserIds());
+        verify(userQueueService).sendUserRequestForAllItems();
     }
 }

@@ -19,7 +19,7 @@ public class CrawlerClient implements ICrawlerClient
     public static final String API_POST_URL = "https://jsonplaceholder.typicode.com/posts/%s";
     public static final String API_USER_URL = "https://jsonplaceholder.typicode.com/users/%s";
 
-    private final IHttpRequestExecutor httpRequestExecutor;
+        private final IHttpRequestExecutor httpRequestExecutor;
 
     @Override
     public PostDto fetchPost(Long postId)
