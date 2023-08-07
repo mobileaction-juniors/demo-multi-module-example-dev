@@ -25,6 +25,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostController
 {
+    // Dummy message
     private final IPostService postService;
 
     @GetMapping
