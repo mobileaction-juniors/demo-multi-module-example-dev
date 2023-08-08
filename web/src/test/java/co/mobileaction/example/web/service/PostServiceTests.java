@@ -80,8 +80,8 @@ public class PostServiceTests
     {
         postService.deletePostsByUserId(1L);
 
-        List<Post> list = postRepository.findAllByUserId(1L);
+        List<Post> list = postRepository.findAll();
 
-        assertThat(list).hasSize(0);
+        assertThat(list).hasSize(2);
     }
 }
