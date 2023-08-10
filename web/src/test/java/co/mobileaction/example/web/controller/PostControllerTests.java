@@ -33,6 +33,8 @@ public class PostControllerTests extends ControllerTestsBase
     @MockBean
     private IPostService postService;
 
+    private final Long postId = 1L;
+
     @Test
     public void getPosts() throws Exception
     {
@@ -55,7 +57,7 @@ public class PostControllerTests extends ControllerTestsBase
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
 
-        verify(postService).deletePost(1L);
+        verify(postService).deletePost(postId);
     }
 
     @Test
@@ -65,6 +67,6 @@ public class PostControllerTests extends ControllerTestsBase
                 .andExpect((status().isOk()))
                 .andExpect(content().string("true"));
 
-        verify(postService).deletePostsByUserId((1L));
+        verify(postService).deletePostsByUserId((postId));
     }
 }
