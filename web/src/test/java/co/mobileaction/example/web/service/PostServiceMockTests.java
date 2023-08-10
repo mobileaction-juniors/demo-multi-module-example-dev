@@ -25,7 +25,8 @@ public class PostServiceMockTests
 
     private PostService postService;
 
-    private final Long postId = 1L;
+    private final Long POST_ID = 1L;
+    private final Long USER_ID = 1L;
 
     @BeforeEach
     public void setUp()
@@ -56,16 +57,16 @@ public class PostServiceMockTests
     @Test
     public void deletePost()
     {
-        postService.deletePost(postId);
+        postService.deletePost(POST_ID);
 
-        verify(postRepository).deleteById(postId);
+        verify(postRepository).deleteById(POST_ID);
     }
 
     @Test
     public void deletePostsByUserId()
     {
-        postService.deletePostsByUserId(postId);
+        postService.deletePostsByUserId(USER_ID);
 
-        verify(postRepository).deletePostsByUserId(postId);
+        verify(postRepository).deletePostsByUserId(USER_ID);
     }
 }

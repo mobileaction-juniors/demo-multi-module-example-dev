@@ -28,8 +28,8 @@ public class PostServiceTests
     @Autowired
     private IPostRepository postRepository;
 
-    private final Long postId = 1L;
-    private final Long userId = 1L;
+    private final Long POST_ID = 1L;
+    private final Long USER_ID = 1L;
 
     @Test
     public void findPosts()
@@ -45,7 +45,7 @@ public class PostServiceTests
     @Test
     public void findAllPostsOfUser()
     {
-        List<Post> list = postService.findAllPostsOfUser(userId);
+        List<Post> list = postService.findAllPostsOfUser(USER_ID);
 
         assertThat(list).hasSize(2);
         assertThat(list).extracting(x -> x.getId()).containsExactlyInAnyOrder(1L, 2L);
@@ -71,7 +71,7 @@ public class PostServiceTests
     @Test
     public void deletePost()
     {
-        postService.deletePost(postId);
+        postService.deletePost(POST_ID);
 
         List<Post> list = postRepository.findAll();
 
@@ -81,10 +81,10 @@ public class PostServiceTests
     @Test
     public void deletePostsByUserId()
     {
-        postService.deletePostsByUserId(postId);
+        postService.deletePostsByUserId(USER_ID);
 
-        List<Post> list = postRepository.findAll();
+        List<Post> list = postRepository.findAllByUserId(USER_ID);
 
-        assertThat(list).hasSize(2);
+        assertThat(list).hasSize(0);
     }
 }
