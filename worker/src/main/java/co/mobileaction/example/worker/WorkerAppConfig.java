@@ -37,6 +37,33 @@ public class WorkerAppConfig
     @Value("${messaging.queue.result}")
     private String MESSAGING_RESULT_QUEUE;
 
+    @Value("${messaging.queue.user.request.problem}")
+    private String MESSAGING_USER_REQUEST_PROBLEM_QUEUE;
+
+    @Value("${messaging.queue.user.result}")
+    private String MESSAGING_USER_RESULT_QUEUE;
+
+
+    @Bean
+    public AmqpTemplate userResultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                            MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_RESULT_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userRequestProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                    MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_REQUEST_PROBLEM_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
     @Bean
     public AmqpTemplate resultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                              MessageConverter messageConverter)
@@ -60,6 +87,20 @@ public class WorkerAppConfig
     @Bean
     public SimpleRabbitListenerContainerFactory requestQueueListener(ConnectionFactory connectionFactory,
                                                               MessageConverter messageConverter)
+    {
+        SimpleRabbitListenerContainerFactory container = new SimpleRabbitListenerContainerFactory();
+        container.setConnectionFactory(connectionFactory);
+        container.setConcurrentConsumers(CONSUMER_SIZE);
+        container.setMaxConcurrentConsumers(CONSUMER_REQUEST_MAX_SIZE);
+        container.setAutoStartup(CONSUMER_REQUEST_AUTO_START);
+        container.setPrefetchCount(10);
+        container.setMessageConverter(messageConverter);
+        return container;
+    }
+
+    @Bean
+    public SimpleRabbitListenerContainerFactory userRequestQueueListener(ConnectionFactory connectionFactory,
+                                                                     MessageConverter messageConverter)
     {
         SimpleRabbitListenerContainerFactory container = new SimpleRabbitListenerContainerFactory();
         container.setConnectionFactory(connectionFactory);

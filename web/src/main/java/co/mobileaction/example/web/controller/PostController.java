@@ -1,5 +1,6 @@
 package co.mobileaction.example.web.controller;
 
+import co.mobileaction.example.common.dto.PostCountDto;
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.service.IPostService;
 import co.mobileaction.example.web.util.SecurityUtils;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -40,5 +42,24 @@ public class PostController
         postService.deletePost(postId);
 
         return ResponseEntity.ok(true);
+    }
+
+    @DeleteMapping("/user/{userId}")
+    public ResponseEntity<Boolean> deletePostsOfUser(@PathVariable Long userId)
+    {
+        postService.deleteAllPostsOfUser(userId);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+
+    @GetMapping("/number-of-unique-titles")
+    public ResponseEntity<Integer> countUniqueTitles()
+    {
+        return new ResponseEntity<>(postService.countUniqueTitles(), HttpStatus.OK);
+    }
+
+    @GetMapping("/post-count-of-users-c")
+    public ResponseEntity<List<PostCountDto>> findPostCountsOfUsersK()
+    {
+        return ResponseEntity.ok(postService.findPostCountOfUsersK());
     }
 }
