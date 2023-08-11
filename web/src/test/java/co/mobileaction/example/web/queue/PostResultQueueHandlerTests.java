@@ -1,7 +1,7 @@
 package co.mobileaction.example.web.queue;
 
 import co.mobileaction.example.common.dto.PostDto;
-import co.mobileaction.example.web.service.IPostResultHandlerService;
+import co.mobileaction.example.web.service.IPostRequestHandlerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,7 +24,7 @@ public class PostResultQueueHandlerTests
     private PostResultQueueHandler postResultQueueHandler;
 
     @Mock
-    private IPostResultHandlerService service;
+    private IPostRequestHandlerService service;
 
     @Mock(name = "resultProblemQueueTemplate")
     private AmqpTemplate resultProblemQueueTemplate;

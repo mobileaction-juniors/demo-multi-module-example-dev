@@ -19,6 +19,9 @@ public class PostService implements IPostService
 {
     private final IPostRepository postRepository;
 
+    private final IUserQueueService userQueueService;
+
+
     @Override
     public void savePost(Post post)
     {
@@ -41,5 +44,13 @@ public class PostService implements IPostService
     public void deletePost(Long postId)
     {
         postRepository.deleteById(postId);
+    }
+
+    @Override
+    public void sendUserRequestsFromPost()
+    {
+        var userIds = postRepository.findUsers();
+
+        userQueueService.sendUserRequestForAllItems(userIds);
     }
 }

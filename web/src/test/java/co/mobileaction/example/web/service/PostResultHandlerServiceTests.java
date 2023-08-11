@@ -22,7 +22,7 @@ import static org.mockito.Mockito.verify;
 public class PostResultHandlerServiceTests
 {
     @InjectMocks
-    private PostResultHandlerService postResultHandlerService;
+    private PostRequestHandlerService postResultHandlerService;
 
     @Mock
     private IPostService postService;

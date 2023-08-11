@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class PostResultHandlerService implements IPostResultHandlerService
+public class PostRequestHandlerService implements IPostRequestHandlerService
 {
     private final IPostService postService;
 

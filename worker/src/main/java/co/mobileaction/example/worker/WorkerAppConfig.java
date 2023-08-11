@@ -31,11 +31,17 @@ public class WorkerAppConfig
     @Value("${messaging.consumer.request.max-size}")
     private int CONSUMER_REQUEST_MAX_SIZE;
 
-    @Value("${messaging.queue.request.problem}")
+    @Value("#{'${messaging.queue.request.problem}'.split(',')[0]}")
     private String MESSAGING_REQUEST_PROBLEM_QUEUE;
 
-    @Value("${messaging.queue.result}")
+    @Value("#{'${messaging.queue.result}'.split(',')[0]}")
     private String MESSAGING_RESULT_QUEUE;
+
+    @Value("#{'${messaging.queue.request.problem}'.split(',')[1]}")
+    private String USER_MESSAGING_REQUEST_PROBLEM_QUEUE;
+
+    @Value("#{'${messaging.queue.result}'.split(',')[1]}")
+    private String USER_MESSAGING_RESULT_QUEUE;
 
     @Bean
     public AmqpTemplate resultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
@@ -53,6 +59,26 @@ public class WorkerAppConfig
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_REQUEST_PROBLEM_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userResultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(USER_MESSAGING_RESULT_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userRequestProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                        MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(USER_MESSAGING_REQUEST_PROBLEM_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }

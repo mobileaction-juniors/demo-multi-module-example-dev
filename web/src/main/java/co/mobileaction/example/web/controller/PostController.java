@@ -1,7 +1,6 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.model.Post;
-import co.mobileaction.example.web.model.User;
 import co.mobileaction.example.web.service.IPostService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
@@ -43,9 +42,11 @@ public class PostController
         return ResponseEntity.ok(true);
     }
 
-    /*@GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers()
+    @GetMapping("/users")
+    public ResponseEntity<?> getUsers()
     {
+        postService.sendUserRequestsFromPost();
 
-    }*/
+        return ResponseEntity.ok(true);
+    }
 }

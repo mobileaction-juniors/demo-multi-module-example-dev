@@ -7,7 +7,7 @@ import co.mobileaction.example.common.dto.PostDto;
  * @date 17.05.2021
  * @time 17:39
  */
-public interface IPostResultHandlerService
+public interface IPostRequestHandlerService
 {
     void executeMessage(PostDto postDto);
 }

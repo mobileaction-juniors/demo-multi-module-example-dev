@@ -1,7 +1,7 @@
 package co.mobileaction.example.web.queue;
 
 import co.mobileaction.example.common.dto.PostDto;
-import co.mobileaction.example.web.service.IPostResultHandlerService;
+import co.mobileaction.example.web.service.IPostRequestHandlerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -20,9 +20,9 @@ public class PostResultQueueHandler
 {
     private final AmqpTemplate resultProblemQueueTemplate;
 
-    private final IPostResultHandlerService resultHandlerService;
+    private final IPostRequestHandlerService resultHandlerService;
 
-    @RabbitListener(queues = "${messaging.queue.result}", containerFactory = "resultQueueListener")
+    @RabbitListener(queues = "#{'${messaging.queue.result}'.split(',')[0]}", containerFactory = "resultQueueListener")
     public void handleMessage(PostDto result)
     {
         try
