@@ -48,8 +48,6 @@ public class PostController
         postService.deleteAllPostsByUserId(userId);
 
         return ResponseEntity.ok(true);
-
-
     }
 
 }
