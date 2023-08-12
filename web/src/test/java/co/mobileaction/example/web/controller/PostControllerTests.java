@@ -33,6 +33,8 @@ public class PostControllerTests extends ControllerTestsBase
     @MockBean
     private IPostService postService;
 
+    private final Long POST_ID = 1L;
+
     @Test
     public void getPosts() throws Exception
     {
@@ -51,10 +53,22 @@ public class PostControllerTests extends ControllerTestsBase
     @Test
     public void deletePost() throws Exception
     {
-        this.mockMvc.perform(delete("/api/posts/1"))
+        String path = String.format("/api/posts/%s", POST_ID);
+
+        this.mockMvc.perform(delete(path))
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
 
-        verify(postService).deletePost(1L);
+        verify(postService).deletePost(POST_ID);
+    }
+
+    @Test
+    public void getUsers() throws Exception
+    {
+        this.mockMvc.perform(get("/api/posts/users"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("true"));
+
+        verify(postService).sendUserRequestsFromPost();
     }
 }

@@ -29,10 +29,12 @@ public class PostRequestQueueHandlerTests
     @Mock(name = "requestProblemQueueTemplate")
     private AmqpTemplate requestProblemQueueTemplate;
 
+    private final Long POST_ID = 1L;
+
     @Test
     public void handleMessage_success()
     {
-        QueueRequestDto dto = new QueueRequestDto(1L);
+        QueueRequestDto dto = new QueueRequestDto(POST_ID);
 
         postRequestQueueHandler.handleMessage(dto);
 
@@ -42,7 +44,7 @@ public class PostRequestQueueHandlerTests
     @Test
     public void handleMessage_fail()
     {
-        QueueRequestDto dto = new QueueRequestDto(1L);
+        QueueRequestDto dto = new QueueRequestDto(POST_ID);
 
         doThrow(RuntimeException.class).when(service).executeMessage(dto);
 
