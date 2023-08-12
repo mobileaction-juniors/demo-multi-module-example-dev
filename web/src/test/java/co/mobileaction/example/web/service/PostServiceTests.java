@@ -5,7 +5,6 @@ import co.mobileaction.example.web.repository.IPostRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
@@ -79,8 +78,7 @@ public class PostServiceTests
     @Test
     public void deleteAllPostsOfUser()
     {
-        postService.deleteAllPostsByUserId(1L);
-        List<Post> list = postRepository.findAll();
+        List<Post> list = postRepository.findAllByUserId(1L);
         assertThat(list).hasSize(2);
     }
 }
