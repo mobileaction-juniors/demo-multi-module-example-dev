@@ -31,16 +31,16 @@ public class WorkerAppConfig
     @Value("${messaging.consumer.request.max-size}")
     private int CONSUMER_REQUEST_MAX_SIZE;
 
-    @Value("#{'${messaging.queue.request.problem}'.split(',')[0]}")
+    @Value("${messaging.queue.request.problem}")
     private String MESSAGING_REQUEST_PROBLEM_QUEUE;
 
-    @Value("#{'${messaging.queue.result}'.split(',')[0]}")
+    @Value("${messaging.queue.result}")
     private String MESSAGING_RESULT_QUEUE;
 
-    @Value("#{'${messaging.queue.request.problem}'.split(',')[1]}")
+    @Value("${messaging.user.queue.request.problem}")
     private String USER_MESSAGING_REQUEST_PROBLEM_QUEUE;
 
-    @Value("#{'${messaging.queue.result}'.split(',')[1]}")
+    @Value("${messaging.user.queue.result}")
     private String USER_MESSAGING_RESULT_QUEUE;
 
     @Bean

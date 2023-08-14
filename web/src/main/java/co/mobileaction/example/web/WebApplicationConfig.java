@@ -32,16 +32,16 @@ public class WebApplicationConfig
     @Value("${messaging.consumer.interval}")
     private Long INTERVAL_IN_MS;
 
-    @Value("#{'${messaging.queue.result.problem}'.split(',')[0]}")
+    @Value("${messaging.queue.result.problem}")
     private String MESSAGING_RESULT_PROBLEM_QUEUE;
 
-    @Value("#{'${messaging.queue.request}'.split(',')[0]}")
+    @Value("${messaging.queue.request}")
     private String MESSAGING_REQUEST_QUEUE;
 
-    @Value("#{'${messaging.queue.result.problem}'.split(',')[1]}")
+    @Value("${messaging.user.queue.result.problem}")
     private String USER_MESSAGING_RESULT_PROBLEM_QUEUE;
 
-    @Value("#{'${messaging.queue.request}'.split(',')[1]}")
+    @Value("${messaging.user.queue.request}")
     private String USER_MESSAGING_REQUEST_QUEUE;
 
     @Bean

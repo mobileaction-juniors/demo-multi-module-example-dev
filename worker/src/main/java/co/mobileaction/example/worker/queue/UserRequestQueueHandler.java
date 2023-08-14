@@ -17,7 +17,7 @@ public class UserRequestQueueHandler
 
     private final IUserRequestHandlerService requestHandlerService;
 
-    @RabbitListener(queues = "#{'${messaging.queue.request}'.split(',')[1]}", containerFactory = "requestQueueListener")
+    @RabbitListener(queues = "${messaging.user.queue.request}", containerFactory = "requestQueueListener")
     public void handleMessage(UserQueueRequestDto request)
     {
         try

@@ -17,7 +17,7 @@ public class UserResultQueueHandler
 
     private final IUserRequestHandlerService resultHandlerService;
 
-    @RabbitListener(queues = "#{'${messaging.queue.result}'.split(',')[1]}", containerFactory = "resultQueueListener")
+    @RabbitListener(queues = "${messaging.user.queue.result}", containerFactory = "resultQueueListener")
     public void handleMessage(UserDto result)
     {
         try
