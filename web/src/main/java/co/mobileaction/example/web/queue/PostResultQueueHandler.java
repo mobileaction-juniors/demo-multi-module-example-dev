@@ -22,7 +22,7 @@ public class PostResultQueueHandler
 
     private final IPostRequestHandlerService resultHandlerService;
 
-    @RabbitListener(queues = "#{'${messaging.queue.result}'.split(',')[0]}", containerFactory = "resultQueueListener")
+    @RabbitListener(queues = "${messaging.queue.result}", containerFactory = "resultQueueListener")
     public void handleMessage(PostDto result)
     {
         try
