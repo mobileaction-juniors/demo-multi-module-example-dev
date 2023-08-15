@@ -5,7 +5,6 @@ import co.mobileaction.example.web.repository.IPostRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
@@ -59,11 +58,13 @@ public class PostServiceTests
                 .title("title-5")
                 .build();
 
+        List<Post> oldPosts = postRepository.findAll();
+
         postService.savePost(post);
 
-        List<Post> list = postRepository.findAll();
+        List<Post> newPosts = postRepository.findAll();
 
-        assertThat(list).hasSize(5);
+        assertThat(newPosts).hasSize(oldPosts.size() + 1);
     }
 
     @Test
@@ -80,7 +81,8 @@ public class PostServiceTests
     public void deleteAllPostsOfUser()
     {
         postService.deleteAllPostsByUserId(1L);
-        List<Post> list = postRepository.findAll();
-        assertThat(list).hasSize(2);
+        List<Post> list = postRepository.findAllByUserId(1L);
+        assertThat(list).isEmpty();
     }
+
 }

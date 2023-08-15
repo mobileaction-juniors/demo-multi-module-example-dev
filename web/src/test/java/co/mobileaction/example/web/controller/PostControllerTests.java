@@ -33,6 +33,7 @@ public class PostControllerTests extends ControllerTestsBase
     @MockBean
     private IPostService postService;
 
+
     @Test
     public void getPosts() throws Exception
     {
@@ -66,4 +67,5 @@ public class PostControllerTests extends ControllerTestsBase
 
         verify(postService).deleteAllPostsByUserId(1L);
     }
+
 }

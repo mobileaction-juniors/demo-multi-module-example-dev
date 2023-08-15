@@ -39,4 +39,5 @@ public class CrawlerClientTests
 
         assertEquals(postDto.getId(), 1L);
     }
+
 }
