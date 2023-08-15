@@ -10,28 +10,24 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 17:41
- */
 @Data
 @Entity
-@Table(name = "posts")
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Post
+public class User
 {
     @Id
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "username")
+    private String username;
 
-    @Column(name = "body")
-    private String body;
+    @Column(name = "email")
+    private String email;
 }
+

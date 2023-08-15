@@ -35,14 +35,19 @@ public class WorkerAppConfig
     private String MESSAGING_REQUEST_PROBLEM_QUEUE;
 
     @Value("${messaging.queue.result}")
-    private String MESSAGING_RESULT_QUEUE;
+    private String MESSAGING_QUEUE_RESULT;
 
+    @Value("${messaging.user.result.queue}")
+    private String MESSAGING_USER_RESULT_QUEUE;
+
+    @Value("${messaging.user.request.problem.queue}")
+    private String MESSAGING_USER_REQUEST_PROBLEM_QUEUE;
     @Bean
     public AmqpTemplate resultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                              MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey(MESSAGING_RESULT_QUEUE);
+        template.setRoutingKey(MESSAGING_QUEUE_RESULT);
         template.setMessageConverter(messageConverter);
         return template;
     }
@@ -53,6 +58,26 @@ public class WorkerAppConfig
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_REQUEST_PROBLEM_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userResultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                            MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_RESULT_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userRequestProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                    MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_REQUEST_PROBLEM_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }

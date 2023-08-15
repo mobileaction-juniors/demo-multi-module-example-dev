@@ -2,6 +2,8 @@ package co.mobileaction.example.web.repository;
 
 import co.mobileaction.example.web.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 
 import java.util.List;
 
@@ -15,4 +17,7 @@ public interface IPostRepository extends JpaRepository<Post, Long>
     List<Post> findAllByUserId(Long userId);
 
     void deleteAllByUserId(Long userId);
+
+    @Query("SELECT DISTINCT p.userId FROM Post p")
+    List<Long> getAllDistinctUserIds();
 }
