@@ -42,4 +42,12 @@ public class PostService implements IPostService
     {
         postRepository.deleteById(postId);
     }
+
+    @Override
+    public void deletePostsByUser(Long userId)
+    {
+        postRepository.deleteAllByUserId(userId);
+    }
+
+
 }

@@ -11,6 +11,7 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -41,4 +42,11 @@ public class PostController
 
         return ResponseEntity.ok(true);
     }
+
+    @DeleteMapping("/post/{userId}")
+    public ResponseEntity<Void> deletePostsByUser(@PathVariable Long userId) {
+        postService.deletePostsByUser(userId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
 }
