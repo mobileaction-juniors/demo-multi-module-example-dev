@@ -31,5 +31,5 @@ CREATE TABLE users (
     id bigint PRIMARY KEY NOT NULL,
     name varchar(100) NOT NULL,
     username varchar(100) NOT NULL,
-    email varchar(100)NOT NULL
+    email varchar(100) NOT NULL
 )

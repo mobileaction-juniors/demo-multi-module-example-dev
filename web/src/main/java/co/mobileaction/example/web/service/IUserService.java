@@ -7,5 +7,6 @@ import java.util.List;
 public interface IUserService
 {
     void saveUser(User user);
+
     List<Long> getAllDistinctUserIds();
 }

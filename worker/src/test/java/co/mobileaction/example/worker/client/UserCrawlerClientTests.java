@@ -13,6 +13,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class UserCrawlerClientTests
 {
+    private static final Long userId = 1L;
+    private static final String user_api_url = "https://jsonplaceholder.typicode.com/users/%s";
+
+    private static final String name = "name-1";
+
+    private static final String username = "username-1";
+
     @InjectMocks
     private CrawlerClient userCrawlerClient;
 
@@ -22,8 +29,7 @@ public class UserCrawlerClientTests
     @Test
     public void test_fetchUser()
     {
-        String user_api_url = "https://jsonplaceholder.typicode.com/users/%s";
-        Long userId = 1L;
+
         String user_url = String.format(user_api_url,userId);
 
         UserDto user = UserDto.builder()
@@ -38,5 +44,7 @@ public class UserCrawlerClientTests
         UserDto userDto = userCrawlerClient.fetchUser(userId);
 
         assertEquals(userDto.getId(), userId);
+        assertEquals(userDto.getName(), name);
+        assertEquals(userDto.getUsername(), username);
     }
 }

@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class UserRequestQueueHandlerTests
 {
-    private final Long userId = 1L;
+    private final Long USER_ID = 1L;
     @InjectMocks
     private UserRequestQueueHandler userRequestQueueHandler;
 
@@ -28,7 +28,7 @@ public class UserRequestQueueHandlerTests
     @Test
     public void handleUserMessage_success()
     {
-        UserQueueRequestDto userQueueRequestDto = new UserQueueRequestDto(userId);
+        UserQueueRequestDto userQueueRequestDto = new UserQueueRequestDto(USER_ID);
         userRequestQueueHandler.handleMessage(userQueueRequestDto);
         verify(userRequestHandlerService).executeMessage(userQueueRequestDto);
     }
@@ -36,7 +36,7 @@ public class UserRequestQueueHandlerTests
     @Test
     public void handleUserMessage_fail()
     {
-        UserQueueRequestDto userQueueRequestDto = new UserQueueRequestDto(userId);
+        UserQueueRequestDto userQueueRequestDto = new UserQueueRequestDto(USER_ID);
         doThrow(RuntimeException.class).when(userRequestHandlerService).executeMessage(userQueueRequestDto);
         userRequestQueueHandler.handleMessage(userQueueRequestDto);
         verify(userRequestProblemQueueTemplate).convertAndSend(userQueueRequestDto);

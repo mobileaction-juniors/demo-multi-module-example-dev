@@ -10,19 +10,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@Secured(SecurityUtils.ROLE_USER)
+@RequestMapping("api/users")
+@RequiredArgsConstructor
+public class UserController
+{
+    private final IUserService userService;
 
-    @RestController
-    @Secured(SecurityUtils.ROLE_USER)
-    @RequestMapping("api/users")
-    @RequiredArgsConstructor
-    public class UserController
+    @GetMapping
+    public ResponseEntity<List<Long>> getAllDistinctUsers()
     {
-        private final IUserService userService;
-
-        @GetMapping
-        public ResponseEntity<List<Long>> getAllDistinctUsers()
-        {
-            return ResponseEntity.ok(userService.getAllDistinctUserIds());
-        }
-
+        return ResponseEntity.ok(userService.getAllDistinctUserIds());
     }
+
+}
