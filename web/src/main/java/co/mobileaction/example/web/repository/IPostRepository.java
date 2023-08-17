@@ -4,6 +4,7 @@ import co.mobileaction.example.common.dto.IUserId;
 import co.mobileaction.example.common.dto.PostCountDto;
 import co.mobileaction.example.web.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -19,10 +20,11 @@ import java.util.List;
 @Transactional
 public interface IPostRepository extends JpaRepository<Post, Long>
 {
-    public final JdbcTemplate jdbcTemplate = null;
     List<Post> findAllByUserId(Long userId);
 
-    void deleteAllByUserId(Long userId);
+    @Modifying
+    @Query("delete from Post p where p.userId = :userId")
+    void deleteAllPostsByUserId(Long userId);
 
     @Query(value = "select distinct p.userId from Post p")
     List<Long> findDistinctUserIds();

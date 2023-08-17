@@ -46,8 +46,9 @@ public class PostService implements IPostService
     }
 
     @Override
-    public void deleteAllPostsOfUser(Long userId){
-        postRepository.deleteAllByUserId(userId);
+    public void deleteAllPostsOfUser(Long userId)
+    {
+        postRepository.deleteAllPostsByUserId(userId);
     }
 
     @Override

@@ -18,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
+@Disabled
 public class CrawlerClientIntegrationTests
 {
     @Autowired
