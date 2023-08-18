@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserRequestQueueHandler
 {
-    private final AmqpTemplate requestProblemQueueTemplate;
+    private final AmqpTemplate userRequestProblemQueueTemplate;
 
     private final IUserRequestHandlerService requestHandlerService;
 
@@ -28,7 +28,7 @@ public class UserRequestQueueHandler
         {
             log.error("Could not handle request for userId: {}", request.getUserId(), e);
 
-            requestProblemQueueTemplate.convertAndSend(request);
+            userRequestProblemQueueTemplate.convertAndSend(request);
         }
     }
 }

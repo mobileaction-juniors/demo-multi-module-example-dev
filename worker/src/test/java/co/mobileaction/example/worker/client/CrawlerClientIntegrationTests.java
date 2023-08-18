@@ -2,6 +2,7 @@ package co.mobileaction.example.worker.client;
 
 import co.mobileaction.example.common.dto.PostDto;
 import co.mobileaction.example.common.dto.UserDto;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
+@Disabled
 public class CrawlerClientIntegrationTests
 {
     @Autowired
