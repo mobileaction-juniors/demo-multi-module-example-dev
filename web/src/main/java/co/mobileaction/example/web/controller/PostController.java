@@ -11,7 +11,7 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -27,6 +27,7 @@ import java.util.List;
 public class PostController
 {
     private final IPostService postService;
+
 
     @GetMapping
     public ResponseEntity<List<Post>> getPosts(@PageableDefault(size = 10)
@@ -48,5 +49,16 @@ public class PostController
         postService.deletePostsByUser(userId);
         return ResponseEntity.ok().build();
     }
+
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Post>> getPostsByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(postService.findAllPostsOfUser(userId));
+    }
+
+
+
+
+
 
 }

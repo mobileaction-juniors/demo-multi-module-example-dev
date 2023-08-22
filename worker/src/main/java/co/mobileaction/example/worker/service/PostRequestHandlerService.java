@@ -27,4 +27,6 @@ public class PostRequestHandlerService implements IPostRequestHandlerService
 
         resultQueueTemplate.convertAndSend(post);
     }
+
+
 }

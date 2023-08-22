@@ -45,6 +45,7 @@ public class PostRequestHandlerServiceTests
 
         QueueRequestDto dto = new QueueRequestDto(1L);
 
+
         requestHandlerService.executeMessage(dto);
 
         verify(crawlerClient).fetchPost(1L);

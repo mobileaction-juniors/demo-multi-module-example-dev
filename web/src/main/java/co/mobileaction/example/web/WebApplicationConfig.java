@@ -4,6 +4,7 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -38,12 +39,26 @@ public class WebApplicationConfig
     @Value("${messaging.queue.request}")
     private String MESSAGING_REQUEST_QUEUE;
 
+    @Value("${messaging.queue.request.user}")
+    private String MESSAGING_USER_REQUEST_QUEUE;
+
+
     @Bean
     public AmqpTemplate resultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                    MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_RESULT_PROBLEM_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userRequestQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                   MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_REQUEST_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }
@@ -73,6 +88,7 @@ public class WebApplicationConfig
         container.setAutoStartup(CONSUMER_RESULT_AUTO_START);
         return container;
     }
+
 
     public static void main(String[] args)
     {

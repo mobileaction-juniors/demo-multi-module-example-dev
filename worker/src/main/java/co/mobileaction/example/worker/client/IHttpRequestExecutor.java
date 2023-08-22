@@ -11,4 +11,5 @@ import org.springframework.http.RequestEntity;
 public interface IHttpRequestExecutor
 {
     <T> T executeGetRequest(String url, Class<T> resultClass);
+
 }
