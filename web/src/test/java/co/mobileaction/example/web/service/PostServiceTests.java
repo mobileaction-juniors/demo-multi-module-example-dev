@@ -1,5 +1,6 @@
 package co.mobileaction.example.web.service;
 
+import co.mobileaction.example.common.dto.PostCountDto;
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.repository.IPostRepository;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @DataJpaTest
 @Sql("/data/posts.sql")
+@Sql("/data/users.sql")
 public class PostServiceTests
 {
     @Autowired
@@ -37,6 +39,13 @@ public class PostServiceTests
 
         assertThat(list).hasSize(3);
         assertThat(list).extracting(x -> x.getId()).containsExactlyInAnyOrder(1L, 2L, 3L);
+    }
+
+    @Test
+    public void findPostCountOfUsersK()
+    {
+        List<PostCountDto> list = postService.findPostCountOfUsersK();
+        assertThat(list).hasSize(3);
     }
 
     @Test
@@ -73,5 +82,13 @@ public class PostServiceTests
         List<Post> list = postRepository.findAll();
 
         assertThat(list).hasSize(3);
+    }
+
+    @Test
+    public void deleteAllPostsOfUser()
+    {
+        postService.deleteAllPostsOfUser(1L);
+        List<Post> list = postRepository.findAllByUserId(1L);
+        assertThat(list).hasSize(0);
     }
 }
