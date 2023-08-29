@@ -1,7 +1,5 @@
 package co.mobileaction.example.worker.service;
 
-import co.mobileaction.example.common.dto.PostDto;
-import co.mobileaction.example.common.dto.QueueRequestDto;
 import co.mobileaction.example.worker.client.ICrawlerClient;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

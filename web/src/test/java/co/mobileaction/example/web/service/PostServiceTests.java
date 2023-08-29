@@ -1,8 +1,5 @@
 package co.mobileaction.example.web.service;
 
-import co.mobileaction.example.common.dto.PostCountDto;
-import co.mobileaction.example.web.model.Post;
-import co.mobileaction.example.web.repository.IPostRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

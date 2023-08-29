@@ -1,7 +1,5 @@
 package co.mobileaction.example.worker.service;
 
-import co.mobileaction.example.common.dto.QueueRequestDto;
-
 /**
  * @author sa
  * @date 17.05.2021

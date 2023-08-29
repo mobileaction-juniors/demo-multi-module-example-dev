@@ -20,14 +20,17 @@ CREATE SCHEMA IF NOT EXISTS sc_example AUTHORIZATION root;
 
 SET search_path TO sc_example;
 
-CREATE TABLE posts (
-  id bigint PRIMARY KEY NOT NULL,
-  user_id bigint NOT NULL,
-  title varchar(255) NOT NULL,
-  body varchar(255) NOT NULL
+CREATE TABLE cities (
+    name varchar(255) PRIMARY KEY NOT NULL,
+    lat varchar(255) NOT NULL,
+    lon varchar(255) NOT NULL
 );
 
-insert into posts(id, user_id, title, body) values (1, 1, 'title-1', 'body-1');
-insert into posts(id, user_id, title, body) values (2, 1, 'title-2', 'body-2');
-insert into posts(id, user_id, title, body) values (3, 2, 'title-3', 'body-3');
-insert into posts(id, user_id, title, body) values (4, 3, 'title-4', 'body-4');
+CREATE TABLE pollutions (
+    id bigint PRIMARY KEY NOT NULL,
+    city varchar(255) NOT NULL,
+    date date NOT NULL,
+    co varchar(255) NOT NULL,
+    so2 varchar(255) NOT NULL,
+    o3 varchar(255) NOT NULL
+);

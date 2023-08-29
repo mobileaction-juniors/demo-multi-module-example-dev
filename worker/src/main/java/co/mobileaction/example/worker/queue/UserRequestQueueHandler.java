@@ -1,6 +1,5 @@
 package co.mobileaction.example.worker.queue;
 
-import co.mobileaction.example.common.dto.UserRequestDto;
 import co.mobileaction.example.worker.service.IUserRequestHandlerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

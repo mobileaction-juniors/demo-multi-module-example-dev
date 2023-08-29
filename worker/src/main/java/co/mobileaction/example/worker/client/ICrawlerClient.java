@@ -1,8 +1,5 @@
 package co.mobileaction.example.worker.client;
 
-import co.mobileaction.example.common.dto.PostDto;
-import co.mobileaction.example.common.dto.UserDto;
-
 /**
  * @author sa
  * @date 17.05.2021

@@ -1,4 +1,4 @@
-rootProject.name = 'demo-multi-module-example'
+rootProject.name = 'ma-patika-weather-map'
 include 'common'
 include 'web'
 include 'worker'

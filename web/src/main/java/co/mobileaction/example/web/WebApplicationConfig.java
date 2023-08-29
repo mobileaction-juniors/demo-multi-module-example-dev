@@ -8,8 +8,10 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.client.RestOperations;
 
 /**
  * @author sa
@@ -26,78 +28,22 @@ public class WebApplicationConfig
     @Value("${messaging.consumer.result.auto-start}")
     private boolean CONSUMER_RESULT_AUTO_START;
 
+    @Value("${messaging.consumer.request.auto-start}")
+    private boolean CONSUMER_REQUEST_AUTO_START;
+
     @Value("${messaging.consumer.result.max-size}")
     private int CONSUMER_RESULT_MAX_SIZE;
+
+    @Value("${messaging.consumer.request.max-size}")
+    private int CONSUMER_REQUEST_MAX_SIZE;
 
     @Value("${messaging.consumer.interval}")
     private Long INTERVAL_IN_MS;
 
-    @Value("${messaging.queue.result.problem}")
-    private String MESSAGING_RESULT_PROBLEM_QUEUE;
-
-    @Value("${messaging.queue.request}")
-    private String MESSAGING_REQUEST_QUEUE;
-
-    @Value("${messaging.queue.user.result.problem}")
-    private String MESSAGING_USER_RESULT_PROBLEM_QUEUE;
-
-    @Value("${messaging.queue.user.request}")
-    private String MESSAGING_USER_REQUEST_QUEUE;
-
     @Bean
-    public AmqpTemplate userResultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
-                                                   MessageConverter messageConverter)
+    public RestOperations restTemplate(RestTemplateBuilder builder)
     {
-        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey(MESSAGING_USER_RESULT_PROBLEM_QUEUE);
-        template.setMessageConverter(messageConverter);
-        return template;
-    }
-
-    @Bean
-    public AmqpTemplate userRequestQueueTemplate(ConnectionFactory rabbitConnectionFactory,
-                                             MessageConverter messageConverter)
-    {
-        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey(MESSAGING_USER_REQUEST_QUEUE);
-        template.setMessageConverter(messageConverter);
-        return template;
-    }
-
-    @Bean
-    public AmqpTemplate resultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
-                                                   MessageConverter messageConverter)
-    {
-        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey(MESSAGING_RESULT_PROBLEM_QUEUE);
-        template.setMessageConverter(messageConverter);
-        return template;
-    }
-
-    @Bean
-    public AmqpTemplate requestQueueTemplate(ConnectionFactory rabbitConnectionFactory,
-                                             MessageConverter messageConverter)
-    {
-        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey(MESSAGING_REQUEST_QUEUE);
-        template.setMessageConverter(messageConverter);
-        return template;
-    }
-
-    @Bean
-    public SimpleRabbitListenerContainerFactory resultQueueListener(ConnectionFactory connectionFactory,
-                                                                    MessageConverter messageConverter)
-    {
-        SimpleRabbitListenerContainerFactory container = new SimpleRabbitListenerContainerFactory();
-        container.setConnectionFactory(connectionFactory);
-        container.setMessageConverter(messageConverter);
-        container.setConcurrentConsumers(CONSUMER_SIZE);
-        container.setStartConsumerMinInterval(INTERVAL_IN_MS);
-        container.setStopConsumerMinInterval(INTERVAL_IN_MS);
-        container.setPrefetchCount(10);
-        container.setMaxConcurrentConsumers(CONSUMER_RESULT_MAX_SIZE);
-        container.setAutoStartup(CONSUMER_RESULT_AUTO_START);
-        return container;
+        return builder.build();
     }
 
     public static void main(String[] args)

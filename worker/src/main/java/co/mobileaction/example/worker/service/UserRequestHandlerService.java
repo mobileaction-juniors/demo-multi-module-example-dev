@@ -1,7 +1,5 @@
 package co.mobileaction.example.worker.service;
 
-import co.mobileaction.example.common.dto.UserDto;
-import co.mobileaction.example.common.dto.UserRequestDto;
 import co.mobileaction.example.worker.client.ICrawlerClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
