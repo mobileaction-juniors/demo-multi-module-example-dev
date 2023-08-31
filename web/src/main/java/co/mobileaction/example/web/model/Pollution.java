@@ -21,8 +21,8 @@ public class Pollution
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "city")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_city")
     private City city;
 
     @Column(name = "date")
