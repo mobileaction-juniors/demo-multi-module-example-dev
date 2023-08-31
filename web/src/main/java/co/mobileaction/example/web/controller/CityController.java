@@ -19,6 +19,6 @@ public class CityController
     public ResponseEntity<Void> fetchAndSaveCity(@RequestParam String name)
     {
         cityService.fetchAndSaveCity(name);
-        return null;
+        return ResponseEntity.ok().build();
     }
 }

@@ -7,3 +7,8 @@
 /dataSources/
 /dataSources.local.xml
 /dataSources.xml
+# Ignore additional file extensions
+*.bin
+*.lock
+*.probe
+*.class

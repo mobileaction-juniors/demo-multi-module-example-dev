@@ -13,5 +13,5 @@ import java.util.List;
 public class AnswerDto
 {
     private String city;
-    private List<ResultDto> results = new ArrayList<>();
+    private List<ResultDto> results;
 }
