@@ -1,15 +1,14 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.dto.AnswerDto;
-import co.mobileaction.example.web.repository.IPollutionRepository;
 import co.mobileaction.example.web.service.IPollutionService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.Instant;
+import java.time.LocalDate;
 
 @RestController
 @Secured(SecurityUtils.ROLE_USER)
@@ -18,17 +17,19 @@ import java.time.Instant;
 public class PollutionController
 {
     private final IPollutionService pollutionService;
-    private static final Long SECONDS_IN_ONE_DAY = 86400L;
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
     public ResponseEntity<AnswerDto> getResults(@RequestParam String cityName,
-                                                @RequestParam(required = false) Long start, @RequestParam(required = false) Long end)
+                                                @RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate start,
+                                                @RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate end)
     {
-        if(start == null && end == null)
+        if(start == null || end == null)
         {
-            end = Instant.now().getEpochSecond();
-            start = end - (7 * SECONDS_IN_ONE_DAY);
+            end = LocalDate.now();
+            start = end.minusDays(6);
         }
+
         return ResponseEntity.ok(pollutionService.getResults(cityName, start, end));
     }
 }

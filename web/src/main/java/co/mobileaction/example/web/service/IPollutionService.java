@@ -10,9 +10,5 @@ import java.time.LocalDate;
 
 public interface IPollutionService
 {
-    void fetchAndSavePollution(String cityName, Long start, Long end);
-    PollutionApiResultDto fetchPollution(String cityName, Long start, Long end);
-
-    AnswerDto getResults(String cityName, Long start, Long end);
-    CategoriesDto determineCategories(City city, LocalDate date);
+    AnswerDto getResults(String cityName, LocalDate startDate, LocalDate endDate);
 }

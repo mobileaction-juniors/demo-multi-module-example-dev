@@ -10,12 +10,7 @@ import java.util.Map;
 
 public class PollutionUtils
 {
-    public static float roundToOneDecimal(float value)
-    {
-        return (float) Math.round(value * 10) / 10;
-    }
-
-    public static Map<String, Float> coMap = new HashMap<String, Float>() {{
+    private final static Map<String, Float> coMap = new HashMap<String, Float>() {{
         put("GOOD_THRESHOLD", 1.1F);
         put("SATISFACTORY_THRESHOLD", 2.1F);
         put("MODERATE_THRESHOLD", 10.0F);
@@ -26,6 +21,7 @@ public class PollutionUtils
     public static String determineCoValue(float coValue)
     {
         float value = roundToOneDecimal(coValue);
+
         if(value < coMap.get("GOOD_THRESHOLD"))
             return "Good";
         else if(value < coMap.get("SATISFACTORY_THRESHOLD"))
@@ -47,9 +43,9 @@ public class PollutionUtils
         put("POOR_THRESHOLD", 209.0F);
         put("SEVERE_THRESHOLD", 748.0F);
     }};
-    public static String determineO3Value(float coValue)
+    public static String determineO3Value(float o3Value)
     {
-        float value = roundToOneDecimal(coValue);
+        float value = roundToOneDecimal(o3Value);
         if(value < o3Map.get("GOOD_THRESHOLD"))
             return "Good";
         else if(value < o3Map.get("SATISFACTORY_THRESHOLD"))
@@ -71,9 +67,9 @@ public class PollutionUtils
         put("POOR_THRESHOLD", 801.0F);
         put("SEVERE_THRESHOLD", 1800.0F);
     }};
-    public static String determineSo2Value(float coValue)
+    public static String determineSo2Value(float so2Value)
     {
-        float value = roundToOneDecimal(coValue);
+        float value = roundToOneDecimal(so2Value);
         if(value < so2Map.get("GOOD_THRESHOLD"))
             return "Good";
         else if(value < so2Map.get("SATISFACTORY_THRESHOLD"))
@@ -86,6 +82,11 @@ public class PollutionUtils
             return "Severe";
         else
             return "Hazardous";
+    }
+
+    private static float roundToOneDecimal(float value)
+    {
+        return (float) Math.round(value * 10) / 10;
     }
 
 }
