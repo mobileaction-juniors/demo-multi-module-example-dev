@@ -1,6 +1,5 @@
 package co.mobileaction.example.web.service;
 
-import co.mobileaction.example.common.dto.PostCountDto;
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.repository.IPostRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +28,7 @@ public class PostService implements IPostService
     @Override
     public List<Post> findPosts(Pageable pageable)
     {
-        List<Post> posts = postRepository.findAll(pageable).getContent();
-        return posts;
+        return postRepository.findAll(pageable).getContent();
     }
 
     @Override
@@ -43,23 +41,5 @@ public class PostService implements IPostService
     public void deletePost(Long postId)
     {
         postRepository.deleteById(postId);
-    }
-
-    @Override
-    public void deleteAllPostsOfUser(Long userId)
-    {
-        postRepository.deleteAllPostsByUserId(userId);
-    }
-
-    @Override
-    public int countUniqueTitles()
-    {
-        return postRepository.countNumberOfUniqueTitles();
-    }
-
-    @Override
-    public List<PostCountDto> findPostCountOfUsersK()
-    {
-        return postRepository.findAllPostsOfUsersK();
     }
 }
