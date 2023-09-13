@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.mobileaction.example.web.service.PostResultHandlerServiceTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-09-13T07:14:17" hostname="LAPTOP-8BC3RNF4" time="2.289">
+  <properties/>
+  <testcase name="savePost()" classname="co.mobileaction.example.web.service.PostResultHandlerServiceTests" time="2.289"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

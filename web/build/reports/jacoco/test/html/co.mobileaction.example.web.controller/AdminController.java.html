@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="tr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">web</a> &gt; <a href="index.source.html" class="el_package">co.mobileaction.example.web.controller</a> &gt; <span class="el_source">AdminController.java</span></div><h1>AdminController.java</h1><pre class="source lang-java linenums">package co.mobileaction.example.web.controller;
+
+import co.mobileaction.example.web.service.IPostQueueService;
+import co.mobileaction.example.web.util.SecurityUtils;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+/**
+ * @author sa
+ * @date 17.05.2021
+ * @time 17:55
+ */
+@RestController
+@Secured(SecurityUtils.ROLE_ADMIN)
+@RequestMapping(&quot;api/admin&quot;)
+<span class="nc" id="L22">@RequiredArgsConstructor</span>
+public class AdminController
+{
+    private final IPostQueueService queueService;
+
+    @PostMapping(&quot;queue/posts&quot;)
+    @PreAuthorize(&quot;hasAuthority('ROLE_ADMIN')&quot;)
+    public ResponseEntity&lt;Boolean&gt; createQueueRequests()
+    {
+<span class="nc" id="L31">        queueService.sendPostRequestForAllItems();</span>
+
+<span class="nc" id="L33">        return ResponseEntity.ok(true);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
