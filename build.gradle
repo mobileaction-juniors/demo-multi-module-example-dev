@@ -3,7 +3,7 @@
  *  tries to find a main class unless we use the buildscript version
  */
 plugins {
-    id 'org.springframework.boot' version '2.6.1'
+    id 'org.springframework.boot' version '3.1.1'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'io.freefair.lombok' version '5.3.3.3'
 }
@@ -45,7 +45,7 @@ subprojects {
 
     jacocoTestReport { // for jacoco reports used by circle ci ma-java orb
         reports {
-            xml.enabled true
+            xml.required.set(true)
         }
     }
 
