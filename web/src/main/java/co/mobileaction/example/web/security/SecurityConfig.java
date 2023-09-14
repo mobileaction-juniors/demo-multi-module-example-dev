@@ -50,6 +50,7 @@ public class SecurityConfig
                             .authenticated();
                 }).httpBasic(Customizer.withDefaults())
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
+
         return http.build();
     }
 
@@ -65,13 +66,15 @@ public class SecurityConfig
             String[] keys = SECURE_KEY_TOKEN.split(",");
             if (keys.length > 1)
             {
-                UserDetails user1 = User.builder().username(keys[0]).password(passwordEncoder().encode(""))
-                        .roles(SecurityUtils.USER)
-                        .build();
+                UserDetails user1 = User.builder().username(keys[0])
+                                                  .password(passwordEncoder().encode(""))
+                                                  .roles(SecurityUtils.USER)
+                                                  .build();
 
-                UserDetails user2 = User.builder().username(keys[1]).password(passwordEncoder().encode(""))
-                        .roles(SecurityUtils.USER)
-                        .build();
+                UserDetails user2 = User.builder().username(keys[1])
+                                                  .password(passwordEncoder().encode(""))
+                                                  .roles(SecurityUtils.USER)
+                                                  .build();
 
                 manager.createUser(user1);
                 manager.createUser(user2);
@@ -84,9 +87,10 @@ public class SecurityConfig
 
         if (ADMIN_KEY_TOKEN != null)
         {
-            UserDetails admin = User.builder().username(ADMIN_KEY_TOKEN).password(passwordEncoder().encode(""))
-                    .roles(SecurityUtils.ADMIN)
-                    .build();
+            UserDetails admin = User.builder().username(ADMIN_KEY_TOKEN)
+                                              .password(passwordEncoder().encode(""))
+                                              .roles(SecurityUtils.ADMIN)
+                                              .build();
 
             manager.createUser(admin);
         }
