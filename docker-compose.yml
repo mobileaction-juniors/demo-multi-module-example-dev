@@ -1,16 +1,5 @@
 version: '1.0'
 services:
-  h2:
-    image: 'buildo/h2database:latest'
-    ports:
-      - '8082:8082'
-#    environment:
-#      - 'H2_USER=sa'
-#      - 'H2_PASSWORD='
-#      - 'H2_CONSOLE_ENABLED=true'
-#      - 'H2_BIND_ALL=TRUE'
-    volumes:
-      - demo-multi-module-example:/h2
   rabbitmq:
     image: rabbitmq:management
     volumes:
