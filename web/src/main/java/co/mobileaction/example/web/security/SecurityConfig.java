@@ -3,15 +3,21 @@ package co.mobileaction.example.web.security;
 import co.mobileaction.example.web.util.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * @author sa
@@ -20,9 +26,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableMethodSecurity(securedEnabled = true)
 @Slf4j
-public class SecurityConfig extends WebSecurityConfigurerAdapter
+public class SecurityConfig
 {
     @Value("${ma.security.secure-key-token}")
     public String SECURE_KEY_TOKEN;
@@ -30,24 +36,48 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Value("${ma.security.admin-token}")
     public String ADMIN_KEY_TOKEN;
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception
+    @Bean
+    public static PasswordEncoder passwordEncoder()
+    {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
+    {
+        http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((authorize) -> {
+                    authorize.anyRequest()
+                            .authenticated();
+                }).httpBasic(Customizer.withDefaults())
+                .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
+
+        return http.build();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService()
     {
         log.info("Configuring authentication manager");
 
-        // since we don't use a password we accept low level security for encoding for better performance
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> configurer = auth.inMemoryAuthentication();
-        configurer.passwordEncoder(encoder);
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 
         if (SECURE_KEY_TOKEN != null)
         {
             String[] keys = SECURE_KEY_TOKEN.split(",");
             if (keys.length > 1)
             {
-                configurer.withUser(keys[0]).password(encoder.encode("")).roles(SecurityUtils.USER);
-                configurer.withUser(keys[1]).password(encoder.encode("")).roles(SecurityUtils.USER);
+                UserDetails user1 = User.builder().username(keys[0])
+                                                  .password(passwordEncoder().encode(""))
+                                                  .roles(SecurityUtils.USER)
+                                                  .build();
+
+                UserDetails user2 = User.builder().username(keys[1])
+                                                  .password(passwordEncoder().encode(""))
+                                                  .roles(SecurityUtils.USER)
+                                                  .build();
+
+                manager.createUser(user1);
+                manager.createUser(user2);
             }
         }
         else
@@ -57,22 +87,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
         if (ADMIN_KEY_TOKEN != null)
         {
-            configurer.withUser(ADMIN_KEY_TOKEN)
-                    .password(encoder.encode(""))
-                    .roles(SecurityUtils.ADMIN);
+            UserDetails admin = User.builder().username(ADMIN_KEY_TOKEN)
+                                              .password(passwordEncoder().encode(""))
+                                              .roles(SecurityUtils.ADMIN)
+                                              .build();
+
+            manager.createUser(admin);
         }
         else
         {
             log.warn("Received null Administrative Key Token-1!");
         }
-    }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception
-    {
-        super.configure(http);
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
-        http.formLogin().disable();
+        return manager;
     }
 }
