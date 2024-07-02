@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,8 @@ import java.util.List;
 
 /**
  * @author sa
- * @date 17.05.2021
- * @time 18:07
+ * @date 02.07.2024
+ * @time 16.44
  */
 @RestController
 @Secured(SecurityUtils.ROLE_USER)
@@ -34,6 +35,20 @@ public class PostController
         return ResponseEntity.ok(postService.findPosts(pageable));
     }
 
+    //Now we can post Post
+    @PostMapping
+    public ResponseEntity<Post> createPost(@RequestBody Post post){
+        postService.savePost(post);
+        return new ResponseEntity<>(post, HttpStatus.CREATED);
+    }
+
+    //Update Post
+    @PutMapping("{postId}")
+    public ResponseEntity<Post> updatePost(@PathVariable Long postId,@RequestBody Post post){
+        postService.updatePost(postId,post);
+        return new ResponseEntity<>(post, HttpStatus.CREATED);
+    }
+
     @DeleteMapping("{postId}")
     public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
     {
@@ -41,4 +56,14 @@ public class PostController
 
         return ResponseEntity.ok(true);
     }
+
+    @DeleteMapping("/user/{userId}")
+    public ResponseEntity<Boolean> deleteUserPosts(@PathVariable Long userId)
+    {
+        postService.deleteUserPosts(userId);
+
+        return ResponseEntity.ok(true);
+    }
+
+
 }

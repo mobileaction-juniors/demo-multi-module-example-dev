@@ -7,12 +7,16 @@ import java.util.List;
 
 /**
  * @author sa
- * @date 17.05.2021
- * @time 17:46
+ * @date 02.07.2024
+ * @time 16.43
  */
 public interface IPostService
 {
+    void deleteUserPosts(Long userId);
+
     void savePost(Post post);
+
+    void updatePost(Long postId, Post post);
 
     List<Post> findPosts(Pageable pageable);
 
