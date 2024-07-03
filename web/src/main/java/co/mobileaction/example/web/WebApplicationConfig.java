@@ -49,11 +49,31 @@ public class WebApplicationConfig
     }
 
     @Bean
+    public AmqpTemplate userResultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                   MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey("ma-example-user-result-problem-queue");
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
     public AmqpTemplate requestQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                              MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_REQUEST_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userRequestQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                 MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey("ma-example-user-queue");
         template.setMessageConverter(messageConverter);
         return template;
     }
