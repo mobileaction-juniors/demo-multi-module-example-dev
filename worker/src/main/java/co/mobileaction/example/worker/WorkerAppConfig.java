@@ -37,6 +37,12 @@ public class WorkerAppConfig
     @Value("${messaging.queue.result}")
     private String MESSAGING_RESULT_QUEUE;
 
+    @Value("${messaging.queue.user.request.problem}")
+    private String MESSAGING_USER_REQUEST_PROBLEM_QUEUE;
+
+    @Value("${messaging.queue.user.result}")
+    private String MESSAGING_USER_RESULT_QUEUE;
+
     @Bean
     public AmqpTemplate resultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                              MessageConverter messageConverter)
@@ -62,7 +68,7 @@ public class WorkerAppConfig
                                             MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey("ma-example-user-result-queue");
+        template.setRoutingKey(MESSAGING_USER_RESULT_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }
@@ -72,7 +78,7 @@ public class WorkerAppConfig
                                                     MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey("ma-example-user-problem-queue");
+        template.setRoutingKey(MESSAGING_USER_REQUEST_PROBLEM_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }

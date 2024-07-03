@@ -21,7 +21,7 @@ public class UserRequestQueueHandler
     private final AmqpTemplate userRequestProblemQueueTemplate;
     private final IUserRequestHandlerService userRequestHandlerService;
 
-    @RabbitListener(queues="ma-example-user-queue", containerFactory = "requestQueueListener")
+    @RabbitListener(queues="${messaging.queue.user.request}", containerFactory = "requestQueueListener")
     public void handleMessage (UserQueueRequestDto request)
     {
         try

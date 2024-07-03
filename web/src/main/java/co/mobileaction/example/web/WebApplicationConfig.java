@@ -38,6 +38,12 @@ public class WebApplicationConfig
     @Value("${messaging.queue.request}")
     private String MESSAGING_REQUEST_QUEUE;
 
+    @Value("${messaging.queue.user.result.problem}")
+    private String MESSAGING_USER_RESULT_PROBLEM_QUEUE;
+
+    @Value("${messaging.queue.user.request}")
+    private String MESSAGING_USER_REQUEST_QUEUE;
+
     @Bean
     public AmqpTemplate resultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                    MessageConverter messageConverter)
@@ -53,7 +59,7 @@ public class WebApplicationConfig
                                                    MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey("ma-example-user-result-problem-queue");
+        template.setRoutingKey(MESSAGING_USER_RESULT_PROBLEM_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }
@@ -73,7 +79,7 @@ public class WebApplicationConfig
                                                  MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey("ma-example-user-queue");
+        template.setRoutingKey(MESSAGING_USER_REQUEST_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }
