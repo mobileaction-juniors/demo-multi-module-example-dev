@@ -18,7 +18,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PostRequestQueueHandler
 {
-    private final AmqpTemplate requestProblemQueueTemplate;
+
+    private final AmqpTemplate requestProblemTemplate;
 
     private final IPostRequestHandlerService requestHandlerService;
 
@@ -31,9 +32,9 @@ public class PostRequestQueueHandler
         }
         catch (Exception e)
         {
-            log.error("Could not handle request for postId: {}", request.getPostId(), e);
+            log.error("Could not handle request for postId: {}", request.getId(), e);
 
-            requestProblemQueueTemplate.convertAndSend(request);
+            requestProblemTemplate.convertAndSend(request);
         }
     }
 }
