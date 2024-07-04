@@ -7,11 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-/**
- * @author sa
- * @date 02.07.2024
- * @time 16.43
- */
 public interface IPostRepository extends JpaRepository<Post, Long>
 {
     List<Post> findAllByUserId(Long userId);
@@ -19,4 +14,5 @@ public interface IPostRepository extends JpaRepository<Post, Long>
     @Modifying
     @Query("delete from Post p where p.userId = :userId")
     void deletePosts(Long userId);
+
 }
