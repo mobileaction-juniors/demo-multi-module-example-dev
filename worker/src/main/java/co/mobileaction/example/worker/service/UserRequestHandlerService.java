@@ -2,7 +2,6 @@ package co.mobileaction.example.worker.service;
 
 import co.mobileaction.example.common.dto.UserDto;
 import co.mobileaction.example.common.dto.UserQueueRequestDto;
-import co.mobileaction.example.worker.client.CrawlerClient;
 import co.mobileaction.example.worker.client.ICrawlerClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +26,7 @@ public class UserRequestHandlerService implements IUserRequestHandlerService
     public void executeMessage(UserQueueRequestDto request)
     {
         UserDto user = crawlerClient.fetchUser(request.getUserId());
+
 
         userResultQueueTemplate.convertAndSend(user);
     }

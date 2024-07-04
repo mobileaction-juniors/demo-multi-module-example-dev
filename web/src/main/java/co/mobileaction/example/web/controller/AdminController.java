@@ -42,8 +42,7 @@ public class AdminController
     }
 
     @GetMapping("queue/users")
-    public ResponseEntity<List<User>> getUsers(@PageableDefault(size = 10)
-                                               @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
+    public ResponseEntity<List<User>> getUsers(@PageableDefault(size = 10) @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
     {
         return ResponseEntity.ok(userService.findUsers(pageable));
     }

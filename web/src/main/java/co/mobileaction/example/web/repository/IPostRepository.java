@@ -14,8 +14,10 @@ import java.util.List;
 public interface IPostRepository extends JpaRepository<Post, Long>
 {
     List<Post> findAllByUserId(Long userId);
+
     void deleteAllByUserId(Long userId);
 
     @Query(value = "SELECT DISTINCT user_id FROM posts", nativeQuery = true)
     List<Long> getDistinctUserIds();
+
 }

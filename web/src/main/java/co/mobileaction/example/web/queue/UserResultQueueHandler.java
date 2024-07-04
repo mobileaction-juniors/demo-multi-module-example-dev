@@ -23,7 +23,7 @@ public class UserResultQueueHandler
 
     private final IUserResultHandlerService userResultHandlerService;
 
-    @RabbitListener(queues="${messaging.queue.user.result}", containerFactory = "resultQueueListener")
+    @RabbitListener(queues = "${messaging.queue.user.result}", containerFactory = "resultQueueListener")
     public void handleMessage(UserDto result)
     {
         try
