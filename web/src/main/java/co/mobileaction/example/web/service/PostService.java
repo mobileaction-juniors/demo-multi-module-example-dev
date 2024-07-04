@@ -50,4 +50,9 @@ public class PostService implements IPostService
         postRepository.deleteAllInBatch(posts);
     }
 
+    @Override
+    public List<Long> getDistinctIds()
+    {
+        return postRepository.getDistinctIds();
+    }
 }

@@ -34,8 +34,19 @@ public class WorkerAppConfig
     @Value("${messaging.queue.request.problem}")
     private String MESSAGING_REQUEST_PROBLEM_QUEUE;
 
+    @Value("${messaging.queue.userrequest.problem}")
+    private String MESSAGING_USERREQUEST_PROBLEM_QUEUE;
+
     @Value("${messaging.queue.result}")
     private String MESSAGING_RESULT_QUEUE;
+
+    @Value("${messaging.queue.userresult}")
+    private String MESSAGING_USERRESULT_QUEUE;
+
+    @Value("${messaging.queue.userrequest}")
+    private String MESSAGING_USERREQUEST_QUEUE;
+
+
 
     @Bean
     public AmqpTemplate resultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
@@ -48,11 +59,40 @@ public class WorkerAppConfig
     }
 
     @Bean
-    public AmqpTemplate requestProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+    public AmqpTemplate userTemplate(ConnectionFactory rabbitConnectionFactory,
+                                          MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USERREQUEST_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate resultUserQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                     MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USERRESULT_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+
+    @Bean
+    public AmqpTemplate requestProblemTemplate(ConnectionFactory rabbitConnectionFactory,MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_REQUEST_PROBLEM_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userRequestProblemTemplate(ConnectionFactory rabbitConnectionFactory,MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USERREQUEST_PROBLEM_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }

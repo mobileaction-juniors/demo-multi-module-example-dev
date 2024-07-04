@@ -1,6 +1,7 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.service.IPostQueueService;
+import co.mobileaction.example.web.service.IUserQueueService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author sa
- * @date 17.05.2021
+ * @author elif ece can
+ * @date 04.07.2024
  * @time 17:55
  */
 @RestController
@@ -22,10 +23,20 @@ public class AdminController
 {
     private final IPostQueueService queueService;
 
+    private final IUserQueueService userService;
+
     @PostMapping("queue/posts")
     public ResponseEntity<Boolean> createQueueRequests()
     {
         queueService.sendPostRequestForAllItems();
+
+        return ResponseEntity.ok(true);
+    }
+
+    @PostMapping("queue/users")
+    public ResponseEntity<Boolean> createUserQueueRequests()
+    {
+        userService.sendRequestForItems();
 
         return ResponseEntity.ok(true);
     }

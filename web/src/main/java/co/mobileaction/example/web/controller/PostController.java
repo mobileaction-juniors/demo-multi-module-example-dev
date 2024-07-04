@@ -36,7 +36,6 @@ public class PostController
         return ResponseEntity.ok(postService.findPosts(pageable));
     }
 
-    //written for testing purposes
     @GetMapping("/get/{userId}")
     public ResponseEntity<List<Post>> getPost(@PathVariable Long userId,
                                               @PageableDefault(size = 10)
@@ -46,8 +45,31 @@ public class PostController
         return ResponseEntity.ok(postService.findAllPostsOfUser(userId));
     }
 
+
+    @GetMapping("/get/distinct")
+    public ResponseEntity<List<Long>> getIds(@PageableDefault(size = 10)
+                                             @SortDefault(sort = "id", direction = Sort.Direction.ASC)
+                                             Pageable pageable)
+    {
+        return ResponseEntity.ok(postService.getDistinctIds());
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public void createPost(@RequestBody Post post)
+    {
+        postService.savePost(post);
+    }
+
+    @DeleteMapping("{postId}")
+    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
+    {
+        postService.deletePost(postId);
+        return ResponseEntity.ok(true);
+    }
+
     @DeleteMapping("/user/{userId}")
-    public ResponseEntity<Void> deletePost(@PathVariable Long userId)
+    public ResponseEntity<Void> deletePosts(@PathVariable Long userId)
     {
         try {
             postService.deleteAllPostsOfUser(userId);
@@ -57,12 +79,5 @@ public class PostController
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    public void createPost(@RequestBody Post post)
-    {
-        postService.savePost(post);
     }
 }

@@ -23,7 +23,7 @@ public class PostRequestHandlerService implements IPostRequestHandlerService
     @Override
     public void executeMessage(QueueRequestDto request)
     {
-        PostDto post = crawlerClient.fetchPost(request.getPostId());
+        PostDto post = crawlerClient.fetchPost(request.getId());
 
         resultQueueTemplate.convertAndSend(post);
     }
