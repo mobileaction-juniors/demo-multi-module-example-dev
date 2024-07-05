@@ -56,7 +56,7 @@ public class WebApplicationConfig
 
     @Bean
     public AmqpTemplate userResultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
-                                                   MessageConverter messageConverter)
+                                                       MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_USER_RESULT_PROBLEM_QUEUE);

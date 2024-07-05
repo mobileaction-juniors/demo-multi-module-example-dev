@@ -13,7 +13,10 @@ import java.util.List;
 public interface IUserService
 {
     void deleteAllPosts(Long userId);
-    List<Long> getDistinctUserIds();
+
+    List<Long> findDistinctUserIds();
+
     void saveUser(User user);
+
     List<User> findUsers(Pageable pageable);
 }

@@ -30,9 +30,9 @@ public class UserService implements IUserService
     }
 
     @Override
-    public List<Long> getDistinctUserIds()
+    public List<Long> findDistinctUserIds()
     {
-        return postRepository.getDistinctUserIds();
+        return postRepository.findDistinctUserId();
     }
 
     @Override
