@@ -2,6 +2,7 @@ package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.service.IPostService;
+import co.mobileaction.example.web.service.IUserService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -26,10 +27,10 @@ import java.util.List;
 public class PostController
 {
     private final IPostService postService;
+    private final IUserService userService;
 
     @GetMapping
-    public ResponseEntity<List<Post>> getPosts(@PageableDefault(size = 10)
-                                               @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
+    public ResponseEntity<List<Post>> getPosts(@PageableDefault(size = 10) @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
     {
         return ResponseEntity.ok(postService.findPosts(pageable));
     }
