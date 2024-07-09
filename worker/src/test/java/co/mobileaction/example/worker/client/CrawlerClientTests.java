@@ -44,12 +44,19 @@ public class CrawlerClientTests
     @Test
     public void test_fetchUser()
     {
+        String api_url = "https://jsonplaceholder.typicode.com/users/%s";
         Long userId = 1L;
+        String url = String.format(api_url, userId);
 
         UserDto user = UserDto.builder()
-                .id(1L).name("user-1").build();
+                .id(userId)
+                .name("baba")
+                .build();
+
+        when(httpRequestExecutor.executeGetRequest(url, UserDto.class)).thenReturn(user);
+
         UserDto userDto = crawlerClient.fetchUser(userId);
 
         assertEquals(userDto.getId(), 1L);
-    }
+    }//end
 }

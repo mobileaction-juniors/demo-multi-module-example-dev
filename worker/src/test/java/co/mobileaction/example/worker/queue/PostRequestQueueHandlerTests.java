@@ -14,39 +14,35 @@ import org.springframework.amqp.core.AmqpTemplate;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 
-/**
- * @author sa
- * @date 18.05.2021
- * @time 10:32
- */
+
 @ExtendWith(MockitoExtension.class)
 public class PostRequestQueueHandlerTests
 {
     @InjectMocks
     private PostRequestQueueHandler postRequestQueueHandler;
     @InjectMocks
-    private UserRequestQueueHandler userRequestQueueHandler;
+    private UserRequestQueueHandler userRequestQueueHandler;//should be in another file
 
     @Mock
     private IPostRequestHandlerService service;
     @Mock
-    private IUserRequestHandlerService uService;
+    private IUserRequestHandlerService uService;//should be in another file
 
     @Mock(name = "requestProblemQueueTemplate")
     private AmqpTemplate requestProblemQueueTemplate;
     @Mock(name = "requestProblemQueueUserTemplate")
-    private AmqpTemplate requestProblemQueueUserTemplate;
+    private AmqpTemplate requestProblemQueueUserTemplate;//should be in another file
 
     @Test
     public void handleMessage_success()
     {
         QueueRequestDto dto = new QueueRequestDto(1L);
-        UserQueueRequestDto uDto = new UserQueueRequestDto(1L);
+        UserQueueRequestDto uDto = new UserQueueRequestDto(1L);//should be in another file
 
-        userRequestQueueHandler.handleMessage(uDto);
+        userRequestQueueHandler.handleMessage(uDto);//should be in another file
         postRequestQueueHandler.handleMessage(dto);
 
-        verify(uService).executeMessage(uDto);
+        verify(uService).executeMessage(uDto);//should be in another file
         verify(service).executeMessage(dto);
     }
 
@@ -64,7 +60,7 @@ public class PostRequestQueueHandlerTests
 
     @Test
     public void handleMessageUser_fail()
-    {
+    {//should be in another file
         UserQueueRequestDto uDto = new UserQueueRequestDto(1L);
         doThrow(RuntimeException.class).when(uService).executeMessage(uDto);
         userRequestQueueHandler.handleMessage(uDto);
