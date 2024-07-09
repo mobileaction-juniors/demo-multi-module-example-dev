@@ -22,5 +22,5 @@ public interface IPostService
 
     void deleteAllPostsOfUser(Long userId);
 
-    List<Long> getDistinctIds();
+    List<Long> findDistinctUserIdBy();
 }

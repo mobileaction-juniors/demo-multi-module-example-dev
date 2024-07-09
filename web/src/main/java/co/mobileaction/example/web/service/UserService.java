@@ -4,7 +4,6 @@ import co.mobileaction.example.web.model.User;
 import co.mobileaction.example.web.repository.IPostRepository;
 import co.mobileaction.example.web.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,17 +28,5 @@ public class UserService implements IUserService
     }
 
     @Override
-    public List<User> findUsers(Pageable pageable)
-    {
-        return userRepository.findAll(pageable).getContent();
-    }
-
-    @Override
-    public void deleteUser(Long userId)
-    {
-        userRepository.deleteById(userId);
-    }
-
-    @Override
-    public List<Long> getDistinctIds() { return postRepository.getDistinctIds(); }
+    public List<Long> getDistinctIds() { return postRepository.findDistinctUserIdBy(); }
 }

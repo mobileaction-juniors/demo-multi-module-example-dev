@@ -15,7 +15,6 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -45,15 +44,5 @@ public class UserControllerTests extends ControllerTestsBase
                 .andExpect(jsonPath("$", hasSize(1)));
 
         verify(userService).getDistinctIds();
-    }
-
-    @Test
-    public void deleteUser() throws Exception
-    {
-        this.mockMvc.perform(delete("/api/users/1"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("true"));
-
-        verify(userService).deleteUser(1L);
     }
 }

@@ -51,7 +51,7 @@ public class PostController
                                              @SortDefault(sort = "id", direction = Sort.Direction.ASC)
                                              Pageable pageable)
     {
-        return ResponseEntity.ok(postService.getDistinctIds());
+        return ResponseEntity.ok(postService.findDistinctUserIdBy());
     }
 
     @ResponseStatus(HttpStatus.CREATED)

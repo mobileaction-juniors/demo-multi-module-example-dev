@@ -4,9 +4,6 @@ import co.mobileaction.example.web.model.User;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
-
 /**
  * @author elif ece can
  * @date 04.07.2024
@@ -15,7 +12,4 @@ import java.util.List;
 
 @Transactional
 @Repository
-public interface IUserRepository extends JpaRepository<User, Long>
-{
-    List<User> findAll();
-}
+public interface IUserRepository extends JpaRepository<User, Long>{}

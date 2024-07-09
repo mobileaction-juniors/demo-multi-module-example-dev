@@ -24,7 +24,6 @@ public class UserResultQueueHandler
     @RabbitListener(queues = "${messaging.queue.userresult}", containerFactory = "resultQueueListener")
     public void handleMessage(UserDto result)
     {
-        log.error("ee");
         try
         {
             resultHandlerService.executeMessage(result);
