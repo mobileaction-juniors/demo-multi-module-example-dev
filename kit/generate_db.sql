@@ -26,3 +26,8 @@ CREATE TABLE posts (
   title varchar(255) NOT NULL,
   body varchar(255) NOT NULL
 );
+
+CREATE TABLE users (
+  id bigint PRIMARY KEY NOT NULL,
+  name varchar(255) NOT NULL
+);
