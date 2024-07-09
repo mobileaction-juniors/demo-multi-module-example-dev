@@ -1,8 +1,10 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.service.IPostQueueService;
+import co.mobileaction.example.web.service.IUserQueueService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -26,6 +28,9 @@ public class AdminControllerTests extends ControllerTestsBase
     @MockBean
     private IPostQueueService queueService;
 
+    @MockBean
+    private IUserQueueService userService;
+
     @Test
     public void createQueueRequests() throws Exception
     {
@@ -34,5 +39,14 @@ public class AdminControllerTests extends ControllerTestsBase
                 .andExpect(content().string("true"));
 
         verify(queueService).sendPostRequestForAllItems();
+    }
+
+    @Test
+    public void createQueueReqUser() throws Exception
+    {
+        this.mockMvc.perform(post("/api/admin/queue/users")).andExpect(status().isOk())
+                .andExpect(content().string("true"));
+
+        verify(userService).sendUserRequestForAllItems();
     }
 }

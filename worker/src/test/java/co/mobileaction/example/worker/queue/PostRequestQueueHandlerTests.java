@@ -1,7 +1,9 @@
 package co.mobileaction.example.worker.queue;
 
 import co.mobileaction.example.common.dto.QueueRequestDto;
+import co.mobileaction.example.common.dto.UserQueueRequestDto;
 import co.mobileaction.example.worker.service.IPostRequestHandlerService;
+import co.mobileaction.example.worker.service.IUserRequestHandlerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,20 +24,29 @@ public class PostRequestQueueHandlerTests
 {
     @InjectMocks
     private PostRequestQueueHandler postRequestQueueHandler;
+    @InjectMocks
+    private UserRequestQueueHandler userRequestQueueHandler;
 
     @Mock
     private IPostRequestHandlerService service;
+    @Mock
+    private IUserRequestHandlerService uService;
 
     @Mock(name = "requestProblemQueueTemplate")
     private AmqpTemplate requestProblemQueueTemplate;
+    @Mock(name = "requestProblemQueueUserTemplate")
+    private AmqpTemplate requestProblemQueueUserTemplate;
 
     @Test
     public void handleMessage_success()
     {
         QueueRequestDto dto = new QueueRequestDto(1L);
+        UserQueueRequestDto uDto = new UserQueueRequestDto(1L);
 
+        userRequestQueueHandler.handleMessage(uDto);
         postRequestQueueHandler.handleMessage(dto);
 
+        verify(uService).executeMessage(uDto);
         verify(service).executeMessage(dto);
     }
 
@@ -49,5 +60,14 @@ public class PostRequestQueueHandlerTests
         postRequestQueueHandler.handleMessage(dto);
 
         verify(requestProblemQueueTemplate).convertAndSend(dto);
+    }
+
+    @Test
+    public void handleMessageUser_fail()
+    {
+        UserQueueRequestDto uDto = new UserQueueRequestDto(1L);
+        doThrow(RuntimeException.class).when(uService).executeMessage(uDto);
+        userRequestQueueHandler.handleMessage(uDto);
+        verify(requestProblemQueueUserTemplate).convertAndSend(uDto);
     }
 }

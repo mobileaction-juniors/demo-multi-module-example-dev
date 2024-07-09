@@ -1,6 +1,7 @@
 package co.mobileaction.example.worker.client;
 
 import co.mobileaction.example.common.dto.PostDto;
+import co.mobileaction.example.common.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -38,5 +39,17 @@ public class CrawlerClientTests
         PostDto postDto = crawlerClient.fetchPost(postId);
 
         assertEquals(postDto.getId(), 1L);
+    }
+
+    @Test
+    public void test_fetchUser()
+    {
+        Long userId = 1L;
+
+        UserDto user = UserDto.builder()
+                .id(1L).name("user-1").build();
+        UserDto userDto = crawlerClient.fetchUser(userId);
+
+        assertEquals(userDto.getId(), 1L);
     }
 }
