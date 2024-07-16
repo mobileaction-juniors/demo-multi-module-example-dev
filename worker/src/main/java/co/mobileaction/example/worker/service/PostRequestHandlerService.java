@@ -5,6 +5,8 @@ import co.mobileaction.example.common.dto.QueueRequestDto;
 import co.mobileaction.example.worker.client.ICrawlerClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PostRequestHandlerService implements IPostRequestHandlerService
 {
+    @Autowired
+    @Qualifier("resultQueueTemplate")
     private final AmqpTemplate resultQueueTemplate;
 
     private final ICrawlerClient crawlerClient;

@@ -42,4 +42,16 @@ public class PostService implements IPostService
     {
         postRepository.deleteById(postId);
     }
+
+    @Override
+    public void deleteUserPosts(List<Post> posts)
+    {
+        postRepository.deleteAllInBatch(posts);
+    }
+
+    @Override
+    public List<Long> findDistinctUsersFromPosts()
+    {
+        return postRepository.findDistinctUsers();
+    }
 }

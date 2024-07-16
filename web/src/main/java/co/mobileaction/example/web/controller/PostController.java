@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -40,5 +41,28 @@ public class PostController
         postService.deletePost(postId);
 
         return ResponseEntity.ok(true);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public void createPost(@RequestBody Post post)
+    {
+        postService.savePost(post);
+    }
+
+    @DeleteMapping("/user/{userId}")
+    public ResponseEntity<Boolean> deletePostsOfUser(@PathVariable Long userId)
+    {
+        List<Post> userPosts = postService.findAllPostsOfUser(userId);
+        postService.deleteUserPosts(userPosts);
+
+        return ResponseEntity.ok(true);
+    }
+
+    @GetMapping("/user")
+    public List<Long> getDistinctUsersFromPosts()
+    {
+        List<Long> userIds = postService.findDistinctUsersFromPosts();
+        return userIds;
     }
 }

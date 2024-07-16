@@ -19,4 +19,8 @@ public interface IPostService
     List<Post> findAllPostsOfUser(Long userId);
 
     void deletePost(Long postId);
+
+    void deleteUserPosts(List<Post> posts);
+
+    List<Long> findDistinctUsersFromPosts();
 }
