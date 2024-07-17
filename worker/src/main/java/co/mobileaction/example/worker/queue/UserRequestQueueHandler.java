@@ -6,17 +6,26 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Doga Elif Konuk
+ * @date 17.07.2024
+ * @time 15:15
+ */
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class UserRequestQueueHandler {
+public class UserRequestQueueHandler
+{
+
     private final AmqpTemplate userRequestProblemQueueTemplate;
 
     private final IUserRequestHandlerService userRequestHandlerService;
 
-    @RabbitListener(queues = "${user.messaging.queue.request.problem}", containerFactory = "requestQueueListener")
+    @RabbitListener(queues = "ma-example-user-request-queue", containerFactory = "requestQueueListener")
     public void handleMessage(UserQueueRequestDto userRequest)
     {
         try

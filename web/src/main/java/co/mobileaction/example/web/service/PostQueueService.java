@@ -3,8 +3,6 @@ package co.mobileaction.example.web.service;
 import co.mobileaction.example.common.dto.QueueRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.LongStream;
@@ -16,15 +14,12 @@ import java.util.stream.LongStream;
  */
 @Service
 @RequiredArgsConstructor
-public class PostQueueService implements IPostQueueService
-{
-    @Autowired
-    @Qualifier("requestQueueTemplate")
+public class PostQueueService implements IPostQueueService {
+
     private final AmqpTemplate requestQueueTemplate;
 
     @Override
-    public void sendPostRequestForAllItems()
-    {
+    public void sendPostRequestForAllItems() {
         LongStream.rangeClosed(1, 100)
                 .mapToObj(QueueRequestDto::new)
                 .forEach(requestQueueTemplate::convertAndSend);

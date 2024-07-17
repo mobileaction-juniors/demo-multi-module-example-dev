@@ -1,10 +1,13 @@
 package co.mobileaction.example.common.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
+/**
+ * @author Doga Elif Konuk
+ * @date 17.07.2024
+ * @time 15:15
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,7 +15,8 @@ import lombok.NoArgsConstructor;
 public class UserDto
 {
     private Long id;
-    private String fullname;
+    @JsonProperty("name")
+    private String fullName;
     private String username;
     private String email;
 }

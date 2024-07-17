@@ -10,9 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author sa
- * @date 17.05.2021
- * @time 17:41
+ * @author Doga Elif Konuk
+ * @date 17.07.2024
+ * @time 15:15
  */
 @Data
 @Entity
@@ -25,8 +25,8 @@ public class User
     @Id
     private Long id;
 
-    @Column(name = "fullname")
-    private Long fullname;
+    @Column(name = "full_name")
+    private String fullName;
 
     @Column(name = "username")
     private String username;

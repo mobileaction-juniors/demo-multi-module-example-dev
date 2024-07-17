@@ -5,16 +5,17 @@ import co.mobileaction.example.common.dto.UserQueueRequestDto;
 import co.mobileaction.example.worker.client.IUserCrawlerClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Doga Elif Konuk
+ * @date 17.07.2024
+ * @time 15:15
+ */
 @Service
 @RequiredArgsConstructor
 public class UserRequestHandlerService implements IUserRequestHandlerService {
 
-    @Autowired
-    @Qualifier("userResultQueueTemplate")
     private final AmqpTemplate userResultQueueTemplate;
 
     private final IUserCrawlerClient userCrawlerClient;

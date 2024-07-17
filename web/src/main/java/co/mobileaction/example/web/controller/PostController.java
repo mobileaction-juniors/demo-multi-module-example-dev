@@ -62,7 +62,6 @@ public class PostController
     @GetMapping("/user")
     public List<Long> getDistinctUsersFromPosts()
     {
-        List<Long> userIds = postService.findDistinctUsersFromPosts();
-        return userIds;
+        return postService.findDistinctUsersFromPosts();
     }
 }
