@@ -1,8 +1,5 @@
 package co.mobileaction.example.worker.client;
 
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.RequestEntity;
-
 /**
  * @author sa
  * @date 17.05.2021

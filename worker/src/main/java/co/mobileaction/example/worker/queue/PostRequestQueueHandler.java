@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PostRequestQueueHandler
 {
+
     private final AmqpTemplate requestProblemQueueTemplate;
 
     private final IPostRequestHandlerService requestHandlerService;

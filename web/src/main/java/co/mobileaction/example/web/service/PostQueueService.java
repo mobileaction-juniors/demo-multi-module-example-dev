@@ -14,13 +14,12 @@ import java.util.stream.LongStream;
  */
 @Service
 @RequiredArgsConstructor
-public class PostQueueService implements IPostQueueService
-{
+public class PostQueueService implements IPostQueueService {
+
     private final AmqpTemplate requestQueueTemplate;
 
     @Override
-    public void sendPostRequestForAllItems()
-    {
+    public void sendPostRequestForAllItems() {
         LongStream.rangeClosed(1, 100)
                 .mapToObj(QueueRequestDto::new)
                 .forEach(requestQueueTemplate::convertAndSend);
