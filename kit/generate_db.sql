@@ -28,8 +28,8 @@ CREATE TABLE posts (
 );
 
 CREATE TABLE users (
-                       id bigint PRIMARY KEY NOT NULL,
-                       fullname varchar(255) NOT NULL,
-                       username varchar(255) NOT NULL,
-                       email varchar(255) NOT NULL
+    id bigint PRIMARY KEY NOT NULL,
+    fullname varchar(255) NOT NULL,
+    username varchar(255) NOT NULL,
+    email varchar(255) NOT NULL
 );

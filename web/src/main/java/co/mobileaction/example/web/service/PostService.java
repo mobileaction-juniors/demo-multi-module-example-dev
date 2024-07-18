@@ -1,5 +1,6 @@
 package co.mobileaction.example.web.service;
 
+import co.mobileaction.example.common.dto.PostDto;
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.repository.IPostRepository;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author sa
@@ -23,6 +25,17 @@ public class PostService implements IPostService
     public void savePost(Post post)
     {
         postRepository.save(post);
+    }
+
+    @Override
+    public Post convertFrom(PostDto postDto)
+    {
+        return Post.builder()
+                .id(postDto.getId())
+                .userId(postDto.getUserId())
+                .title(postDto.getTitle())
+                .body(postDto.getBody())
+                .build();
     }
 
     @Override
@@ -44,14 +57,13 @@ public class PostService implements IPostService
     }
 
     @Override
-    public void deleteUserPosts(List<Post> posts)
-    {
-        postRepository.deleteAllInBatch(posts);
+    public void deleteAllPostsOfUser(Long userId){
+        postRepository.deleteById(userId);
     }
 
     @Override
-    public List<Long> findDistinctUsersFromPosts()
+    public Set<Long> findDistinctUsersFromPosts()
     {
-        return postRepository.findDistinctUsers();
+        return postRepository.findDistinctUserIds();
     }
 }

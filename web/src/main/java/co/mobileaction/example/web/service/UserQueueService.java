@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Doga Elif Konuk
@@ -18,7 +18,7 @@ public class UserQueueService implements IUserQueueService {
     private final AmqpTemplate userRequestQueueTemplate;
 
     @Override
-    public void sendRequestForDistinctUsers(List<Long> userIds) {
+    public void sendRequestForDistinctUsers(Set<Long> userIds) {
         userIds.stream()
                 .map(UserQueueRequestDto::new)
                 .forEach(userRequestQueueTemplate::convertAndSend);

@@ -1,6 +1,6 @@
 package co.mobileaction.example.web.service;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Doga Elif Konuk
@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface IUserQueueService
 {
-    void sendRequestForDistinctUsers(List<Long> userIds);
+    void sendRequestForDistinctUsers(Set<Long> userIds);
 }

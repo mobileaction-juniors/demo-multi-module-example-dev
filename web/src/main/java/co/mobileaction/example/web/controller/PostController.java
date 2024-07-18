@@ -1,5 +1,6 @@
 package co.mobileaction.example.web.controller;
 
+import co.mobileaction.example.common.dto.PostDto;
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.service.IPostService;
 import co.mobileaction.example.web.util.SecurityUtils;
@@ -14,6 +15,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author sa
@@ -45,22 +47,22 @@ public class PostController
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void createPost(@RequestBody Post post)
+    public void createPost(@RequestBody PostDto postDto)
     {
+        Post post = postService.convertFrom(postDto);
         postService.savePost(post);
     }
 
     @DeleteMapping("/user/{userId}")
     public ResponseEntity<Boolean> deletePostsOfUser(@PathVariable Long userId)
     {
-        List<Post> userPosts = postService.findAllPostsOfUser(userId);
-        postService.deleteUserPosts(userPosts);
+        postService.deleteAllPostsOfUser(userId);
 
         return ResponseEntity.ok(true);
     }
 
     @GetMapping("/user")
-    public List<Long> getDistinctUsersFromPosts()
+    public Set<Long> getDistinctUsersFromPosts()
     {
         return postService.findDistinctUsersFromPosts();
     }
