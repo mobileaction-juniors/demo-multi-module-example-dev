@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WebApplicationConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">web</a> &gt; <a href="index.source.html" class="el_package">co.mobileaction.example.web</a> &gt; <span class="el_source">WebApplicationConfig.java</span></div><h1>WebApplicationConfig.java</h1><pre class="source lang-java linenums">package co.mobileaction.example.web;
+
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+
+/**
+ * @author sa
+ * @date 17.05.2021
+ * @time 13:53
+ */
+@SpringBootApplication
+@ComponentScan(&quot;co.mobileaction.example&quot;)
+<span class="fc" id="L21">public class WebApplicationConfig</span>
+{
+    @Value(&quot;${messaging.consumer.initial-size}&quot;)
+    private int CONSUMER_SIZE;
+
+    @Value(&quot;${messaging.consumer.result.auto-start}&quot;)
+    private boolean CONSUMER_RESULT_AUTO_START;
+
+    @Value(&quot;${messaging.consumer.result.max-size}&quot;)
+    private int CONSUMER_RESULT_MAX_SIZE;
+
+    @Value(&quot;${messaging.consumer.interval}&quot;)
+    private Long INTERVAL_IN_MS;
+
+    @Value(&quot;${messaging.queue.result.problem}&quot;)
+    private String MESSAGING_RESULT_PROBLEM_QUEUE;
+
+    @Value(&quot;${messaging.queue.request}&quot;)
+    private String MESSAGING_REQUEST_QUEUE;
+
+    @Bean
+    public AmqpTemplate resultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                   MessageConverter messageConverter)
+    {
+<span class="fc" id="L45">        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);</span>
+<span class="fc" id="L46">        template.setRoutingKey(MESSAGING_RESULT_PROBLEM_QUEUE);</span>
+<span class="fc" id="L47">        template.setMessageConverter(messageConverter);</span>
+<span class="fc" id="L48">        return template;</span>
+    }
+
+    @Bean
+    public AmqpTemplate requestQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                             MessageConverter messageConverter)
+    {
+<span class="fc" id="L55">        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);</span>
+<span class="fc" id="L56">        template.setRoutingKey(MESSAGING_REQUEST_QUEUE);</span>
+<span class="fc" id="L57">        template.setMessageConverter(messageConverter);</span>
+<span class="fc" id="L58">        return template;</span>
+    }
+
+    @Bean
+    public SimpleRabbitListenerContainerFactory resultQueueListener(ConnectionFactory connectionFactory,
+                                                                    MessageConverter messageConverter)
+    {
+<span class="fc" id="L65">        SimpleRabbitListenerContainerFactory container = new SimpleRabbitListenerContainerFactory();</span>
+<span class="fc" id="L66">        container.setConnectionFactory(connectionFactory);</span>
+<span class="fc" id="L67">        container.setMessageConverter(messageConverter);</span>
+<span class="fc" id="L68">        container.setConcurrentConsumers(CONSUMER_SIZE);</span>
+<span class="fc" id="L69">        container.setStartConsumerMinInterval(INTERVAL_IN_MS);</span>
+<span class="fc" id="L70">        container.setStopConsumerMinInterval(INTERVAL_IN_MS);</span>
+<span class="fc" id="L71">        container.setPrefetchCount(10);</span>
+<span class="fc" id="L72">        container.setMaxConcurrentConsumers(CONSUMER_RESULT_MAX_SIZE);</span>
+<span class="fc" id="L73">        container.setAutoStartup(CONSUMER_RESULT_AUTO_START);</span>
+<span class="fc" id="L74">        return container;</span>
+    }
+
+    public static void main(String[] args)
+    {
+<span class="nc" id="L79">        SpringApplication.run(WebApplicationConfig.class, args);</span>
+<span class="nc" id="L80">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

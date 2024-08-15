@@ -74,4 +74,23 @@ public class PostServiceTests
 
         assertThat(list).hasSize(3);
     }
+
+    @Test
+    public void deleteAllPostsOfUser() {
+        // Before deletion, verify the posts for user 1L exist
+        List<Post> postsBeforeDeletion = postService.findAllPostsOfUser(1L);
+        assertThat(postsBeforeDeletion).hasSize(2); // Assuming user 1L has 2 posts
+
+        // Perform the deletion
+        postService.deleteAllPostsOfUser(1L);
+
+        // After deletion, verify no posts exist for user 1L
+        List<Post> postsAfterDeletion = postService.findAllPostsOfUser(1L);
+        assertThat(postsAfterDeletion).isEmpty();
+
+        // Verify the total number of posts in the repository has decreased accordingly
+        List<Post> remainingPosts = postRepository.findAll();
+        assertThat(remainingPosts).hasSize(2); // Assuming there were initially 4 posts in total
+    }
+
 }
