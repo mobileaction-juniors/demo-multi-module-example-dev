@@ -36,18 +36,17 @@ public class PostController
     }
 
     @DeleteMapping("/{postId}")
-    public ResponseEntity<String> deletePost(@PathVariable Long postId)
+    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
     {
         //postService.deletePost(postId);
-        String responseMessage = "Operation successful";
-        return new ResponseEntity<String>(responseMessage, HttpStatus.OK);
+        postService.deletePost(postId);
+        return ResponseEntity.ok(true);
     }
 
     @DeleteMapping("/user/{userId}")
-    public ResponseEntity<String> deletePostsByUser(@PathVariable Long userId)
+    public ResponseEntity<Boolean> deletePostsByUser(@PathVariable Long userId)
     {
         postService.deletePost(userId);
-        String responseMessage = "Request successful";
-        return new ResponseEntity<String>(responseMessage, HttpStatus.OK);
+        return ResponseEntity.ok(true);
     }
 }
