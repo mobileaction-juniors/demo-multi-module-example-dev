@@ -2,7 +2,9 @@ package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.repository.IPostRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostService implements IPostService
 {
+    @Autowired
     private final IPostRepository postRepository;
 
     @Override
@@ -41,6 +44,12 @@ public class PostService implements IPostService
     public void deletePost(Long postId)
     {
         postRepository.deleteById(postId);
+    }
+
+
+    @Override
+    public void deletePostByUserId(Long userId) {
+        postRepository.deletePostByUserId(userId);
     }
 
 }
