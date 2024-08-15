@@ -2,7 +2,6 @@ package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.repository.IPostRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -12,8 +11,8 @@ import java.util.List;
 
 /**
  * @author sa
- * @date 17.05.2021
- * @time 17:46
+ * @date 15.08.2024
+ * @time 13.53
  */
 @Service
 @RequiredArgsConstructor
