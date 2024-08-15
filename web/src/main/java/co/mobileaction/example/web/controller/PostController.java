@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -34,11 +35,19 @@ public class PostController
         return ResponseEntity.ok(postService.findPosts(pageable));
     }
 
-    @DeleteMapping("{postId}")
-    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<String> deletePost(@PathVariable Long postId)
     {
-        postService.deletePost(postId);
+        //postService.deletePost(postId);
+        String responseMessage = "Operation successful";
+        return new ResponseEntity<String>(responseMessage, HttpStatus.OK);
+    }
 
-        return ResponseEntity.ok(true);
+    @DeleteMapping("/user/{userId}")
+    public ResponseEntity<String> deletePostsByUser(@PathVariable Long userId)
+    {
+        postService.deletePost(userId);
+        String responseMessage = "Request successful";
+        return new ResponseEntity<String>(responseMessage, HttpStatus.OK);
     }
 }
