@@ -49,4 +49,10 @@ public class PostService implements IPostService
     public void deleteAllPostsOfUser(Long userId) {
         postRepository.deleteAllByUserId(userId); // Efficient bulk delete
     }
+
+    @Override
+    public List<Long> findDistinctUserIdBy()
+    {
+        return postRepository.findDistinctUserIdBy();
+    }
 }

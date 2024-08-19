@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class QueueRequestDto
 {
-    private Long postId;
+    private Long id;
 }
