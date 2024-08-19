@@ -48,5 +48,10 @@ public class PostService implements IPostService
         postRepository.deleteAllByUserId(userId);
     }
 
+    @Override
+    public List<Long> findDistinctUserIds() {
+        return postRepository.findDistinctUserIds();
+    }
+
 
 }

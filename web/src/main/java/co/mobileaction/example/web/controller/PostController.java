@@ -34,7 +34,12 @@ public class PostController
         return ResponseEntity.ok(postService.findPosts(pageable));
     }
 
-    @DeleteMapping("{postId}")
+    @GetMapping("/user/distinct")
+    public ResponseEntity<List<Long>> findDistinctUserIds() {
+        return ResponseEntity.ok(postService.findDistinctUserIds());
+    }
+
+    @DeleteMapping("/{postId}")
     public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
     {
         postService.deletePost(postId);
