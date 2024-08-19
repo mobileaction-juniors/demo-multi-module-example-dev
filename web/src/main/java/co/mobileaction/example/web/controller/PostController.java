@@ -13,12 +13,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 18:07
- */
 @RestController
 @Secured(SecurityUtils.ROLE_USER)
 @RequestMapping("api/posts")
@@ -34,18 +30,21 @@ public class PostController
         return ResponseEntity.ok(postService.findPosts(pageable));
     }
 
-    @DeleteMapping("{postId}")
+    @GetMapping("/user/distinct")
+    public ResponseEntity<Set<Long>> findDistinctUserIds() {
+        return ResponseEntity.ok(postService.findDistinctUserIds());
+    }
+
+    @DeleteMapping("/{postId}")
     public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
     {
         postService.deletePost(postId);
-
         return ResponseEntity.ok(true);
     }
 
     @DeleteMapping("/user/{userId}")
     public ResponseEntity<Boolean> deletePostByUserId(@PathVariable Long userId) {
         postService.deletePostByUserId(userId);
-
         return ResponseEntity.ok(true);
     }
 }

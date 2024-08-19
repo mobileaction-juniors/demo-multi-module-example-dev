@@ -9,12 +9,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-/**
- * @author sa
- * @date 17.05.2021
- * @time 17:41
- */
 @Data
 @Entity
 @Table(name = "posts")

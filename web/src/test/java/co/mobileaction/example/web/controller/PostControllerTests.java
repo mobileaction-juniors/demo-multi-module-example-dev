@@ -20,11 +20,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 18:58
- */
 @WebMvcTest(controllers = PostController.class)
 @ContextConfiguration(classes = PostController.class)
 @WithMockUser(roles = {SecurityUtils.USER})
@@ -56,5 +51,12 @@ public class PostControllerTests extends ControllerTestsBase
                 .andExpect(content().string("true"));
 
         verify(postService).deletePost(1L);
+    }
+
+    @Test
+    public void deletePostByUserId() throws Exception {
+        this.mockMvc.perform(delete("/api/posts/user/1"))
+                .andExpect(status().isOk());
+        verify(postService).deletePostByUserId(1L);
     }
 }

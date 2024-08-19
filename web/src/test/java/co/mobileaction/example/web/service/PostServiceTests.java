@@ -13,11 +13,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 19:19
- */
 @DataJpaTest
 @Sql("/data/posts.sql")
 public class PostServiceTests
@@ -73,5 +68,14 @@ public class PostServiceTests
         List<Post> list = postRepository.findAll();
 
         assertThat(list).hasSize(3);
+    }
+
+    @Test
+    public void deletePostByUserId() {
+        postService.deletePostByUserId(1L);
+
+        List<Post> list = postRepository.findAll();
+
+        assertThat(list).hasSize(2);
     }
 }

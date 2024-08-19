@@ -13,11 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 19:26
- */
 @ExtendWith(MockitoExtension.class)
 public class PostResultHandlerServiceTests
 {

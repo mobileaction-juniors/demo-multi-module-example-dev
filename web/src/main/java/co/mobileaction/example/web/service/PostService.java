@@ -7,12 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 17:46
- */
 @Service
 @RequiredArgsConstructor
 public class PostService implements IPostService
@@ -46,6 +42,11 @@ public class PostService implements IPostService
     @Override
     public void deletePostByUserId(Long userId) {
         postRepository.deleteAllByUserId(userId);
+    }
+
+    @Override
+    public Set<Long> findDistinctUserIds() {
+        return postRepository.findDistinctUserIds();
     }
 
 

@@ -11,11 +11,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 17:01
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
