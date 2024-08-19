@@ -8,12 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Set;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 17:45
- */
 public interface IPostRepository extends JpaRepository<Post, Long>
 {
     List<Post> findAllByUserId(Long userId);
@@ -24,6 +20,6 @@ public interface IPostRepository extends JpaRepository<Post, Long>
     void deleteAllByUserId(@Param("userId") Long userId);
 
     @Query(value = "SELECT DISTINCT p.userId FROM Post p")
-    List<Long> findDistinctUserIds();
+    Set<Long> findDistinctUserIds();
 
 }

@@ -12,11 +12,6 @@ import org.springframework.amqp.core.AmqpTemplate;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 19:11
- */
 @ExtendWith(MockitoExtension.class)
 public class PostResultQueueHandlerTests
 {

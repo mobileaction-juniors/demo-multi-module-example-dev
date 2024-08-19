@@ -14,7 +14,6 @@ import java.util.List;
 public class UserService implements IUserService {
 
     private final IUserRepository userRepository;
-    private final IPostRepository postRepository;
 
     @Override
     public void saveUser(User user) {
@@ -24,11 +23,6 @@ public class UserService implements IUserService {
     @Override
     public List<User> findUsers(Pageable pageable) {
         return userRepository.findAll(pageable).getContent();
-    }
-
-    @Override
-    public List<Long> getDistinctUserIds() {
-        return postRepository.findDistinctUserIds();
     }
 
 }

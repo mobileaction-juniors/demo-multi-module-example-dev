@@ -13,11 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestOperations;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 14:51
- */
 @SpringBootApplication
 @ComponentScan("co.mobileaction.example")
 public class WorkerAppConfig
@@ -36,6 +31,13 @@ public class WorkerAppConfig
 
     @Value("${messaging.queue.result}")
     private String MESSAGING_RESULT_QUEUE;
+
+    @Value("${messaging.user.queue.result}")
+    private String MESSAGING_USER_RESULT_QUEUE;
+
+    @Value("${messaging.user.queue.request.problem}")
+    private String MESSAGING_USER_REQUEST_PROBLEM_QUEUE;
+
 
 
     @Bean
@@ -63,7 +65,7 @@ public class WorkerAppConfig
     public AmqpTemplate userResultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                 MessageConverter messageConverter) {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey("ma-example-user-result-queue");
+        template.setRoutingKey(MESSAGING_USER_RESULT_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }
@@ -72,7 +74,7 @@ public class WorkerAppConfig
     public AmqpTemplate userRequestProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                         MessageConverter messageConverter) {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey("ma-example-user-problem-queue");
+        template.setRoutingKey(MESSAGING_USER_REQUEST_PROBLEM_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }

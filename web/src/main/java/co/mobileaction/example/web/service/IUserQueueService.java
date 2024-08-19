@@ -1,7 +1,7 @@
 package co.mobileaction.example.web.service;
 
-import java.util.List;
+import java.util.Set;
 
 public interface IUserQueueService {
-    void sendUserRequests(List<Long> userIds);
+    void sendUserRequests(Set<Long> userIds);
 }

@@ -6,11 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 17:00
- */
 @Slf4j
 @Service
 @RequiredArgsConstructor

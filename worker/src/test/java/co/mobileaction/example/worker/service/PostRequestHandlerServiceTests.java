@@ -14,11 +14,6 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/**
- * @author sa
- * @date 18.05.2021
- * @time 10:37
- */
 @ExtendWith(MockitoExtension.class)
 public class PostRequestHandlerServiceTests
 {

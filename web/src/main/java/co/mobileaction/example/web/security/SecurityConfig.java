@@ -19,11 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 18:11
- */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true)

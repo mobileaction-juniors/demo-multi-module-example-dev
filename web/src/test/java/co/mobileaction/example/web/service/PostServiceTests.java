@@ -13,11 +13,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 19:19
- */
 @DataJpaTest
 @Sql("/data/posts.sql")
 public class PostServiceTests

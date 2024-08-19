@@ -1,6 +1,8 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.service.IPostQueueService;
+import co.mobileaction.example.web.service.IPostService;
+import co.mobileaction.example.web.service.IUserQueueService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -13,11 +15,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 18:32
- */
 @WebMvcTest(controllers = AdminController.class)
 @ContextConfiguration(classes = AdminController.class)
 @WithMockUser(roles = {SecurityUtils.ADMIN})
@@ -25,6 +22,10 @@ public class AdminControllerTests extends ControllerTestsBase
 {
     @MockBean
     private IPostQueueService queueService;
+    @MockBean
+    private IUserQueueService userQueueService;
+    @MockBean
+    private IPostService postService;
 
     @Test
     public void createQueueRequests() throws Exception
@@ -34,5 +35,14 @@ public class AdminControllerTests extends ControllerTestsBase
                 .andExpect(content().string("true"));
 
         verify(queueService).sendPostRequestForAllItems();
+    }
+
+    @Test
+    public void userCreateQueueRequests() throws Exception {
+        this.mockMvc.perform(post("/api/admin/queue/users"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("true"));
+
+        verify(userQueueService).sendUserRequests(postService.findDistinctUserIds());
     }
 }

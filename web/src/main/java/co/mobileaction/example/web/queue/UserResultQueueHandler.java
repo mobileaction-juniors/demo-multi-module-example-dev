@@ -8,11 +8,6 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 17:38
- */
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -21,7 +16,7 @@ public class UserResultQueueHandler {
 
     private final IUserResultHandlerService userResultHandlerService;
 
-    @RabbitListener(queues = "ma-example-user-result-queue", containerFactory = "resultQueueListener")
+    @RabbitListener(queues = "${messaging.user.queue.result}", containerFactory = "resultQueueListener")
     public void handleMessage(UserDto result) {
         try {
             userResultHandlerService.executeMessage(result);

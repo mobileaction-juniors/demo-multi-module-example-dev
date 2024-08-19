@@ -7,11 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.stream.LongStream;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 17:57
- */
 @Service
 @RequiredArgsConstructor
 public class PostQueueService implements IPostQueueService

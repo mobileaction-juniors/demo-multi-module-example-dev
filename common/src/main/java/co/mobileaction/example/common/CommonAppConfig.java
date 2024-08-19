@@ -10,11 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 
-/**
- * @author sa
- * @date 17.05.2021
- * @time 12:37
- */
 //Spring Boot will automatically load the properties in an application.properties file for all profiles,
 // and the ones in profile-specific .properties files only for the specified profile.
 @SpringBootConfiguration
