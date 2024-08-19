@@ -6,5 +6,4 @@ public interface IUserResultHandlerService
 {
     void executeMessage(UserDto userDto);
 
-    //void executeMessage();
 }

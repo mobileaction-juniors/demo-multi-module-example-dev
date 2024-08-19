@@ -1,9 +1,6 @@
 package co.mobileaction.example.common.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @author sa
@@ -16,10 +13,17 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserDto
 {
+    @Setter
     private Long id;
+    @Setter
     private String name;
+    @Setter
     private String username;
+    @Setter
     private String email;
+    @Setter
     private String phone;
+    @Setter
     private String website;
+
 }

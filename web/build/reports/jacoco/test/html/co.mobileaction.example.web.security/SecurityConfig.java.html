@@ -27,8 +27,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true)
-<span class="fc" id="L30">@Slf4j</span>
-<span class="fc" id="L31">public class SecurityConfig</span>
+<span class="nc" id="L30">@Slf4j</span>
+<span class="nc" id="L31">public class SecurityConfig</span>
 {
     @Value(&quot;${ma.security.secure-key-token}&quot;)
     public String SECURE_KEY_TOKEN;
@@ -39,67 +39,67 @@ import org.springframework.security.web.SecurityFilterChain;
     @Bean
     public static PasswordEncoder passwordEncoder()
     {
-<span class="fc" id="L42">        return new BCryptPasswordEncoder();</span>
+<span class="nc" id="L42">        return new BCryptPasswordEncoder();</span>
     }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
-<span class="fc" id="L48">        http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((authorize) -&gt; {</span>
-<span class="fc" id="L49">                    authorize.anyRequest()</span>
-<span class="fc" id="L50">                            .authenticated();</span>
-<span class="fc" id="L51">                }).httpBasic(Customizer.withDefaults())</span>
-<span class="fc" id="L52">                .headers(headers -&gt; headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));</span>
+<span class="nc" id="L48">        http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((authorize) -&gt; {</span>
+<span class="nc" id="L49">                    authorize.anyRequest()</span>
+<span class="nc" id="L50">                            .authenticated();</span>
+<span class="nc" id="L51">                }).httpBasic(Customizer.withDefaults())</span>
+<span class="nc" id="L52">                .headers(headers -&gt; headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));</span>
 
-<span class="fc" id="L54">        return http.build();</span>
+<span class="nc" id="L54">        return http.build();</span>
     }
 
     @Bean
     public UserDetailsService userDetailsService()
     {
-<span class="fc" id="L60">        log.info(&quot;Configuring authentication manager&quot;);</span>
+<span class="nc" id="L60">        log.info(&quot;Configuring authentication manager&quot;);</span>
 
-<span class="fc" id="L62">        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();</span>
+<span class="nc" id="L62">        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();</span>
 
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (SECURE_KEY_TOKEN != null)</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (SECURE_KEY_TOKEN != null)</span>
         {
-<span class="fc" id="L66">            String[] keys = SECURE_KEY_TOKEN.split(&quot;,&quot;);</span>
-<span class="pc bpc" id="L67" title="1 of 2 branches missed.">            if (keys.length &gt; 1)</span>
+<span class="nc" id="L66">            String[] keys = SECURE_KEY_TOKEN.split(&quot;,&quot;);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (keys.length &gt; 1)</span>
             {
-<span class="fc" id="L69">                UserDetails user1 = User.builder().username(keys[0])</span>
-<span class="fc" id="L70">                                                  .password(passwordEncoder().encode(&quot;&quot;))</span>
-<span class="fc" id="L71">                                                  .roles(SecurityUtils.USER)</span>
-<span class="fc" id="L72">                                                  .build();</span>
+<span class="nc" id="L69">                UserDetails user1 = User.builder().username(keys[0])</span>
+<span class="nc" id="L70">                                                  .password(passwordEncoder().encode(&quot;&quot;))</span>
+<span class="nc" id="L71">                                                  .roles(SecurityUtils.USER)</span>
+<span class="nc" id="L72">                                                  .build();</span>
 
-<span class="fc" id="L74">                UserDetails user2 = User.builder().username(keys[1])</span>
-<span class="fc" id="L75">                                                  .password(passwordEncoder().encode(&quot;&quot;))</span>
-<span class="fc" id="L76">                                                  .roles(SecurityUtils.USER)</span>
-<span class="fc" id="L77">                                                  .build();</span>
+<span class="nc" id="L74">                UserDetails user2 = User.builder().username(keys[1])</span>
+<span class="nc" id="L75">                                                  .password(passwordEncoder().encode(&quot;&quot;))</span>
+<span class="nc" id="L76">                                                  .roles(SecurityUtils.USER)</span>
+<span class="nc" id="L77">                                                  .build();</span>
 
-<span class="fc" id="L79">                manager.createUser(user1);</span>
-<span class="fc" id="L80">                manager.createUser(user2);</span>
+<span class="nc" id="L79">                manager.createUser(user1);</span>
+<span class="nc" id="L80">                manager.createUser(user2);</span>
             }
-<span class="fc" id="L82">        }</span>
+<span class="nc" id="L82">        }</span>
         else
         {
 <span class="nc" id="L85">            log.warn(&quot;Received null Secure Key Token!&quot;);</span>
         }
 
-<span class="pc bpc" id="L88" title="1 of 2 branches missed.">        if (ADMIN_KEY_TOKEN != null)</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (ADMIN_KEY_TOKEN != null)</span>
         {
-<span class="fc" id="L90">            UserDetails admin = User.builder().username(ADMIN_KEY_TOKEN)</span>
-<span class="fc" id="L91">                                              .password(passwordEncoder().encode(&quot;&quot;))</span>
-<span class="fc" id="L92">                                              .roles(SecurityUtils.ADMIN)</span>
-<span class="fc" id="L93">                                              .build();</span>
+<span class="nc" id="L90">            UserDetails admin = User.builder().username(ADMIN_KEY_TOKEN)</span>
+<span class="nc" id="L91">                                              .password(passwordEncoder().encode(&quot;&quot;))</span>
+<span class="nc" id="L92">                                              .roles(SecurityUtils.ADMIN)</span>
+<span class="nc" id="L93">                                              .build();</span>
 
-<span class="fc" id="L95">            manager.createUser(admin);</span>
-<span class="fc" id="L96">        }</span>
+<span class="nc" id="L95">            manager.createUser(admin);</span>
+<span class="nc" id="L96">        }</span>
         else
         {
 <span class="nc" id="L99">            log.warn(&quot;Received null Administrative Key Token-1!&quot;);</span>
         }
 
-<span class="fc" id="L102">        return manager;</span>
+<span class="nc" id="L102">        return manager;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

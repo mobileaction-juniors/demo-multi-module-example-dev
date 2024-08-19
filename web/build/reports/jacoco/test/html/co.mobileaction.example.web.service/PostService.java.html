@@ -15,7 +15,7 @@ import java.util.List;
  * @time 17:46
  */
 @Service
-<span class="fc" id="L18">@RequiredArgsConstructor</span>
+<span class="nc" id="L18">@RequiredArgsConstructor</span>
 public class PostService implements IPostService
 {
     private final IPostRepository postRepository;
@@ -41,13 +41,19 @@ public class PostService implements IPostService
     @Override
     public void deletePost(Long postId)
     {
-<span class="fc" id="L44">        postRepository.deleteById(postId);</span>
-<span class="fc" id="L45">    }</span>
+<span class="nc" id="L44">        postRepository.deleteById(postId);</span>
+<span class="nc" id="L45">    }</span>
 
     @Override
     @Transactional
     public void deleteAllPostsOfUser(Long userId) {
 <span class="nc" id="L50">        postRepository.deleteAllByUserId(userId); // Efficient bulk delete</span>
 <span class="nc" id="L51">    }</span>
+
+    @Override
+    public List&lt;Long&gt; findDistinctUserIdBy()
+    {
+<span class="nc" id="L56">        return postRepository.findDistinctUserIdBy();</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

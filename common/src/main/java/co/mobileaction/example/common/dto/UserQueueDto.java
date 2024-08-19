@@ -10,4 +10,8 @@ import lombok.NoArgsConstructor;
 public class UserQueueDto
 {
     private Long id;
+
+    public void setId(long l) {
+        this.id = l;
+    }
 }
