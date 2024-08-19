@@ -20,6 +20,10 @@ public interface IPostRepository extends JpaRepository<Post, Long>
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM Post p WHERE p.userId = :userId")
+    @Query(value = "DELETE FROM Post p WHERE p.userId = :userId")
     void deleteAllByUserId(@Param("userId") Long userId);
+
+    @Query(value = "SELECT DISTINCT p.userId FROM Post p")
+    List<Long> findDistinctUserIds();
+
 }
