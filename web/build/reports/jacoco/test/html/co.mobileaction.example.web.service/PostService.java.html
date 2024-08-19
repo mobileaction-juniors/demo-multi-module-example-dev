@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PostService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">web</a> &gt; <a href="index.source.html" class="el_package">co.mobileaction.example.web.service</a> &gt; <span class="el_source">PostService.java</span></div><h1>PostService.java</h1><pre class="source lang-java linenums">package co.mobileaction.example.web.service;
+
+import co.mobileaction.example.web.model.Post;
+import co.mobileaction.example.web.repository.IPostRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * @author sa
+ * @date 17.05.2021
+ * @time 17:46
+ */
+@Service
+<span class="nc" id="L18">@RequiredArgsConstructor</span>
+public class PostService implements IPostService
+{
+    private final IPostRepository postRepository;
+
+    @Override
+    public void savePost(Post post)
+    {
+<span class="nc" id="L26">        postRepository.save(post);</span>
+<span class="nc" id="L27">    }</span>
+
+    @Override
+    public List&lt;Post&gt; findPosts(Pageable pageable)
+    {
+<span class="nc" id="L32">        return postRepository.findAll(pageable).getContent();</span>
+    }
+
+    @Override
+    public List&lt;Post&gt; findAllPostsOfUser(Long userId)
+    {
+<span class="nc" id="L38">        return postRepository.findAllByUserId(userId);</span>
+    }
+
+    @Override
+    public void deletePost(Long postId)
+    {
+<span class="nc" id="L44">        postRepository.deleteById(postId);</span>
+<span class="nc" id="L45">    }</span>
+
+    @Override
+    @Transactional
+    public void deleteAllPostsOfUser(Long userId) {
+<span class="nc" id="L50">        postRepository.deleteAllByUserId(userId); // Efficient bulk delete</span>
+<span class="nc" id="L51">    }</span>
+
+    @Override
+    public List&lt;Long&gt; findDistinctUserIdBy()
+    {
+<span class="nc" id="L56">        return postRepository.findDistinctUserIdBy();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
