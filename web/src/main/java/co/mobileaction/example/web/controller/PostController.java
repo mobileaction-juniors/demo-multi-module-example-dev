@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,15 @@ public class PostController
                                                @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
     {
         return ResponseEntity.ok(postService.findPosts(pageable));
+    }
+
+
+    @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ResponseEntity<Boolean> addPost(@RequestBody Post post)
+    {
+        postService.savePost(post);
+        return ResponseEntity.ok((true));
     }
 
     @DeleteMapping("{postId}")
