@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.mobileaction.example.web.service.PostServiceTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-08-28T10:53:50" hostname="DESKTOP-4RN1KIV" time="1.098">
+  <properties/>
+  <testcase name="savePost()" classname="co.mobileaction.example.web.service.PostServiceTests" time="0.934"/>
+  <testcase name="deleteByUserId()" classname="co.mobileaction.example.web.service.PostServiceTests" time="0.072"/>
+  <testcase name="findAllPostsOfUser()" classname="co.mobileaction.example.web.service.PostServiceTests" time="0.018"/>
+  <testcase name="findPosts()" classname="co.mobileaction.example.web.service.PostServiceTests" time="0.048"/>
+  <testcase name="deletePost()" classname="co.mobileaction.example.web.service.PostServiceTests" time="0.019"/>
+  <system-out><![CDATA[13:53:43.221 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [co.mobileaction.example.web.service.PostServiceTests]: PostServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:53:43.495 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration co.mobileaction.example.web.WebApplicationConfig for test class co.mobileaction.example.web.service.PostServiceTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.3)
+
+2024-08-28T13:53:44.569+03:00  INFO 16796 --- [    Test worker] c.m.e.web.service.PostServiceTests       : Starting PostServiceTests using Java 17.0.9 with PID 16796 (started by AhmetTarikFirat in C:\Users\AhmetTarikFirat\Desktop\mobileAction\demo-multi-module-example-dev\web)
+2024-08-28T13:53:44.569+03:00  INFO 16796 --- [    Test worker] c.m.e.web.service.PostServiceTests       : The following 1 profile is active: "test"
+2024-08-28T13:53:45.412+03:00  INFO 16796 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-28T13:53:45.539+03:00  INFO 16796 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 1 JPA repository interfaces.
+2024-08-28T13:53:45.618+03:00  INFO 16796 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2024-08-28T13:53:46.094+03:00  INFO 16796 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:e68eb0cf-b82f-4943-8249-ef3a87b90590;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2024-08-28T13:53:46.681+03:00  INFO 16796 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-28T13:53:46.808+03:00  INFO 16796 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.7.Final
+2024-08-28T13:53:46.808+03:00  INFO 16796 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-08-28T13:53:47.111+03:00  INFO 16796 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-08-28T13:53:47.413+03:00  INFO 16796 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-28T13:53:47.887+03:00  INFO 16796 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-08-28T13:53:49.083+03:00  INFO 16796 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Hibernate: drop table if exists posts cascade 
+Hibernate: create table posts (id bigint not null, user_id bigint, body varchar(255), title varchar(255), primary key (id))
+2024-08-28T13:53:49.134+03:00  INFO 16796 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-28T13:53:49.956+03:00  INFO 16796 --- [    Test worker] c.m.example.web.security.SecurityConfig  : Configuring authentication manager
+2024-08-28T13:53:50.334+03:00  INFO 16796 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7aa9b038, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@72f9194d, org.springframework.security.web.context.SecurityContextHolderFilter@56c8c77e, org.springframework.security.web.header.HeaderWriterFilter@f629829, org.springframework.security.web.authentication.logout.LogoutFilter@6431e18, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@582a1e4e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6ca260bf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@551f927f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@146fff56, org.springframework.security.web.access.ExceptionTranslationFilter@6c21497b, org.springframework.security.web.access.intercept.AuthorizationFilter@477f3b7d]
+2024-08-28T13:53:50.487+03:00  INFO 16796 --- [    Test worker] c.m.e.web.service.PostServiceTests       : Started PostServiceTests in 6.805 seconds (process running for 9.478)
+Hibernate: select p1_0.id,p1_0.body,p1_0.title,p1_0.user_id from posts p1_0 where p1_0.id=?
+Hibernate: insert into posts (body,title,user_id,id) values (?,?,?,?)
+Hibernate: select p1_0.id,p1_0.body,p1_0.title,p1_0.user_id from posts p1_0
+Hibernate: select p1_0.id,p1_0.body,p1_0.title,p1_0.user_id from posts p1_0 where p1_0.user_id=?
+Hibernate: delete from posts where id=?
+Hibernate: select p1_0.id,p1_0.body,p1_0.title,p1_0.user_id from posts p1_0
+Hibernate: select p1_0.id,p1_0.body,p1_0.title,p1_0.user_id from posts p1_0 where p1_0.user_id=?
+Hibernate: select p1_0.id,p1_0.body,p1_0.title,p1_0.user_id from posts p1_0 order by p1_0.id offset ? rows fetch first ? rows only
+Hibernate: select count(p1_0.id) from posts p1_0
+Hibernate: select p1_0.id,p1_0.body,p1_0.title,p1_0.user_id from posts p1_0 where p1_0.id=?
+Hibernate: delete from posts where id=?
+Hibernate: select p1_0.id,p1_0.body,p1_0.title,p1_0.user_id from posts p1_0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
