@@ -74,4 +74,12 @@ public class PostServiceTests
 
         assertThat(list).hasSize(3);
     }
+
+    @Test
+    public void deleteByUserId()
+    {
+        postService.deleteByUserId(2L);
+        List<Post> list = postRepository.findAll();
+        assertThat(list).hasSize(3);
+    }
 }

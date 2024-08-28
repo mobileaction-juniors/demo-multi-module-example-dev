@@ -2,9 +2,10 @@ package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.repository.IPostRepository;
-import lombok.AllArgsConstructor;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,5 +43,14 @@ public class PostService implements IPostService
     public void deletePost(Long postId)
     {
         postRepository.deleteById(postId);
+    }
+
+    @Override
+    @Modifying
+    @Transactional
+    public void deleteByUserId(Long userId) {
+
+        postRepository.deleteByUserId(userId);
+
     }
 }
