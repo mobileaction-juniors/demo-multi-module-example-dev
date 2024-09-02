@@ -56,4 +56,10 @@ public class PostController
         postService.deleteByUserId(userId);
         return ResponseEntity.ok(true);
     }
+
+    @GetMapping("/getDistinctUserIds")
+    public ResponseEntity<List<Long>> findDistinctUserIds()
+    {
+        return ResponseEntity.ok(postService.findDistinctUserIds());
+    }
 }
