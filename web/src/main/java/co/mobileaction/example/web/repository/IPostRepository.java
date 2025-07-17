@@ -2,7 +2,6 @@ package co.mobileaction.example.web.repository;
 
 import co.mobileaction.example.web.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
