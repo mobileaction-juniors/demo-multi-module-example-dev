@@ -18,4 +18,6 @@ public interface IPostRepository extends JpaRepository<Post, Long>
     @Query("SELECT DISTINCT p.userId FROM Post p")
     List<Long> findDistinctUserIds();
 
+    void deleteAllByUserId(Long userId);
+
 }
