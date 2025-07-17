@@ -25,4 +25,5 @@ public class PostQueueService implements IPostQueueService
                 .mapToObj(QueueRequestDto::new)
                 .forEach(requestQueueTemplate::convertAndSend);
     }
+
 }
