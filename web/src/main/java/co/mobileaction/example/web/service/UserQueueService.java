@@ -19,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserQueueService implements IUserQueueService
 {
-    private final AmqpTemplate requestQueueTemplate;
+    private final AmqpTemplate userRequestQueueTemplate;
     private final IPostRepository postRepository;
 
     @Override
@@ -29,7 +29,7 @@ public class UserQueueService implements IUserQueueService
         List<Long> userIds = postRepository.findDistinctUserIds();
         userIds.stream()
                 .map(id -> UserCrawlRequestDto.builder().id(id).build())
-                .forEach(requestDto -> requestQueueTemplate.convertAndSend("ma-example-user-request-queue", requestDto));
+                .forEach(requestDto -> userRequestQueueTemplate.convertAndSend(requestDto));
     }
 
 }

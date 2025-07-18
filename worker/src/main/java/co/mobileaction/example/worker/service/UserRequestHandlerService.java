@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserRequestHandlerService implements IUserRequestHandlerService {
-    private final AmqpTemplate resultQueueTemplate;
+    private final AmqpTemplate userResultQueueTemplate;
     private final ICrawlerClient crawlerClient;
 
     @Override
     public void executeMessage(UserCrawlRequestDto request) {
         UserCrawlRequestDto user = crawlerClient.fetchUser(request.getId());
-        resultQueueTemplate.convertAndSend("ma-example-user-result-queue", user);
+        userResultQueueTemplate.convertAndSend(user);
     }
 }

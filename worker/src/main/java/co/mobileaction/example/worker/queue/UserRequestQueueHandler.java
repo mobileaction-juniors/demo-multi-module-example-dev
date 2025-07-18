@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class UserRequestQueueHandler {
     private final IUserRequestHandlerService requestHandlerService;
 
-    @RabbitListener(queues = "ma-example-user-request-queue", containerFactory = "requestQueueListener")
+    @RabbitListener(queues = "${messaging.queue.userRequest}", containerFactory = "requestQueueListener")
     public void handleMessage(UserCrawlRequestDto request) {
         try {
             requestHandlerService.executeMessage(request);
