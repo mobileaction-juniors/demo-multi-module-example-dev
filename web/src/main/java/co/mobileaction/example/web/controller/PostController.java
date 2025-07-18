@@ -11,6 +11,8 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -23,22 +25,25 @@ import java.util.List;
 @Secured(SecurityUtils.ROLE_USER)
 @RequestMapping("api/posts")
 @RequiredArgsConstructor
-public class PostController
-{
+public class PostController {
     private final IPostService postService;
 
     @GetMapping
-    public ResponseEntity<List<Post>> getPosts(@PageableDefault(size = 10)
-                                               @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
-    {
+    public ResponseEntity<List<Post>> getPosts(
+            @PageableDefault(size = 10) @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
         return ResponseEntity.ok(postService.findPosts(pageable));
     }
 
     @DeleteMapping("{postId}")
-    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
-    {
+    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId) {
         postService.deletePost(postId);
 
         return ResponseEntity.ok(true);
+    }
+
+    @DeleteMapping("/user/{userId}")
+    public ResponseEntity<Void> deletePostsByUserId(@PathVariable Long userId) {
+        postService.deletePostsByUserId(userId);
+        return ResponseEntity.ok().build();
     }
 }
