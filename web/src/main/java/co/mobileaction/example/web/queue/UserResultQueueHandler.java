@@ -18,8 +18,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserResultQueueHandler
 {
-
-
     private final IUserResultHandlerService userResultHandlerService;
 
     @RabbitListener(queues = "${messaging.queue.userResult}", containerFactory = "resultQueueListener")

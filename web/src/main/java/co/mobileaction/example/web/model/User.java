@@ -8,7 +8,7 @@ import lombok.*;
 
 @Data
 @Entity
-@Table(name = "appUsers")
+@Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -21,4 +21,13 @@ public class User {
 
     @Column(name = "username")
     private String username;
+
+    @Column(name = "email")
+    private String email;
+
+    public static User from(co.mobileaction.example.common.dto.UserCrawlRequestDto dto) {
+        return User.builder()
+                .id(dto.getId())
+                .build();
+    }
 }

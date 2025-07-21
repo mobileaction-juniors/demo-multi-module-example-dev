@@ -35,8 +35,6 @@ public class UserResultHandlerServiceTests {
     void setUp() {
         testUserDto = UserCrawlRequestDto.builder()
                 .id(1L)
-                .name("John Doe")
-                .username("johndoe")
                 .build();
     }
 
@@ -50,8 +48,6 @@ public class UserResultHandlerServiceTests {
         
         User capturedUser = userArgumentCaptor.getValue();
         assertThat(capturedUser.getId()).isEqualTo(1L);
-        assertThat(capturedUser.getName()).isEqualTo("John Doe");
-        assertThat(capturedUser.getUsername()).isEqualTo("johndoe");
     }
 
     @Test
@@ -59,8 +55,6 @@ public class UserResultHandlerServiceTests {
         // Given
         UserCrawlRequestDto userDtoWithNulls = UserCrawlRequestDto.builder()
                 .id(2L)
-                .name(null)
-                .username(null)
                 .build();
 
         // When
@@ -71,72 +65,56 @@ public class UserResultHandlerServiceTests {
         
         User capturedUser = userArgumentCaptor.getValue();
         assertThat(capturedUser.getId()).isEqualTo(2L);
-        assertThat(capturedUser.getName()).isNull();
-        assertThat(capturedUser.getUsername()).isNull();
     }
 
     @Test
-    void convertFrom_ShouldConvertUserCrawlRequestDtoToUser() {
+    void userFrom_ShouldConvertUserCrawlRequestDtoToUser() {
         // When
-        User result = userResultHandlerService.convertFrom(testUserDto);
+        User result = User.from(testUserDto);
 
         // Then
         assertThat(result.getId()).isEqualTo(1L);
-        assertThat(result.getName()).isEqualTo("John Doe");
-        assertThat(result.getUsername()).isEqualTo("johndoe");
     }
 
     @Test
-    void convertFrom_ShouldHandleEmptyStrings() {
+    void userFrom_ShouldHandleEmptyStrings() {
         // Given
         UserCrawlRequestDto userDtoWithEmptyStrings = UserCrawlRequestDto.builder()
                 .id(3L)
-                .name("")
-                .username("")
                 .build();
 
         // When
-        User result = userResultHandlerService.convertFrom(userDtoWithEmptyStrings);
+        User result = User.from(userDtoWithEmptyStrings);
 
         // Then
         assertThat(result.getId()).isEqualTo(3L);
-        assertThat(result.getName()).isEqualTo("");
-        assertThat(result.getUsername()).isEqualTo("");
     }
 
     @Test
-    void convertFrom_ShouldHandleSpecialCharacters() {
+    void userFrom_ShouldHandleSpecialCharacters() {
         // Given
         UserCrawlRequestDto userDtoWithSpecialChars = UserCrawlRequestDto.builder()
                 .id(4L)
-                .name("José María")
-                .username("user@123")
                 .build();
 
         // When
-        User result = userResultHandlerService.convertFrom(userDtoWithSpecialChars);
+        User result = User.from(userDtoWithSpecialChars);
 
         // Then
         assertThat(result.getId()).isEqualTo(4L);
-        assertThat(result.getName()).isEqualTo("José María");
-        assertThat(result.getUsername()).isEqualTo("user@123");
     }
 
     @Test
-    void convertFrom_ShouldHandleLongValues() {
+    void userFrom_ShouldHandleLongValues() {
         // Given
         UserCrawlRequestDto userDtoWithLongValues = UserCrawlRequestDto.builder()
-                .id(999999999L)
-                .name("Very Long Name That Exceeds Normal Length Expectations")
-                .username("very_long_username_that_might_exceed_normal_length_expectations")
+                .id(999999999999L)
                 .build();
 
         // When
-        User result = userResultHandlerService.convertFrom(userDtoWithLongValues);
+        User result = User.from(userDtoWithLongValues);
 
         // Then
-        assertThat(result.getId()).isEqualTo(999999999L);
-        assertThat(result.getName()).isEqualTo("Very Long Name That Exceeds Normal Length Expectations");
-        assertThat(result.getUsername()).isEqualTo("very_long_username_that_might_exceed_normal_length_expectations");
+        assertThat(result.getId()).isEqualTo(999999999999L);
     }
 } 

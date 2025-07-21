@@ -10,6 +10,4 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserCrawlRequestDto {
     private Long id;
-    private String name;
-    private String username;
 }

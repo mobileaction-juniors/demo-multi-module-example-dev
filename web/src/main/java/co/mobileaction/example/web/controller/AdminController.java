@@ -22,12 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController
 {
     private final IPostQueueService queueService;
+
     private final IUserQueueService userQueueService;
+
     @PostMapping("queue/posts")
     public ResponseEntity<Boolean> createQueueRequests()
     {
         queueService.sendPostRequestForAllItems();
-
         return ResponseEntity.ok(true);
     }
 
@@ -35,7 +36,6 @@ public class AdminController
     public ResponseEntity<Boolean> createUserQueueRequests()
     {
         userQueueService.sendUserRequestForAllItems();
-
         return ResponseEntity.ok(true);
     }
 }

@@ -13,16 +13,6 @@ public class UserResultHandlerService implements IUserResultHandlerService {
     @Override
     public void executeMessage(UserCrawlRequestDto userDto)
     {
-        userService.saveUser(convertFrom(userDto));
-    }
-
-    @Override
-    public User convertFrom(UserCrawlRequestDto userDto)
-    {
-        return User.builder()
-                .id(userDto.getId())
-                .name(userDto.getName())
-                .username(userDto.getUsername())
-                .build();
+        userService.saveUser(User.from(userDto));
     }
 }
