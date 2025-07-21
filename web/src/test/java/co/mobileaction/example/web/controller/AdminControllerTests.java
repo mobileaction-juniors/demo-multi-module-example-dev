@@ -1,6 +1,7 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.service.IPostQueueService;
+import co.mobileaction.example.web.service.IUserQueueService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -20,15 +21,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @WebMvcTest(controllers = AdminController.class)
 @ContextConfiguration(classes = AdminController.class)
-@WithMockUser(roles = {SecurityUtils.ADMIN})
-public class AdminControllerTests extends ControllerTestsBase
-{
+@WithMockUser(roles = { SecurityUtils.ADMIN })
+public class AdminControllerTests extends ControllerTestsBase {
     @MockBean
     private IPostQueueService queueService;
 
+    @MockBean
+    private IUserQueueService userQueueService;
+
     @Test
-    public void createQueueRequests() throws Exception
-    {
+    public void createQueueRequests() throws Exception {
         this.mockMvc.perform(post("/api/admin/queue/posts"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
