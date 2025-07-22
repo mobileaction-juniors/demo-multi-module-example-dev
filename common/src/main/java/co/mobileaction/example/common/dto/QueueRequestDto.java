@@ -3,6 +3,7 @@ package co.mobileaction.example.common.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Builder;
 
 /**
  * @author sa
@@ -12,7 +13,16 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class QueueRequestDto
-{
+@Builder
+public class QueueRequestDto {
     private Long postId;
+    private Long userId;
+
+    public static QueueRequestDto forUser(Long userId) {
+        return new QueueRequestDto(null, userId);
+    }
+
+    public static QueueRequestDto forPost(Long postId) {
+        return new QueueRequestDto(postId, null);
+    }
 }

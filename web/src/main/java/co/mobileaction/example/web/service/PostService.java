@@ -4,6 +4,7 @@ import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.repository.IPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,6 +40,10 @@ public class PostService implements IPostService {
     }
 
     @Override
+    public List<Long> findDistinctUserIds() {
+        return postRepository.findDistinctUserIds();
+    }
+  
     public void deletePostsByUserId(Long userId) {
         postRepository.deleteAllByUserId(userId);
     }

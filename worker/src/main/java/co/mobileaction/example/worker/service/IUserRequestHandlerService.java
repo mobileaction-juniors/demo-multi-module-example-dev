@@ -1,0 +1,5 @@
+package co.mobileaction.example.worker.service;
+
+public interface IUserRequestHandlerService {
+    void executeMessage(Long userId);
+}

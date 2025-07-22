@@ -1,6 +1,7 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.service.IPostQueueService;
+import co.mobileaction.example.web.service.IUserQueueService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 @Secured(SecurityUtils.ROLE_ADMIN)
 @RequestMapping("api/admin")
 @RequiredArgsConstructor
-public class AdminController
-{
+public class AdminController {
     private final IPostQueueService queueService;
+    private final IUserQueueService userQueueService;
 
     @PostMapping("queue/posts")
-    public ResponseEntity<Boolean> createQueueRequests()
-    {
+    public ResponseEntity<Boolean> createQueueRequests() {
         queueService.sendPostRequestForAllItems();
 
+        return ResponseEntity.ok(true);
+    }
+
+    @PostMapping("queue/users")
+    public ResponseEntity<Boolean> createUserCrawlRequests() {
+        userQueueService.sendUserCrawlRequestForAllUserIds();
         return ResponseEntity.ok(true);
     }
 }
