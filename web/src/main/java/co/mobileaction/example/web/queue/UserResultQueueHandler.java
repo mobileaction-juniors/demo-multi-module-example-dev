@@ -25,18 +25,9 @@ public class UserResultQueueHandler {
                 log.error("Received null userDto from worker. Skipping save.");
                 return;
             }
-            userService.saveUser(convertFrom(userDto));
+            userService.saveUser(User.convertFrom(userDto));
         } catch (Exception e) {
             log.error("Could not handle user result for userId: {}", userDto != null ? userDto.getId() : null, e);
         }
-    }
-
-    private User convertFrom(UserDto userDto) {
-        return User.builder()
-                .id(userDto.getId())
-                .name(userDto.getName())
-                .username(userDto.getUsername())
-                .email(userDto.getEmail())
-                .build();
     }
 }

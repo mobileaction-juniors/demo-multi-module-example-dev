@@ -27,4 +27,15 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    public static User convertFrom(co.mobileaction.example.common.dto.UserDto userDto) {
+        if (userDto == null)
+            return null;
+        return User.builder()
+                .id(userDto.getId())
+                .name(userDto.getName())
+                .username(userDto.getUsername())
+                .email(userDto.getEmail())
+                .build();
+    }
 }
