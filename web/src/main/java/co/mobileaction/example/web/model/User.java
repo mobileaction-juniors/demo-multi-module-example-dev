@@ -1,5 +1,6 @@
 package co.mobileaction.example.web.model;
 
+import co.mobileaction.example.common.dto.UserDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -28,6 +29,15 @@ public class User {
     public static User from(co.mobileaction.example.common.dto.UserCrawlRequestDto dto) {
         return User.builder()
                 .id(dto.getId())
+                .build();
+    }
+
+    public static User from(UserDto dto) {
+        return User.builder()
+                .id(dto.getId())
+                .name(dto.getName())
+                .username(dto.getUsername())
+                .email(dto.getEmail())
                 .build();
     }
 }

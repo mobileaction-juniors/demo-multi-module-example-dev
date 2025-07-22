@@ -1,8 +1,7 @@
 package co.mobileaction.example.web.service;
 
-import co.mobileaction.example.common.dto.UserCrawlRequestDto;
-import co.mobileaction.example.web.model.User;
+import co.mobileaction.example.common.dto.UserDto;
 
 public interface IUserResultHandlerService {
-    void executeMessage(UserCrawlRequestDto userDto);
+    void executeMessage(UserDto userDto);
 }

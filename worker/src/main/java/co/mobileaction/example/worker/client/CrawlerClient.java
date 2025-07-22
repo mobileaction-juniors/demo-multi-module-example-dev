@@ -2,6 +2,7 @@ package co.mobileaction.example.worker.client;
 
 import co.mobileaction.example.common.dto.PostDto;
 import co.mobileaction.example.common.dto.UserCrawlRequestDto;
+import co.mobileaction.example.common.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,10 @@ public class CrawlerClient implements ICrawlerClient
     public UserCrawlRequestDto fetchUser(Long userId) {
         String url = String.format(API_USER_URL, userId);
         return httpRequestExecutor.executeGetRequest(url, UserCrawlRequestDto.class);
+    }
+
+    public UserDto fetchUserDto(Long userId) {
+        String url = String.format(API_USER_URL, userId);
+        return httpRequestExecutor.executeGetRequest(url, UserDto.class);
     }
 }

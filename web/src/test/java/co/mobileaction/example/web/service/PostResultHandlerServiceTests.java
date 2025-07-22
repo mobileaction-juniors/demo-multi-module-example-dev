@@ -20,6 +20,11 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class PostResultHandlerServiceTests {
 
+    private static final long TEST_POST_ID = 5L;
+    private static final long TEST_POST_USER_ID = 5L;
+    private static final String TEST_POST_TITLE = "title-5";
+    private static final String TEST_POST_BODY = "body-5";
+
     @InjectMocks
     private PostResultHandlerService postResultHandlerService;
 
@@ -34,10 +39,10 @@ public class PostResultHandlerServiceTests {
     @BeforeEach
     void setUp() {
         testPostDto = PostDto.builder()
-                .userId(5L)
-                .id(5L)
-                .body("body-5")
-                .title("title-5")
+                .userId(TEST_POST_USER_ID)
+                .id(TEST_POST_ID)
+                .body(TEST_POST_BODY)
+                .title(TEST_POST_TITLE)
                 .build();
     }
 
@@ -50,10 +55,10 @@ public class PostResultHandlerServiceTests {
         verify(postService).savePost(postArgumentCaptor.capture());
         
         Post capturedPost = postArgumentCaptor.getValue();
-        assertThat(capturedPost.getId()).isEqualTo(5L);
-        assertThat(capturedPost.getUserId()).isEqualTo(5L);
-        assertThat(capturedPost.getTitle()).isEqualTo("title-5");
-        assertThat(capturedPost.getBody()).isEqualTo("body-5");
+        assertThat(capturedPost.getId()).isEqualTo(TEST_POST_ID);
+        assertThat(capturedPost.getUserId()).isEqualTo(TEST_POST_USER_ID);
+        assertThat(capturedPost.getTitle()).isEqualTo(TEST_POST_TITLE);
+        assertThat(capturedPost.getBody()).isEqualTo(TEST_POST_BODY);
     }
 
     @Test

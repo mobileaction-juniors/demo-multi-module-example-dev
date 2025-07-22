@@ -1,6 +1,7 @@
 package co.mobileaction.example.worker.service;
 
 import co.mobileaction.example.common.dto.UserCrawlRequestDto;
+import co.mobileaction.example.common.dto.UserDto;
 import co.mobileaction.example.worker.client.ICrawlerClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -14,7 +15,7 @@ public class UserRequestHandlerService implements IUserRequestHandlerService {
 
     @Override
     public void executeMessage(UserCrawlRequestDto request) {
-        UserCrawlRequestDto user = crawlerClient.fetchUser(request.getId());
+        UserDto user = crawlerClient.fetchUserDto(request.getId());
         userResultQueueTemplate.convertAndSend(user);
     }
 }
