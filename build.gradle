@@ -5,7 +5,7 @@
 plugins {
     id 'org.springframework.boot' version '3.1.3'
     id 'io.spring.dependency-management' version '1.1.3'
-    id 'io.freefair.lombok' version '5.3.3.3'
+    id 'io.freefair.lombok' version '8.4'
 }
 
 subprojects {
@@ -26,9 +26,6 @@ subprojects {
 
     sourceCompatibility = '17'
     targetCompatibility = '17'
-
-    // disable default lombok config generation
-    generateLombokConfig.enabled = false
 
     dependencies {
         testImplementation('org.springframework.boot:spring-boot-starter-test')
