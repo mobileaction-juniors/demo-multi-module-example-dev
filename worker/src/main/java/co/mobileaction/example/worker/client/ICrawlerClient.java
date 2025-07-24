@@ -1,6 +1,8 @@
 package co.mobileaction.example.worker.client;
 
 import co.mobileaction.example.common.dto.PostDto;
+import co.mobileaction.example.common.dto.UserCrawlRequestDto;
+import co.mobileaction.example.common.dto.UserDto;
 
 /**
  * @author sa
@@ -10,4 +12,6 @@ import co.mobileaction.example.common.dto.PostDto;
 public interface ICrawlerClient
 {
     PostDto fetchPost(Long postId);
+    UserCrawlRequestDto fetchUser(Long userId);
+    UserDto fetchUserDto(Long userId);
 }
