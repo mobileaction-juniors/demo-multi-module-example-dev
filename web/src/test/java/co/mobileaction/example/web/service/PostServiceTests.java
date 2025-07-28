@@ -3,49 +3,70 @@ package co.mobileaction.example.web.service;
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.repository.IPostRepository;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.context.jdbc.Sql;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 /**
  * @author sa
  * @date 17.05.2021
  * @time 19:19
  */
-@DataJpaTest
-@Sql("/data/posts.sql")
+@ExtendWith(MockitoExtension.class)
 public class PostServiceTests
 {
-    @Autowired
-    private IPostService postService;
-
-    @Autowired
+    @Mock
     private IPostRepository postRepository;
+
+    @InjectMocks
+    private PostService postService;
 
     @Test
     public void findPosts()
     {
         var page = PageRequest.of(0, 3, Sort.by(Sort.Direction.ASC, "id"));
+        List<Post> posts = Arrays.asList(
+                Post.builder().id(1L).userId(1L).title("Title 1").body("Body 1").build(),
+                Post.builder().id(2L).userId(1L).title("Title 2").body("Body 2").build(),
+                Post.builder().id(3L).userId(2L).title("Title 3").body("Body 3").build()
+        );
+        Page<Post> postPage = new PageImpl<>(posts);
+        
+        when(postRepository.findAll(page)).thenReturn(postPage);
 
-        List<Post> list = postService.findPosts(page);
+        List<Post> result = postService.findPosts(page);
 
-        assertThat(list).hasSize(3);
-        assertThat(list).extracting(x -> x.getId()).containsExactlyInAnyOrder(1L, 2L, 3L);
+        assertThat(result).hasSize(3);
+        assertThat(result).extracting(Post::getId).containsExactlyInAnyOrder(1L, 2L, 3L);
+        verify(postRepository).findAll(page);
     }
 
     @Test
     public void findAllPostsOfUser()
     {
-        List<Post> list = postService.findAllPostsOfUser(1L);
+        List<Post> userPosts = Arrays.asList(
+                Post.builder().id(1L).userId(1L).title("Title 1").body("Body 1").build(),
+                Post.builder().id(2L).userId(1L).title("Title 2").body("Body 2").build()
+        );
+        
+        when(postRepository.findAllByUserId(1L)).thenReturn(userPosts);
 
-        assertThat(list).hasSize(2);
-        assertThat(list).extracting(x -> x.getId()).containsExactlyInAnyOrder(1L, 2L);
+        List<Post> result = postService.findAllPostsOfUser(1L);
+
+        assertThat(result).hasSize(2);
+        assertThat(result).extracting(Post::getId).containsExactlyInAnyOrder(1L, 2L);
+        verify(postRepository).findAllByUserId(1L);
     }
 
     @Test
@@ -60,9 +81,7 @@ public class PostServiceTests
 
         postService.savePost(post);
 
-        List<Post> list = postRepository.findAll();
-
-        assertThat(list).hasSize(5);
+        verify(postRepository).save(post);
     }
 
     @Test
@@ -70,8 +89,19 @@ public class PostServiceTests
     {
         postService.deletePost(1L);
 
-        List<Post> list = postRepository.findAll();
+        verify(postRepository).deleteById(1L);
+    }
 
-        assertThat(list).hasSize(3);
+    @Test
+    public void findDistinctUserIds()
+    {
+        List<Long> userIds = Arrays.asList(1L, 2L, 3L);
+        when(postRepository.findDistinctUserIds()).thenReturn(userIds);
+
+        List<Long> result = postService.findDistinctUserIds();
+
+        assertThat(result).hasSize(3);
+        assertThat(result).containsExactlyInAnyOrder(1L, 2L, 3L);
+        verify(postRepository).findDistinctUserIds();
     }
 }

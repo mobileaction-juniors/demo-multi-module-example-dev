@@ -1,0 +1,26 @@
+package co.mobileaction.example.web.service;
+
+import co.mobileaction.example.common.dto.QueueRequestDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class UserQueueService implements IUserQueueService
+{
+    private final AmqpTemplate userRequestQueueTemplate;
+    private final IPostService postService;
+
+    @Override
+    public void sendUserRequestForAllItems()
+    {
+        List<Long> distinctUserIds = postService.findDistinctUserIds();
+        
+        distinctUserIds.stream()
+                .map(userId -> QueueRequestDto.builder().userId(userId).build())
+                .forEach(userRequestQueueTemplate::convertAndSend);
+    }
+}
