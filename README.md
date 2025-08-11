@@ -34,4 +34,12 @@ DELETE /api/posts/{postId}
 Host: localhost:${PORT}
 Authorization: Basic base64(username:password)
 ```
+
+#### Endpoint 4 - Delete All Posts By USERID
+```
+DELETE /api/posts/user/{userId}
+Host: localhost:${PORT}
+Authorization: Basic base64(username:password)
+```
+
 # demo-multi-module-example-dev
