@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @time 19:19
  */
 @DataJpaTest
-@Sql("/data/posts.sql")
+@Sql(value = "/data/posts.sql")
 public class PostServiceTests
 {
     @Autowired
@@ -73,5 +73,14 @@ public class PostServiceTests
         List<Post> list = postRepository.findAll();
 
         assertThat(list).hasSize(3);
+    }
+
+    @Test
+    public void deleteAllUserPosts()
+    {
+        postService.deleteAllUserPosts(1L);
+
+        List<Post> list = postService.findAllPostsOfUser(1L);
+        assertThat(list).hasSize(0);
     }
 }
