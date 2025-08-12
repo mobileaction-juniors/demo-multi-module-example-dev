@@ -2,6 +2,7 @@ package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.repository.IPostRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,7 @@ public class PostService implements IPostService
         postRepository.deleteById(postId);
     }
 
+    @Transactional
     @Override
     public void deleteAllUserPosts(Long userId) {
         postRepository.deleteAllByUserId(userId);
