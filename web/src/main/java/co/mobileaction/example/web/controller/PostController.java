@@ -1,7 +1,7 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.model.Post;
-import co.mobileaction.example.web.service.IPostService;
+import co.mobileaction.example.web.service.Post.IPostService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

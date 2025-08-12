@@ -1,7 +1,7 @@
 package co.mobileaction.example.web.queue;
 
 import co.mobileaction.example.common.dto.PostDto;
-import co.mobileaction.example.web.service.IPostResultHandlerService;
+import co.mobileaction.example.web.service.Post.IPostResultHandlerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;

@@ -2,6 +2,8 @@ package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.common.dto.PostDto;
 import co.mobileaction.example.web.model.Post;
+import co.mobileaction.example.web.service.Post.IPostService;
+import co.mobileaction.example.web.service.Post.PostResultHandlerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
