@@ -11,11 +11,6 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -46,9 +41,4 @@ public class PostController
 
         return ResponseEntity.ok(true);
     }
-   @DeleteMapping("/user/{userId}")
-   public ResponseEntity<Void> deleteAllPostsOfUser(@PathVariable Long userId) {
-       postService.deleteAllPostsOfUser(userId);
-       return ResponseEntity.ok().build();
-   }
 }
