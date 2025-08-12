@@ -14,6 +14,10 @@ public class RabbitQueueConfig {
     @Value("${messaging.queue.result}")
     private String requestQueue;
 
+    @Value("${messaging.queue.user.result}")
+    private String requestUserQueue;
+
+
     @Bean
     public Queue resultProblemQueue() {
         return new Queue(resultProblemQueue, true); // durable queue
@@ -22,5 +26,10 @@ public class RabbitQueueConfig {
     @Bean
     public Queue requestQueue() {
         return new Queue(requestQueue, true);
+    }
+
+    @Bean
+    public Queue requestUserQueue() {
+        return new Queue(requestUserQueue, true);
     }
 }
