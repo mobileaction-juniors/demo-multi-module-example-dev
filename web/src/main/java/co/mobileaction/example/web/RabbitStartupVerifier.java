@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RabbitStartupVerifier {
 
-    public RabbitStartupVerifier(AmqpAdmin amqpAdmin, @Value("${messaging.queue.result}") String queueName) {
+    public RabbitStartupVerifier(AmqpAdmin amqpAdmin, @Value("${messaging.queue.user.result}") String queueName) {
         if (amqpAdmin.getQueueProperties(queueName) != null && !amqpAdmin.getQueueProperties(queueName).isEmpty()) {
             System.out.println("Queue exists: " + queueName);
         } else {
