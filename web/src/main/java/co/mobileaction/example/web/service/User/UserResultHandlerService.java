@@ -21,7 +21,7 @@ public class UserResultHandlerService implements IUserResultHandlerService
         return User.builder()
                 .id(userDto.getId())
                 .name(userDto.getName())
-                .username(userDto.getSurname())
+                .username(userDto.getUsername())
                 .email(userDto.getEmail())
                 .build();
     }

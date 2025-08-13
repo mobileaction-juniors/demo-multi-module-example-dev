@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserResultQueueHandler
 {
-    private final AmqpTemplate resultProblemQueueTemplate;
+    private final AmqpTemplate resultUserProblemQueueTemplate;
 
     private final IUserResultHandlerService resultUserHandlerService;
 
-    @RabbitListener(queues = "${messaging.queue.result}", containerFactory = "resultQueueListener")
+    @RabbitListener(queues = "${messaging.queue.user.result}", containerFactory = "resultQueueListener")
     public void handleMessage(UserDto result)
     {
         try
@@ -28,7 +28,7 @@ public class UserResultQueueHandler
         {
             log.error("Could not handle result for postId: {}", result.getId(), e);
 
-            resultProblemQueueTemplate.convertAndSend(result);
+            resultUserProblemQueueTemplate.convertAndSend(result);
         }
     }
 }
