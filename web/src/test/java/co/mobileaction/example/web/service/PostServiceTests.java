@@ -49,6 +49,15 @@ public class PostServiceTests
     }
 
     @Test
+    public void findAllDistinctUserIds()
+    {
+        List<Long> list = postRepository.findDistinctUserIds();
+
+        assertThat(list).hasSize(3);
+        assertThat(list).containsExactlyInAnyOrder(1L, 2L, 3L);
+    }
+
+    @Test
     public void savePost()
     {
         Post post = Post.builder()
