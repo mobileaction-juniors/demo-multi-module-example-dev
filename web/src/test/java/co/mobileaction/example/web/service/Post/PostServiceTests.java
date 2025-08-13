@@ -76,6 +76,16 @@ public class PostServiceTests
     }
 
     @Test
+    public void deleteAllPost()
+    {
+        postService.deleteAllPost(1L);
+
+        List<Post> list = postRepository.findAll();
+
+        assertThat(list).hasSize(2);
+    }
+
+    @Test
     public void findDistinctUsers()
     {
         List<Long> users = postService.findDistinctUsers();

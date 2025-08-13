@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -47,5 +48,11 @@ public class PostService implements IPostService
     @Override
     public List<Long> findDistinctUsers(){
         return postRepository.findDistinctUserIds();
+    }
+
+    @Transactional
+    @Override
+    public void deleteAllPost(Long userId) {
+        postRepository.deleteAllByUserId(userId);
     }
 }
