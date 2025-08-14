@@ -1,7 +1,7 @@
 package co.mobileaction.example.worker.client;
 
 import co.mobileaction.example.common.dto.PostDto;
-import org.junit.jupiter.api.Disabled;
+import co.mobileaction.example.common.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-@Disabled
 public class CrawlerClientIntegrationTests
 {
     @Autowired
@@ -30,5 +29,13 @@ public class CrawlerClientIntegrationTests
 
         assertThat(dto.getId()).isEqualTo(1L);
         assertThat(dto.getUserId()).isEqualTo(1L);
+    }
+
+    @Test
+    public void fetchUser_success()
+    {
+        UserDto dto = crawlerClient.fetchUser(1L);
+
+        assertThat(dto.id()).isEqualTo(1L);
     }
 }

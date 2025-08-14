@@ -39,6 +39,12 @@ public class PostService implements IPostService
     }
 
     @Override
+    public List<Long> findAllDistinctUserIds()
+    {
+        return postRepository.findDistinctUserIds();
+    }
+
+    @Override
     public void deletePost(Long postId)
     {
         postRepository.deleteById(postId);
@@ -46,7 +52,8 @@ public class PostService implements IPostService
 
     @Transactional
     @Override
-    public void deleteAllUserPosts(Long userId) {
+    public void deleteAllUserPosts(Long userId)
+    {
         postRepository.deleteAllByUserId(userId);
     }
 }

@@ -1,0 +1,29 @@
+package co.mobileaction.example.web.service;
+
+import co.mobileaction.example.web.model.dto.CreateUserCmd;
+import co.mobileaction.example.web.model.User;
+import co.mobileaction.example.web.repository.IUserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class UserService implements IUserService
+{
+    private final IUserRepository userRepository;
+
+    @Override
+    public User saveUser(CreateUserCmd user)
+    {
+        return userRepository.save(User.fromDto(user));
+    }
+
+    @Override
+    public List<User> findUsers(Pageable pageable)
+    {
+        return userRepository.findAll(pageable).getContent();
+    }
+}
