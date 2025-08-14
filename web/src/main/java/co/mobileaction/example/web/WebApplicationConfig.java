@@ -1,6 +1,7 @@
 package co.mobileaction.example.web;
 
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -10,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author sa
@@ -38,6 +40,12 @@ public class WebApplicationConfig
     @Value("${messaging.queue.request}")
     private String MESSAGING_REQUEST_QUEUE;
 
+    @Value("${messaging.queue.user.result.problem}")
+    private String MESSAGING_USER_RESULT_PROBLEM_QUEUE;
+
+    @Value("${messaging.queue.user.request}")
+    private String MESSAGING_USER_REQUEST_QUEUE;
+
     @Bean
     public AmqpTemplate resultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                    MessageConverter messageConverter)
@@ -54,6 +62,26 @@ public class WebApplicationConfig
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_REQUEST_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate resultUserProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                        MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_RESULT_PROBLEM_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate requestUserQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                             MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_REQUEST_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }
@@ -79,3 +107,4 @@ public class WebApplicationConfig
         SpringApplication.run(WebApplicationConfig.class, args);
     }
 }
+

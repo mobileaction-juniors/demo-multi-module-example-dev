@@ -1,7 +1,7 @@
 package co.mobileaction.example.worker.queue;
 
 import co.mobileaction.example.common.dto.QueueRequestDto;
-import co.mobileaction.example.worker.service.IPostRequestHandlerService;
+import co.mobileaction.example.worker.service.Post.IPostRequestHandlerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
