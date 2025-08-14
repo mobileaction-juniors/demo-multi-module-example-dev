@@ -5,10 +5,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RabbitStartupVerifier {
+public class RabbitStartupVerifier
+{
 
-    public RabbitStartupVerifier(AmqpAdmin amqpAdmin, @Value("${messaging.queue.user.result}") String queueName) {
-        if (amqpAdmin.getQueueProperties(queueName) != null && !amqpAdmin.getQueueProperties(queueName).isEmpty()) {
+    public RabbitStartupVerifier(AmqpAdmin amqpAdmin, @Value("${messaging.queue.user.result}") String queueName)
+    {
+        if (amqpAdmin.getQueueProperties(queueName) != null && !amqpAdmin.getQueueProperties(queueName).isEmpty())
+        {
             System.out.println("Queue exists: " + queueName);
         } else {
             System.out.println("Queue DOES NOT exist: " + queueName);
