@@ -8,6 +8,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.Map;
 
 /**
  * @author sa
@@ -16,17 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Secured(SecurityUtils.ROLE_ADMIN)
-@RequestMapping("api/admin")
+@RequestMapping("/api/admin")
 @RequiredArgsConstructor
-public class AdminController
-{
-    private final IPostQueueService queueService;
+public class AdminController {
+
+    private final IPostQueueService postQueueService;
 
     @PostMapping("queue/posts")
-    public ResponseEntity<Boolean> createQueueRequests()
+    public ResponseEntity<Boolean> createQueueRequests() 
     {
-        queueService.sendPostRequestForAllItems();
-
+        postQueueService.sendPostRequestForAllItems();
         return ResponseEntity.ok(true);
+    }
+
+    @PostMapping("/crawl-users-from-posts")
+    public ResponseEntity<Map<String, Object>> crawlUsersFromPosts() 
+    {
+        int enqueued = postQueueService.enqueueDistinctUserIdsForCrawl();
+        return ResponseEntity.ok(Map.of("enqueued", enqueued));
     }
 }
