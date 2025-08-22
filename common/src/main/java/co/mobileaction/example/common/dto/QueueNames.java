@@ -1,6 +1,7 @@
-package co.mobileaction.example.dto;
+package co.mobileaction.example.common.dto;
 
-public final class QueueNames {
+public final class QueueNames
+{
     private QueueNames(){}
 
     public static final String CRAWL_USER_REQUEST = "crawl.user.request";

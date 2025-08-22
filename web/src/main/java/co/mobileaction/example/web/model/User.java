@@ -5,9 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users_min")
+@Table(name = "users")
 @Getter @Setter
-public class User {
+public class User
+{
     @Id
     private Long id;
     private String name;

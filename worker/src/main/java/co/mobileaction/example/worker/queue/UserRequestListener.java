@@ -1,8 +1,8 @@
-package co.mobileaction.example.queue;
+package co.mobileaction.example.worker.queue;
 
-import co.mobileaction.example.dto.QueueNames;
-import co.mobileaction.example.dto.UserCrawlRequestDto;
-import co.mobileaction.example.dto.UserCrawlResultDto;
+import co.mobileaction.example.common.dto.QueueNames;
+import co.mobileaction.example.common.dto.UserCrawlRequestDto;
+import co.mobileaction.example.common.dto.UserCrawlResultDto;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,13 +13,14 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import java.util.Map;
 
 @Component
-public class UserRequestListener {
-
+public class UserRequestListener
+{
     private final WebClient userClient;
     private final AmqpTemplate amqpTemplate;
 
     public UserRequestListener(WebClient userClient,
-                               @Qualifier("rabbitTemplate") AmqpTemplate amqpTemplate) {
+                               @Qualifier("rabbitTemplate") AmqpTemplate amqpTemplate)
+    {
         this.userClient = userClient;
         this.amqpTemplate = amqpTemplate;
     }
@@ -33,7 +34,8 @@ public class UserRequestListener {
                 .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {})
                 .block();
 
-        if (raw == null || raw.isEmpty()) {
+        if (raw == null || raw.isEmpty())
+        {
             return;
         }
 

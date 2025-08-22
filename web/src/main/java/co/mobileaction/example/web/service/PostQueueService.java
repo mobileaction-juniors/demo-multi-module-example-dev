@@ -1,7 +1,7 @@
 package co.mobileaction.example.web.service;
 
-import co.mobileaction.example.dto.QueueNames;
-import co.mobileaction.example.dto.UserCrawlRequestDto;
+import co.mobileaction.example.common.dto.QueueNames;
+import co.mobileaction.example.common.dto.UserCrawlRequestDto;
 import co.mobileaction.example.web.repository.IPostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,8 @@ import java.util.Objects;
 import java.util.stream.LongStream;
 
 @Service
-public class PostQueueService implements IPostQueueService {
+public class PostQueueService implements IPostQueueService
+{
 
     private static final Logger log = LoggerFactory.getLogger(PostQueueService.class);
 
@@ -21,7 +22,8 @@ public class PostQueueService implements IPostQueueService {
     private final IPostRepository postRepository;
 
     public PostQueueService(@Qualifier("requestQueueTemplate") AmqpTemplate amqpTemplate,
-                            IPostRepository postRepository) {
+                            IPostRepository postRepository)
+    {
         this.amqpTemplate = amqpTemplate;
         this.postRepository = postRepository;
     }
@@ -29,7 +31,8 @@ public class PostQueueService implements IPostQueueService {
     @Override
     public void sendPostRequestForAllItems() 
     {
-        LongStream.rangeClosed(1, 100).forEach(id -> {
+        LongStream.rangeClosed(1, 100).forEach(id ->
+        {
             amqpTemplate.convertAndSend(QueueNames.CRAWL_USER_REQUEST, id);
             log.info("Enqueued crawl request for userId={}", id);
         });
@@ -42,9 +45,10 @@ public class PostQueueService implements IPostQueueService {
         userIds.stream()
                 .filter(Objects::nonNull)
                 .distinct()
-                .forEach(id -> {
+                .forEach(id ->
+                {
                     amqpTemplate.convertAndSend(QueueNames.CRAWL_USER_REQUEST, new UserCrawlRequestDto(id));
-                    log.info("Enqueued crawl request for userId={}", id);
+                    log.info("Enqueued crawl request for distinct userId={}", id);
                 });
         return userIds.size();
     }

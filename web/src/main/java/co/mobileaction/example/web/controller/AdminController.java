@@ -19,12 +19,13 @@ import java.util.Map;
 @Secured(SecurityUtils.ROLE_ADMIN)
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
-public class AdminController {
+public class AdminController 
+{
 
     private final IPostQueueService postQueueService;
 
     @PostMapping("queue/posts")
-    public ResponseEntity<Boolean> createQueueRequests() 
+    public ResponseEntity<Boolean> createQueueRequests()
     {
         postQueueService.sendPostRequestForAllItems();
         return ResponseEntity.ok(true);
