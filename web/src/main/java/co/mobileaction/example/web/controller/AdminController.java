@@ -19,7 +19,7 @@ import java.util.Map;
 @Secured(SecurityUtils.ROLE_ADMIN)
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
-public class AdminController 
+public class AdminController
 {
 
     private final IPostQueueService postQueueService;
