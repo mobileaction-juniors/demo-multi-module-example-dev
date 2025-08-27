@@ -74,4 +74,16 @@ public class PostServiceTests
 
         assertThat(list).hasSize(3);
     }
+
+    @Test
+    public void deletePostsByUserId()
+    {
+        postService.deletePostsByUserId(1L);
+
+        List<Post> list = postRepository.findAll();
+
+        assertThat(list).hasSize(2);
+        assertThat(list).extracting(x -> x.getId()).containsExactlyInAnyOrder(3L, 4L);
+        assertThat(list).noneMatch(post -> post.getUserId().equals(1L));
+    }
 }
