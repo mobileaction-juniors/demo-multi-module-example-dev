@@ -8,9 +8,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.context.annotation.Import;
 
 import java.util.List;
-
+import org.springframework.context.annotation.Import;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -19,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @time 19:19
  */
 @DataJpaTest
+@Import(PostService.class)
 @Sql("/data/posts.sql")
 public class PostServiceTests
 {
@@ -74,4 +76,16 @@ public class PostServiceTests
 
         assertThat(list).hasSize(3);
     }
+    @Test
+    public void deleteAllPostsOfUser_removesRowsFromDb() 
+    {
+        List<Post> before = postRepository.findAll();
+        assertThat(before.stream().filter(p -> p.getUserId().equals(1L))).isNotEmpty();
+
+        postService.deleteAllPostsOfUser(1L);
+
+        List<Post> after = postRepository.findAll();
+        assertThat(after).noneMatch(p -> p.getUserId().equals(1L));
+    }
+
 }
