@@ -41,4 +41,12 @@ public class PostController
 
         return ResponseEntity.ok(true);
     }
+
+    @DeleteMapping("user/{userId}")
+    public ResponseEntity<Void> deleteAllPostsByUserId(@PathVariable Long userId)
+    {
+        postService.deleteAllPostsByUserId(userId);
+
+        return ResponseEntity.ok().build();
+    }
 }
