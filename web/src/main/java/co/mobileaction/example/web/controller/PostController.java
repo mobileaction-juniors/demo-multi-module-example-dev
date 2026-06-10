@@ -38,15 +38,25 @@ public class PostController
     public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
     {
         postService.deletePost(postId);
-
+//true döndürüyor client true alıyo yani silindi
         return ResponseEntity.ok(true);
     }
 
+    //DELETE /api/posts/user/1 şu tarz 1 istek gelince by metod çalışıyo
+    //URL deki userid yi alıyo 
     @DeleteMapping("user/{userId}")
     public ResponseEntity<Void> deleteAllPostsByUserId(@PathVariable Long userId)
     {
+        //bu void yani hiçbir şey döndürmüyo sadece silme işlemi yapıyo
+        //body yok sadece 200 OK yani status döndürüyo 
         postService.deleteAllPostsByUserId(userId);
 
         return ResponseEntity.ok().build();
     }
+
+    /**
+     * HTTP cevabı 2 adımlı:
+     * Status: 200, 201, 400, 404 gibi
+     * Body: Gönderilen cevabın içeriği {"id": 1, "title": "..."}   ← bu opsiyonel
+     */
 }
