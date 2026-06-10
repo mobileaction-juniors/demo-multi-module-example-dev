@@ -48,4 +48,7 @@ public class PostService implements IPostService
     {
         postRepository.deleteAllByUserId(userId);
     }
+    //IPostService'de tanımladığımız metodu implement ettik.
+    //iş mnatığıyla ilgili başka düzenleme yapılması gerekirse burdan yapılır controlera dokunulmaz 
+    //repository ile burası iletşişim halinde --> private final IPostRepository postRepository;
 }

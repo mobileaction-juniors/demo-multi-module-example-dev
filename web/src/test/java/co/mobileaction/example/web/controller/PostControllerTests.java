@@ -65,5 +65,8 @@ public class PostControllerTests extends ControllerTestsBase
                 .andExpect(status().isOk());
 
         verify(postService).deleteAllPostsByUserId(1L);
+        //doğru service metodunu çağırdı mı diye bakıyoruz.
     }
+    //postService burada sahte — gerçekten silme yapmıyor. 
+    // Sadece "controller, service'i doğru çağırdı mı?" diye bakıyor.
 }
