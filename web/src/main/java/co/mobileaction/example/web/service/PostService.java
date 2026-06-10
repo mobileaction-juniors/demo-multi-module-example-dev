@@ -15,31 +15,31 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
-public class PostService implements IPostService
-{
+public class PostService implements IPostService {
     private final IPostRepository postRepository;
 
     @Override
-    public void savePost(Post post)
-    {
+    public void savePost(Post post) {
         postRepository.save(post);
     }
 
     @Override
-    public List<Post> findPosts(Pageable pageable)
-    {
+    public List<Post> findPosts(Pageable pageable) {
         return postRepository.findAll(pageable).getContent();
     }
 
     @Override
-    public List<Post> findAllPostsOfUser(Long userId)
-    {
+    public List<Post> findAllPostsOfUser(Long userId) {
         return postRepository.findAllByUserId(userId);
     }
 
     @Override
-    public void deletePost(Long postId)
-    {
+    public void deletePost(Long postId) {
         postRepository.deleteById(postId);
+    }
+
+    @Override
+    public void deleteAllPostsOfUser(Long userId) {
+        postRepository.deleteAll(postRepository.findAllByUserId(userId));
     }
 }
