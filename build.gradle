@@ -30,6 +30,10 @@ subprojects {
     // disable default lombok config generation
     generateLombokConfig.enabled = false
 
+    lombok {
+        version = '1.18.36'
+    }
+
     dependencies {
         testImplementation('org.springframework.boot:spring-boot-starter-test')
         testImplementation('com.h2database:h2')
