@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.mobileaction.example.web.controller.PostControllerTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-06-10T06:15:11" hostname="Okays-MacBook-Pro.local" time="0.061">
+  <properties/>
+  <testcase name="deleteAllPosts()" classname="co.mobileaction.example.web.controller.PostControllerTests" time="0.061"/>
+  <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.3)
+
+2026-06-10T09:15:09.880+03:00  INFO 69601 --- [    Test worker] c.m.e.w.controller.PostControllerTests   : Starting PostControllerTests using Java 21.0.11 with PID 69601 (started by okay in /Users/okay/Documents/GitHub/demo-multi-module-example-dev/web)
+2026-06-10T09:15:09.881+03:00  INFO 69601 --- [    Test worker] c.m.e.w.controller.PostControllerTests   : The following 1 profile is active: "dev"
+2026-06-10T09:15:10.920+03:00  WARN 69601 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 9411dd73-ccbe-47cd-98dd-8c07ea8bbf8b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-10T09:15:11.011+03:00  INFO 69601 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@65a86de0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@745e1fb7, org.springframework.security.web.context.SecurityContextHolderFilter@7f4ae871, org.springframework.security.web.header.HeaderWriterFilter@7172525e, org.springframework.security.web.csrf.CsrfFilter@4136638d, org.springframework.security.web.authentication.logout.LogoutFilter@361eed12, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2a68932b, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@25767bd9, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@4d484961, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@73ec417b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2ce80c85, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@302fa67a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@497d9489, org.springframework.security.web.access.ExceptionTranslationFilter@1bbf7e81, org.springframework.security.web.access.intercept.AuthorizationFilter@4c1d2a13]
+2026-06-10T09:15:11.040+03:00  INFO 69601 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-06-10T09:15:11.040+03:00  INFO 69601 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-06-10T09:15:11.041+03:00  INFO 69601 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-06-10T09:15:11.059+03:00  INFO 69601 --- [    Test worker] c.m.e.w.controller.PostControllerTests   : Started PostControllerTests in 1.341 seconds (process running for 1.878)
+2026-06-10T09:15:11.073+03:00  INFO 69601 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-06-10T09:15:11.073+03:00  INFO 69601 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-06-10T09:15:11.073+03:00  INFO 69601 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/okay/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.6/46e2545d7a97b6ccb195621650c5957279eb4812/byte-buddy-agent-1.14.6.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
