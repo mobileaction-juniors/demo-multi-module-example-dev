@@ -57,4 +57,16 @@ public class PostControllerTests extends ControllerTestsBase
 
         verify(postService).deletePost(1L);
     }
+
+    @Test
+    public void deleteAllPostsByUserId() throws Exception
+    {
+        this.mockMvc.perform(delete("/api/posts/user/1"))
+                .andExpect(status().isOk());
+
+        verify(postService).deleteAllPostsByUserId(1L);
+        //doğru service metodunu çağırdı mı diye bakıyoruz.
+    }
+    //postService burada sahte — gerçekten silme yapmıyor. 
+    // Sadece "controller, service'i doğru çağırdı mı?" diye bakıyor.
 }
