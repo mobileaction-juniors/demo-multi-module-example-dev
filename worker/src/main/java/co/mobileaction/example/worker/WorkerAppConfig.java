@@ -1,8 +1,10 @@
 package co.mobileaction.example.worker;
 
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,6 +39,39 @@ public class WorkerAppConfig
     @Value("${messaging.queue.result}")
     private String MESSAGING_RESULT_QUEUE;
 
+    @Value("${messaging.queue.user.request.problem}")
+    private String MESSAGING_USER_REQUEST_PROBLEM_QUEUE;
+
+    @Value("${messaging.queue.user.result}")
+    private String MESSAGING_USER_RESULT_QUEUE;
+
+    @Value("${messaging.consumer.user.request.auto-start}")
+    private boolean CONSUMER_USER_REQUEST_AUTO_START;
+
+    @Value("${messaging.consumer.user.request.max-size}")
+    private int CONSUMER_USER_REQUEST_MAX_SIZE;
+
+    @Bean
+    public RabbitAdmin rabbitAdmin(ConnectionFactory rabbitConnectionFactory)
+    {
+        return new RabbitAdmin(rabbitConnectionFactory);
+    }
+
+    @Bean
+    public Queue requestQueue(@Value("${messaging.queue.request}") String name) { return new Queue(name, true); }
+
+    @Bean
+    public Queue requestProblemQueue(@Value("${messaging.queue.request.problem}") String name) { return new Queue(name, true); }
+
+    @Bean
+    public Queue userRequestQueue(@Value("${messaging.queue.user.request}") String name) { return new Queue(name, true); }
+
+    @Bean
+    public Queue userRequestProblemQueue(@Value("${messaging.queue.user.request.problem}") String name) { return new Queue(name, true); }
+
+    @Bean
+    public Queue userResultQueue(@Value("${messaging.queue.user.result}") String name) { return new Queue(name, true); }
+
     @Bean
     public AmqpTemplate resultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                              MessageConverter messageConverter)
@@ -66,6 +101,40 @@ public class WorkerAppConfig
         container.setConcurrentConsumers(CONSUMER_SIZE);
         container.setMaxConcurrentConsumers(CONSUMER_REQUEST_MAX_SIZE);
         container.setAutoStartup(CONSUMER_REQUEST_AUTO_START);
+        container.setPrefetchCount(10);
+        container.setMessageConverter(messageConverter);
+        return container;
+    }
+
+    @Bean
+    public AmqpTemplate userResultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_RESULT_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userRequestProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                        MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_REQUEST_PROBLEM_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public SimpleRabbitListenerContainerFactory userRequestQueueListener(ConnectionFactory connectionFactory,
+                                                                         MessageConverter messageConverter)
+    {
+        SimpleRabbitListenerContainerFactory container = new SimpleRabbitListenerContainerFactory();
+        container.setConnectionFactory(connectionFactory);
+        container.setConcurrentConsumers(CONSUMER_SIZE);
+        container.setMaxConcurrentConsumers(CONSUMER_USER_REQUEST_MAX_SIZE);
+        container.setAutoStartup(CONSUMER_USER_REQUEST_AUTO_START);
         container.setPrefetchCount(10);
         container.setMessageConverter(messageConverter);
         return container;

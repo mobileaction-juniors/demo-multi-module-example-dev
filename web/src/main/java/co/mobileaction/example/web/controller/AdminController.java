@@ -8,6 +8,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import co.mobileaction.example.web.service.IUserQueueService;
 
 /**
  * @author sa
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController
 {
     private final IPostQueueService queueService;
+    private final IUserQueueService userQueueService;
 
     @PostMapping("queue/posts")
     public ResponseEntity<Boolean> createQueueRequests()
@@ -29,4 +31,13 @@ public class AdminController
 
         return ResponseEntity.ok(true);
     }
+
+    @PostMapping("queue/users")
+public ResponseEntity<Boolean> createUserQueueRequests()
+{
+    userQueueService.sendUserRequestForDistinctUserIds();
+    return ResponseEntity.ok(true);
 }
+
+}
+

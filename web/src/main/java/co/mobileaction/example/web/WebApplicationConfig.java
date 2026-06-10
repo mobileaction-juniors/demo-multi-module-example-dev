@@ -1,8 +1,10 @@
 package co.mobileaction.example.web;
 
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,6 +40,42 @@ public class WebApplicationConfig
     @Value("${messaging.queue.request}")
     private String MESSAGING_REQUEST_QUEUE;
 
+    @Value("${messaging.queue.user.result.problem}")
+    private String MESSAGING_USER_RESULT_PROBLEM_QUEUE;
+
+    @Value("${messaging.queue.user.request}")
+    private String MESSAGING_USER_REQUEST_QUEUE;
+
+    @Value("${messaging.consumer.user.result.auto-start}")
+    private boolean CONSUMER_USER_RESULT_AUTO_START;
+
+    @Value("${messaging.consumer.user.result.max-size}")
+    private int CONSUMER_USER_RESULT_MAX_SIZE;
+
+    @Bean
+    public RabbitAdmin rabbitAdmin(ConnectionFactory rabbitConnectionFactory)
+    {
+        return new RabbitAdmin(rabbitConnectionFactory);
+    }
+
+    @Bean
+    public Queue resultQueue(@Value("${messaging.queue.result}") String name) { return new Queue(name, true); }
+
+    @Bean
+    public Queue resultProblemQueue(@Value("${messaging.queue.result.problem}") String name) { return new Queue(name, true); }
+
+    @Bean
+    public Queue requestQueue(@Value("${messaging.queue.request}") String name) { return new Queue(name, true); }
+
+    @Bean
+    public Queue userResultQueue(@Value("${messaging.queue.user.result}") String name) { return new Queue(name, true); }
+
+    @Bean
+    public Queue userResultProblemQueue(@Value("${messaging.queue.user.result.problem}") String name) { return new Queue(name, true); }
+
+    @Bean
+    public Queue userRequestQueue(@Value("${messaging.queue.user.request}") String name) { return new Queue(name, true); }
+
     @Bean
     public AmqpTemplate resultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                    MessageConverter messageConverter)
@@ -71,6 +109,42 @@ public class WebApplicationConfig
         container.setPrefetchCount(10);
         container.setMaxConcurrentConsumers(CONSUMER_RESULT_MAX_SIZE);
         container.setAutoStartup(CONSUMER_RESULT_AUTO_START);
+        return container;
+    }
+
+    @Bean
+    public AmqpTemplate userResultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                       MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_RESULT_PROBLEM_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userRequestQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                 MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_REQUEST_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public SimpleRabbitListenerContainerFactory userResultQueueListener(ConnectionFactory connectionFactory,
+                                                                        MessageConverter messageConverter)
+    {
+        SimpleRabbitListenerContainerFactory container = new SimpleRabbitListenerContainerFactory();
+        container.setConnectionFactory(connectionFactory);
+        container.setMessageConverter(messageConverter);
+        container.setConcurrentConsumers(CONSUMER_SIZE);
+        container.setStartConsumerMinInterval(INTERVAL_IN_MS);
+        container.setStopConsumerMinInterval(INTERVAL_IN_MS);
+        container.setPrefetchCount(10);
+        container.setMaxConcurrentConsumers(CONSUMER_USER_RESULT_MAX_SIZE);
+        container.setAutoStartup(CONSUMER_USER_RESULT_AUTO_START);
         return container;
     }
 

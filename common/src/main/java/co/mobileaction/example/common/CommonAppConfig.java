@@ -1,6 +1,7 @@
 package co.mobileaction.example.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -36,6 +37,7 @@ public class CommonAppConfig
     {
         ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         return new Jackson2JsonMessageConverter(mapper);
     }
 }

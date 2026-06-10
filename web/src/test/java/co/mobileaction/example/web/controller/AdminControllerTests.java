@@ -1,6 +1,7 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.service.IPostQueueService;
+import co.mobileaction.example.web.service.IUserQueueService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -25,6 +26,9 @@ public class AdminControllerTests extends ControllerTestsBase
 {
     @MockBean
     private IPostQueueService queueService;
+
+    @MockBean
+    private IUserQueueService userQueueService;
 
     @Test
     public void createQueueRequests() throws Exception
