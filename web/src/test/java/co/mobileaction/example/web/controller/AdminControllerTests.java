@@ -39,4 +39,14 @@ public class AdminControllerTests extends ControllerTestsBase
 
         verify(queueService).sendPostRequestForAllItems();
     }
+
+    @Test
+    public void createUserQueueRequests() throws Exception
+    {
+        this.mockMvc.perform(post("/api/admin/queue/users"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("true"));
+
+        verify(userQueueService).sendUserRequestForDistinctUserIds();
+    }
 }
