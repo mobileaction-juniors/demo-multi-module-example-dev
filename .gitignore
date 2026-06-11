@@ -1,17 +1,16 @@
 # Gradle
 .gradle/
-build/
-**/build/
 
 # IntelliJ IDEA
 .idea/
 *.iml
-*.iws
-*.ipr
 out/
+bin/
 
-# Java / JVM
+# Java
 *.class
+
+# Package Files
 *.jar
 *.war
 *.ear
@@ -19,10 +18,11 @@ out/
 # Logs
 *.log
 
-# OS files
-.DS_Store
-Thumbs.db
+#Build outputs
+target/
+build/
+*/build/
 
-# Environment files
-.env
-.env.*
+# Version files
+version.properties
+*/version.properties
