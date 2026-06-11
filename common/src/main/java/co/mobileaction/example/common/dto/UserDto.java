@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
+//bu userın istenmeyen (adrs vs) kısımlarını ignorelamak için
 public class UserDto
 {
     private Long id;
@@ -18,3 +19,5 @@ public class UserDto
     private String username;
     private String email;
 }
+
+//workerın webe gönderdiği sonuç--> id name username email gönderiyı

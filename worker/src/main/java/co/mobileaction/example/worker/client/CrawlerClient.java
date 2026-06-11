@@ -19,13 +19,14 @@ public class CrawlerClient implements ICrawlerClient
     public static final String API_POST_URL = "https://jsonplaceholder.typicode.com/posts/%s";
 
     private final IHttpRequestExecutor httpRequestExecutor;
-public static final String API_USER_URL = "https://jsonplaceholder.typicode.com/users/%s";
-
-public UserDto fetchUser(Long userId)
-{
-    String url = String.format(API_USER_URL, userId);
-    return httpRequestExecutor.executeGetRequest(url, UserDto.class);
-}
+    public static final String API_USER_URL = "https://jsonplaceholder.typicode.com/users/%s";
+    @Override
+    public UserDto fetchUser(Long userId)
+    {
+        String url = String.format(API_USER_URL, userId);
+        return httpRequestExecutor.executeGetRequest(url, UserDto.class);
+        //jsonu userdto ya dönültrmesi için 
+    }
 
     @Override
     public PostDto fetchPost(Long postId)

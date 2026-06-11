@@ -27,10 +27,3 @@ UserRepository → DB'ye kaydeder
 Worker  → kuyruğu dinler, jsonplaceholder'a gider, veriyi çeker, sonucu kuyruğa atar
 Web     → sonucu alır, DB'ye kaydeder
  */
-
-/**
- * web/     → Spring web uygulaması, controller, service, repository
-worker/  → ayrı uygulama, sadece veri çeker
-common/  → ikisi de kullanır, DTO'lar burada
-
- */

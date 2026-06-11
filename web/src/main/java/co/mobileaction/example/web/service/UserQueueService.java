@@ -27,3 +27,5 @@ public class UserQueueService implements IUserQueueService{
 2. Her userId için kuyruğa mesaj at → "userId=1'i çek", "userId=2'yi çek"...
 Çekme işlemini o yapmıyor — sadece kuyruğa "çek" mesajı atıyor. Asıl çekmeyi Worker yapacak.
  */
+
+//userqueueservice-->worker-->userresultqueuehandler-->userresulthandlerservice(dtoyu entity yapar)-->userservice-->userrepository-->db ye kaydetme işlemi

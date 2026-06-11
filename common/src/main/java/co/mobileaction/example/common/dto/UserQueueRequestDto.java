@@ -12,3 +12,6 @@ import lombok.NoArgsConstructor;
 public class UserQueueRequestDto {
     private Long userId;
 }
+
+//webin workera gönderdiği mesaj yani userID yi çekmesini istiyo
+

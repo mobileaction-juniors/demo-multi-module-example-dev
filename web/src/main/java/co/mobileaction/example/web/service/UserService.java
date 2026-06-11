@@ -19,3 +19,4 @@ public class UserService implements IUserService{
         userRepository.save(user);
       }
 }
+//Bu db ye kaydetmek için yani kuyrukran haberi yok
