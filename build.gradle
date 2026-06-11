@@ -8,6 +8,22 @@ plugins {
     id 'io.freefair.lombok' version '5.3.3.3'
 }
 
+// Root-level task to validate Java 17 toolchain availability before running tests
+task assertJava17 {
+    doLast {
+        def requested = JavaLanguageVersion.of(17)
+        try {
+            def launcher = javaToolchains.launcherFor { languageVersion = requested }.get()
+            println "Java 17 launcher found: ${launcher.metadata.installationPath}" 
+        } catch (Exception e) {
+            throw new GradleException("Java 17 toolchain not found. Install JDK 17 or set JAVA_HOME to a JDK 17 installation.")
+        }
+    }
+}
+
+// Make `check` depend on the assertion so CI fails early if Java 17 isn't available
+tasks.matching { it.name == 'check' }.all { dependsOn assertJava17 }
+
 subprojects {
     group = 'co.mobileaction' // our domain group
     version = '1.0' // we don't use versioning so it can be any semver
@@ -24,11 +40,21 @@ subprojects {
     apply plugin: 'io.spring.dependency-management' // auto dependency resolutions for boot
     apply plugin: 'jacoco' // for test reporting
 
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
     sourceCompatibility = '17'
     targetCompatibility = '17'
 
     // disable default lombok config generation
     generateLombokConfig.enabled = false
+
+    lombok {
+        version = '1.18.36'
+    }
 
     dependencies {
         testImplementation('org.springframework.boot:spring-boot-starter-test')
@@ -37,6 +63,11 @@ subprojects {
 
     test {
         useJUnitPlatform()
+    }
+
+    // Ensure tests run with the Java toolchain launcher for Java 17 (more robust than relying on system JAVA_HOME)
+    tasks.withType(Test).configureEach {
+        javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(17) }
     }
 
     tasks.withType(JavaCompile) { // generic encoding to prevent some problems
