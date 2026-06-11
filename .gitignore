@@ -22,7 +22,3 @@ bin/
 target/
 build/
 */build/
-
-# Version files
-version.properties
-*/version.properties
