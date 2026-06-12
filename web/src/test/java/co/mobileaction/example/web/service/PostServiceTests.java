@@ -75,15 +75,4 @@ public class PostServiceTests
         assertThat(list).hasSize(3);
     }
 
-    @Test
-    public void deleteAllPostsOfUser()
-    {
-        List<Post> initiaList = postRepository.findAllByUserId(1L);
-        assertThat(initiaList).hasSizeGreaterThan(0);
-
-        postService.deleteAllPostsOfUser(1L);
-
-        List<Post> list = postRepository.findAllByUserId(1L);
-        assertThat(list).hasSize(0);
-    }
 }
