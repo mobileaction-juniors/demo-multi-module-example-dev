@@ -27,7 +27,7 @@ public class UserRequestHandlerServiceTests
     private AmqpTemplate userResultQueueTemplate;
 
     @Test
-    public void executeMessage()
+    public void test_executeMessage()
     {
         UserDto user = UserDto.builder()
                 .name("name-1")
