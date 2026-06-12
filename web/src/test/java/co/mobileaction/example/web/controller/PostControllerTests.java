@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @WebMvcTest(controllers = PostController.class)
 @ContextConfiguration(classes = PostController.class)
-@WithMockUser(roles = { SecurityUtils.USER })
+@WithMockUser(roles = {SecurityUtils.USER})
 public class PostControllerTests extends ControllerTestsBase
 {
     @MockBean
