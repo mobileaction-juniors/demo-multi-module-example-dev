@@ -84,4 +84,13 @@ public class PostServiceTests
 
         assertThat(postList).hasSize(0);
     }
+
+    @Test
+    public void findDistinctUserIds()
+    {
+        List<Long> userIds = postService.findDistinctUserIds();
+
+        assertThat(userIds).hasSize(3);
+        assertThat(userIds).containsExactly(1L, 2L, 3L);
+    }
 }

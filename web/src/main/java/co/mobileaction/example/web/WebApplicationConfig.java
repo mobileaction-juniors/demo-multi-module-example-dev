@@ -1,6 +1,7 @@
 package co.mobileaction.example.web;
 
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -43,6 +44,12 @@ public class WebApplicationConfig
 
     @Value("${messaging.queue.user.result}")
     private String MESSAGING_USER_RESULT_QUEUE;
+
+    @Bean
+    public Queue userResultQueue()
+    {
+        return new Queue(MESSAGING_USER_RESULT_QUEUE);
+    }
 
     @Bean
     public AmqpTemplate resultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,

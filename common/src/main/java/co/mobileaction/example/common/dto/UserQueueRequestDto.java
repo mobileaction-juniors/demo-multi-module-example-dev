@@ -11,6 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserQueueRequestDto
 {
-    private Long id;
-
+    private Long userId;
 }
