@@ -1,6 +1,5 @@
 package co.mobileaction.example.web.model;
 
-import co.mobileaction.example.common.dto.UserDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

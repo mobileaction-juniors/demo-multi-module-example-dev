@@ -38,6 +38,12 @@ public class WebApplicationConfig
     @Value("${messaging.queue.request}")
     private String MESSAGING_REQUEST_QUEUE;
 
+    @Value("${messaging.queue.user.request}")
+    private String MESSAGING_USER_REQUEST_QUEUE;
+
+    @Value("${messaging.queue.user.result}")
+    private String MESSAGING_USER_RESULT_QUEUE;
+
     @Bean
     public AmqpTemplate resultProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                    MessageConverter messageConverter)
@@ -56,6 +62,32 @@ public class WebApplicationConfig
         template.setRoutingKey(MESSAGING_REQUEST_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
+    }
+
+    @Bean
+    public AmqpTemplate userRequestQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                 MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_REQUEST_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public SimpleRabbitListenerContainerFactory userResultQueueListener(ConnectionFactory connectionFactory,
+                                                                        MessageConverter messageConverter)
+    {
+        SimpleRabbitListenerContainerFactory container = new SimpleRabbitListenerContainerFactory();
+        container.setConnectionFactory(connectionFactory);
+        container.setMessageConverter(messageConverter);
+        container.setConcurrentConsumers(CONSUMER_SIZE);
+        container.setStartConsumerMinInterval(INTERVAL_IN_MS);
+        container.setStopConsumerMinInterval(INTERVAL_IN_MS);
+        container.setPrefetchCount(10);
+        container.setMaxConcurrentConsumers(CONSUMER_RESULT_MAX_SIZE);
+        container.setAutoStartup(CONSUMER_RESULT_AUTO_START);
+        return container;
     }
 
     @Bean

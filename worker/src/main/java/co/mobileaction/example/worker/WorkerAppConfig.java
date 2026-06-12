@@ -1,6 +1,7 @@
 package co.mobileaction.example.worker;
 
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -37,12 +38,40 @@ public class WorkerAppConfig
     @Value("${messaging.queue.result}")
     private String MESSAGING_RESULT_QUEUE;
 
+    @Value("${messaging.queue.user.request}")
+    private String MESSAGING_USER_REQUEST_QUEUE;
+
+    @Value("${messaging.queue.user.result}")
+    private String MESSAGING_USER_RESULT_QUEUE;
+
+    @Bean
+    public Queue userRequestQueue()
+    {
+        return new Queue(MESSAGING_USER_REQUEST_QUEUE);
+    }
+
+    @Bean
+    public Queue userResultQueue()
+    {
+        return new Queue(MESSAGING_USER_RESULT_QUEUE);
+    }
+
     @Bean
     public AmqpTemplate resultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                              MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_RESULT_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userResultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_RESULT_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }
