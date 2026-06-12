@@ -27,14 +27,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @WebMvcTest(controllers = PostController.class)
 @ContextConfiguration(classes = PostController.class)
-@WithMockUser(roles = {SecurityUtils.USER})
+@WithMockUser(roles = { SecurityUtils.USER })
 public class PostControllerTests extends ControllerTestsBase
 {
     @MockBean
     private IPostService postService;
 
     @Test
-    public void getPosts_ValidRequest_ReturnsPostList() throws Exception
+    public void getPosts() throws Exception
     {
         var page = PageRequest.of(0, 10, Sort.by(Sort.Direction.ASC, "id"));
 
@@ -49,7 +49,7 @@ public class PostControllerTests extends ControllerTestsBase
     }
 
     @Test
-    public void deletePost_ValidId_ReturnsTrue() throws Exception
+    public void deletePost() throws Exception
     {
         this.mockMvc.perform(delete("/api/posts/1"))
                 .andExpect(status().isOk())
@@ -59,7 +59,7 @@ public class PostControllerTests extends ControllerTestsBase
     }
 
     @Test
-    public void deleteAllPosts_ValidUserId_ReturnsTrue() throws Exception
+    public void deleteAllPosts() throws Exception
     {
         this.mockMvc.perform(delete("/api/posts/user/100"))
                 .andExpect(status().isOk())
