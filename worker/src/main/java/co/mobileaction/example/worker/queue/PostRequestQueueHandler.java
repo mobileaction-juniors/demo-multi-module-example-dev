@@ -31,7 +31,7 @@ public class PostRequestQueueHandler
         }
         catch (Exception e)
         {
-            log.error("Could not handle request for postId: {}", request.getPostId(), e);
+            log.error("Could not handle request for postId: {}", request.postId(), e);
 
             requestProblemQueueTemplate.convertAndSend(request);
         }

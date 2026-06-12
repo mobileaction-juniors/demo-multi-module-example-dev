@@ -1,15 +1,5 @@
 package co.mobileaction.example.common.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class UserQueueRequestDto
+public record UserQueueRequestDto(Long userId)
 {
-    private Long userId;
 }

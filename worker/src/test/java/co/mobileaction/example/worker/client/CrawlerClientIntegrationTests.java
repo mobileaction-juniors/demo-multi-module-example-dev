@@ -28,7 +28,7 @@ public class CrawlerClientIntegrationTests
     {
         PostDto dto = crawlerClient.fetchPost(1L);
 
-        assertThat(dto.getId()).isEqualTo(1L);
-        assertThat(dto.getUserId()).isEqualTo(1L);
+        assertThat(dto.id()).isEqualTo(1L);
+        assertThat(dto.userId()).isEqualTo(1L);
     }
 }

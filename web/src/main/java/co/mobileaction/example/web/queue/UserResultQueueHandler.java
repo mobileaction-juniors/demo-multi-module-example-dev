@@ -26,7 +26,7 @@ public class UserResultQueueHandler
         }
         catch (Exception e)
         {
-            log.error("Could not handle result for user: {}", result.getUsername(), e);
+            log.error("Could not handle result for user: {}", result.username(), e);
 
             resultProblemQueueTemplate.convertAndSend(result);
         }

@@ -40,7 +40,7 @@ public class UserQueueServiceTests
         userQueueService.sendUserRequestForDistinctUserIds();
 
         verify(userRequestQueueTemplate, times(2)).convertAndSend(dtoCaptor.capture());
-        assertThat(dtoCaptor.getAllValues()).extracting(UserQueueRequestDto::getUserId)
+        assertThat(dtoCaptor.getAllValues()).extracting(UserQueueRequestDto::userId)
                 .containsExactly(1L, 2L);
     }
 }

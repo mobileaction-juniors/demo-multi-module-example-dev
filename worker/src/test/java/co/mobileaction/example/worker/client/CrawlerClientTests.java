@@ -27,18 +27,13 @@ public class CrawlerClientTests
         Long postId = 1L;
         String url = String.format(api_url, postId);
 
-        PostDto post = PostDto.builder()
-                .userId(1L)
-                .id(postId)
-                .body("body-1")
-                .title("title-1")
-                .build();
+        PostDto post = new PostDto(postId, 1L, "title-1", "body-1");
 
         when(httpRequestExecutor.executeGetRequest(url, PostDto.class)).thenReturn(post);
 
         PostDto postDto = crawlerClient.fetchPost(postId);
 
-        assertEquals(postDto.getId(), 1L);
+        assertEquals(postDto.id(), 1L);
     }
 
     @Test
@@ -48,16 +43,12 @@ public class CrawlerClientTests
         Long userId = 1L;
         String url = String.format(api_url, userId);
 
-        UserDto user = UserDto.builder()
-                .name("name-1")
-                .username("username-1")
-                .email("email-1")
-                .build();
+        UserDto user = new UserDto("name-1", "username-1", "email-1");
 
         when(httpRequestExecutor.executeGetRequest(url, UserDto.class)).thenReturn(user);
 
         UserDto userDto = crawlerClient.fetchUser(userId);
 
-        assertEquals(userDto.getUsername(), "username-1");
+        assertEquals(userDto.username(), "username-1");
     }
 }

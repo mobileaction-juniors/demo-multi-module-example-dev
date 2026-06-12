@@ -1,7 +1,6 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.common.dto.UserDto;
-import co.mobileaction.example.web.mapper.UserMapper;
 import co.mobileaction.example.web.model.User;
 import co.mobileaction.example.web.service.IUserService;
 import co.mobileaction.example.web.util.SecurityUtils;
@@ -32,10 +31,8 @@ public class UserController
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserDto userDto)
+    public ResponseEntity<User> createUser(@RequestBody User user)
     {
-        User user = userService.saveUser(UserMapper.fromDto(userDto));
-
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(userService.saveUser(user));
     }
 }

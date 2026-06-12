@@ -20,9 +20,9 @@ public class UserResultHandlerService implements IUserResultHandlerService
     private User convertFrom(UserDto userDto)
     {
         return User.builder()
-                .name(userDto.getName())
-                .username(userDto.getUsername())
-                .email(userDto.getEmail())
+                .name(userDto.name())
+                .username(userDto.username())
+                .email(userDto.email())
                 .build();
     }
 }

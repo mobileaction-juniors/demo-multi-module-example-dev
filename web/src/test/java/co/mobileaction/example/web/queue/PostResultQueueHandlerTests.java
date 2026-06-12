@@ -32,7 +32,7 @@ public class PostResultQueueHandlerTests
     @Test
     public void handleMessage_success()
     {
-        PostDto dto = new PostDto();
+        PostDto dto = new PostDto(1L, 1L, "title-1", "body-1");
 
         postResultQueueHandler.handleMessage(dto);
 
@@ -42,7 +42,7 @@ public class PostResultQueueHandlerTests
     @Test
     public void handleMessage_fail()
     {
-        PostDto dto = new PostDto();
+        PostDto dto = new PostDto(1L, 1L, "title-1", "body-1");
 
         doThrow(RuntimeException.class).when(service).executeMessage(dto);
 

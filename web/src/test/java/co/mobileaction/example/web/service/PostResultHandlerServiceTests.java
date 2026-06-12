@@ -33,12 +33,7 @@ public class PostResultHandlerServiceTests
     @Test
     public void savePost()
     {
-        PostDto post = PostDto.builder()
-                .userId(5L)
-                .id(5L)
-                .body("body-5")
-                .title("title-5")
-                .build();
+        PostDto post = new PostDto(5L, 5L, "title-5", "body-5");
 
         postResultHandlerService.executeMessage(post);
 

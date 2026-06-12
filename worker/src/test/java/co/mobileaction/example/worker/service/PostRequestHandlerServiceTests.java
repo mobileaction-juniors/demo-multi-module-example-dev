@@ -34,12 +34,7 @@ public class PostRequestHandlerServiceTests
     @Test
     public void test_crawlAppForAllCountries_missingApp()
     {
-        PostDto post = PostDto.builder()
-                .userId(1L)
-                .id(1L)
-                .body("body-1")
-                .title("title-1")
-                .build();
+        PostDto post = new PostDto(1L, 1L, "title-1", "body-1");
 
         when(crawlerClient.fetchPost(eq(1L))).thenReturn(post);
 

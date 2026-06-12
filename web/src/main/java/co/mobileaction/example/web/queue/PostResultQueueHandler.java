@@ -31,7 +31,7 @@ public class PostResultQueueHandler
         }
         catch (Exception e)
         {
-            log.error("Could not handle result for postId: {}", result.getId(), e);
+            log.error("Could not handle result for postId: {}", result.id(), e);
 
             resultProblemQueueTemplate.convertAndSend(result);
         }

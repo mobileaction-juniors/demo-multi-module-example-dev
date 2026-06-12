@@ -28,11 +28,7 @@ public class UserResultHandlerServiceTests
     @Test
     public void saveUser()
     {
-        UserDto userDto = UserDto.builder()
-                .name("name-1")
-                .username("username-1")
-                .email("email-1")
-                .build();
+        UserDto userDto = new UserDto("name-1", "username-1", "email-1");
 
         userResultHandlerService.executeMessage(userDto);
 

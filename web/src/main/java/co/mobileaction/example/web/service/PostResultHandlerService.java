@@ -25,10 +25,10 @@ public class PostResultHandlerService implements IPostResultHandlerService
     private Post convertFrom(PostDto postDto)
     {
         return Post.builder()
-                .id(postDto.getId())
-                .userId(postDto.getUserId())
-                .title(postDto.getTitle())
-                .body(postDto.getBody())
+                .id(postDto.id())
+                .userId(postDto.userId())
+                .title(postDto.title())
+                .body(postDto.body())
                 .build();
     }
 }
