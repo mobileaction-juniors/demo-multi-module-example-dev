@@ -23,30 +23,35 @@ import java.util.List;
 @Secured(SecurityUtils.ROLE_USER)
 @RequestMapping("api/posts")
 @RequiredArgsConstructor
-public class PostController {
+public class PostController
+{
     private final IPostService postService;
 
     @GetMapping
-    public ResponseEntity<List<Post>> getPosts(
-            @PageableDefault(size = 10) @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+    public ResponseEntity<List<Post>> getPosts(@PageableDefault(size = 10)
+                                               @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
+    {
         return ResponseEntity.ok(postService.findPosts(pageable));
     }
 
     @PostMapping
-    public ResponseEntity<Boolean> createPost(@RequestBody Post post) {
+    public ResponseEntity<Boolean> createPost(@RequestBody Post post)
+    {
         postService.savePost(post);
         return ResponseEntity.ok(true);
     }
 
     @DeleteMapping("{postId}")
-    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId) {
+    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
+    {
         postService.deletePost(postId);
 
         return ResponseEntity.ok(true);
     }
 
     @DeleteMapping("user/{userId}")
-    public ResponseEntity<Boolean> deleteAllPosts(@PathVariable Long userId) {
+    public ResponseEntity<Boolean> deleteAllPosts(@PathVariable Long userId)
+    {
         postService.deleteAllPostsOfUser(userId);
 
         return ResponseEntity.ok(true);
