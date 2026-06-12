@@ -10,7 +10,8 @@ import java.util.List;
  * @date 17.05.2021
  * @time 17:46
  */
-public interface IPostService {
+public interface IPostService
+{
     void savePost(Post post);
 
     List<Post> findPosts(Pageable pageable);

@@ -34,7 +34,7 @@ public class PostControllerTests extends ControllerTestsBase
     private IPostService postService;
 
     @Test
-    public void getPosts() throws Exception
+    public void getPosts_ValidRequest_ReturnsPostList() throws Exception
     {
         var page = PageRequest.of(0, 10, Sort.by(Sort.Direction.ASC, "id"));
 
@@ -49,7 +49,7 @@ public class PostControllerTests extends ControllerTestsBase
     }
 
     @Test
-    public void deletePost() throws Exception
+    public void deletePost_ValidId_ReturnsTrue() throws Exception
     {
         this.mockMvc.perform(delete("/api/posts/1"))
                 .andExpect(status().isOk())
@@ -59,7 +59,7 @@ public class PostControllerTests extends ControllerTestsBase
     }
 
     @Test
-    public void deleteAllPosts() throws Exception
+    public void deleteAllPosts_ValidUserId_ReturnsTrue() throws Exception
     {
         this.mockMvc.perform(delete("/api/posts/user/100"))
                 .andExpect(status().isOk())
