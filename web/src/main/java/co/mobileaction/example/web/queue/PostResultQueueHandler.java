@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PostResultQueueHandler
 {
+    @Qualifier("resultProblemQueueTemplate")
     private final AmqpTemplate resultProblemQueueTemplate;
 
     private final IPostResultHandlerService resultHandlerService;

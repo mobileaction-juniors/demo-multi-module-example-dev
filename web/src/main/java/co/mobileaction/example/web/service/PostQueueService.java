@@ -3,6 +3,7 @@ package co.mobileaction.example.web.service;
 import co.mobileaction.example.common.dto.QueueRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.LongStream;
@@ -16,6 +17,7 @@ import java.util.stream.LongStream;
 @RequiredArgsConstructor
 public class PostQueueService implements IPostQueueService
 {
+    @Qualifier("requestQueueTemplate")
     private final AmqpTemplate requestQueueTemplate;
 
     @Override
