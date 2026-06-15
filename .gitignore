@@ -1,0 +1,7 @@
+.gradle/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Ignored as per user request
+*.bin
+*.lock

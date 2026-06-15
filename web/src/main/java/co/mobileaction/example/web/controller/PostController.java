@@ -34,6 +34,13 @@ public class PostController
         return ResponseEntity.ok(postService.findPosts(pageable));
     }
 
+    @PostMapping
+    public ResponseEntity<Boolean> createPost(@RequestBody Post post)
+    {
+        postService.savePost(post);
+        return ResponseEntity.ok(true);
+    }
+
     @DeleteMapping("{postId}")
     public ResponseEntity<Boolean> deletePost(@PathVariable Long postId)
     {
