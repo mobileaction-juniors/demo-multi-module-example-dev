@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Secured(SecurityUtils.ROLE_USER)
-@RequestMapping("api/users/{userId}/posts")
+@RequestMapping("/api/users/{userId}/posts")
 @RequiredArgsConstructor
 public class UserController
 {
