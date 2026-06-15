@@ -10,7 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * @author serkankorkut
@@ -24,7 +25,6 @@ public class UserControllerTests extends ControllerTestsBase
 {
     @MockBean
     private IUserService userService;
-
 
     @Test
     public void deleteAllPostsOfUser() throws Exception

@@ -42,5 +42,4 @@ public class PostController
         return ResponseEntity.ok(true);
     }
 
-
 }
