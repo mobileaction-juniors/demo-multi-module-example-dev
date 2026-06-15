@@ -1,20 +1,14 @@
 # Gradle
 .gradle/
 build/
+**/build/
 !gradle/wrapper/gradle-wrapper.jar
-
-# Java
-*.class
-*.jar
-*.war
-*.ear
-hs_err_pid*
-replay_pid*
 
 # IntelliJ IDEA
 .idea/
 *.iml
 out/
+**/out/
 
 # VS Code
 .vscode/
@@ -32,9 +26,13 @@ dist/
 nbdist/
 .nb-gradle/
 
-# OS files
-.DS_Store
-Thumbs.db
+# Java
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
 
 # Logs
 logs/
@@ -65,3 +63,7 @@ site/jacoco/
 
 # Generated sources
 generated/
+
+# OS files
+.DS_Store
+Thumbs.db
