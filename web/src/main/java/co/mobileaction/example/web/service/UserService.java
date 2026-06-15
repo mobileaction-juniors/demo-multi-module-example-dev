@@ -1,5 +1,6 @@
 package co.mobileaction.example.web.service;
 
+import co.mobileaction.example.common.dto.UserDto;
 import co.mobileaction.example.web.model.User;
 import co.mobileaction.example.web.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +16,12 @@ public class UserService implements IUserService
     private final IUserRepository userRepository;
 
     @Override
-    public List<User> findUsers(Pageable pageable) { return userRepository.findAll(pageable).getContent(); }
+    public List<UserDto> findUsers(Pageable pageable)
+    {
+        return userRepository.findAll(pageable).getContent().stream().map(user -> new UserDto(user.getName(), user.getUsername(), user.getEmail())).toList();
+    }
 
     @Override
-    public User saveUser(User user) { return userRepository.save(user);}
+    public void saveUser(User user) { userRepository.save(user); }
 
 }
