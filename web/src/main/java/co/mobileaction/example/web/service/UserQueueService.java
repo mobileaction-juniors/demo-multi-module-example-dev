@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserQueueService implements IUserQueueService
 {
-    private final AmqpTemplate requestQueueTemplate;
+    private final AmqpTemplate userRequestQueueTemplate;
     private final IPostService postService;
 
     @Override
@@ -21,6 +21,7 @@ public class UserQueueService implements IUserQueueService
         
         distinctUserIds.stream()
                 .map(UserQueueRequestDto::new)
-                .forEach(requestQueueTemplate::convertAndSend);
+                .forEach(userRequestQueueTemplate::convertAndSend);
     }
 }
+
