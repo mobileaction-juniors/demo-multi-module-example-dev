@@ -42,5 +42,4 @@ public class PostService implements IPostService
     {
         postRepository.deleteById(postId);
     }
-
 }
