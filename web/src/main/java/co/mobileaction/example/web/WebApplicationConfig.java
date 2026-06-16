@@ -38,8 +38,6 @@ public class WebApplicationConfig
     @Value("${messaging.queue.request}")
     private String MESSAGING_REQUEST_QUEUE;
 
-
-
     @Value("${messaging.queue.user.request}")
     private String MESSAGING_USER_REQUEST_QUEUE;
 
@@ -79,9 +77,6 @@ public class WebApplicationConfig
         return container;
     }
 
-    // User queue beans
-
-
     @Bean
     public AmqpTemplate userRequestQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                   MessageConverter messageConverter)
@@ -91,7 +86,6 @@ public class WebApplicationConfig
         template.setMessageConverter(messageConverter);
         return template;
     }
-
 
     public static void main(String[] args)
     {
