@@ -2,6 +2,7 @@ package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.web.model.Post;
 import co.mobileaction.example.web.repository.IPostRepository;
+import co.mobileaction.example.web.repository.IUserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -23,6 +24,9 @@ public class UserServiceTests
     @Autowired
     private IPostRepository postRepository;
 
+    @Autowired
+    private IUserRepository userRepository;
+
     @Test
     public void deleteAllPostsOfUser()
     {
@@ -31,5 +35,22 @@ public class UserServiceTests
         List<Post> list = postRepository.findAll();
 
         assertThat(list).hasSize(2);
+    }
+    @Test
+    public void saveUser()
+    {
+        co.mobileaction.example.web.model.User user = co.mobileaction.example.web.model.User.builder()
+                .id(1L)
+                .name("Leanne Graham")
+                .username("Bret")
+                .email("Sincere@april.biz")
+                .build();
+
+        userService.saveUser(user);
+
+        List<co.mobileaction.example.web.model.User> list = userRepository.findAll();
+
+        assertThat(list).hasSize(1);
+        assertThat(list.get(0).getName()).isEqualTo("Leanne Graham");
     }
 }
