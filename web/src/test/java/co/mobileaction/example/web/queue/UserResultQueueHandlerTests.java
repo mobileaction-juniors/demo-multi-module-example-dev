@@ -21,8 +21,8 @@ public class UserResultQueueHandlerTests
     @Mock
     private IUserResultHandlerService resultHandlerService;
 
-    @Mock(name = "resultProblemQueueTemplate")
-    private AmqpTemplate resultProblemQueueTemplate;
+    @Mock(name = "userResultProblemQueueTemplate")
+    private AmqpTemplate userResultProblemQueueTemplate;
 
     @Test
     public void handleMessage_success()
@@ -43,6 +43,6 @@ public class UserResultQueueHandlerTests
 
         userResultQueueHandler.handleMessage(dto);
 
-        verify(resultProblemQueueTemplate).convertAndSend(dto);
+        verify(userResultProblemQueueTemplate).convertAndSend(dto);
     }
 }

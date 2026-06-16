@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserResultQueueHandler
 {
-    private final AmqpTemplate resultProblemQueueTemplate;
+    private final AmqpTemplate userResultProblemQueueTemplate;
 
     private final IUserResultHandlerService resultHandlerService;
 
@@ -28,7 +28,7 @@ public class UserResultQueueHandler
         {
             log.error("Could not handle result for user: {}", result.username(), e);
 
-            resultProblemQueueTemplate.convertAndSend(result);
+            userResultProblemQueueTemplate.convertAndSend(result);
         }
     }
 }

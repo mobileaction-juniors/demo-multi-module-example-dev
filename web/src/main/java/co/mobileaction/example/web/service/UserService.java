@@ -1,6 +1,8 @@
 package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.common.dto.UserDto;
+import co.mobileaction.example.web.exception.UserFoundException;
+import co.mobileaction.example.web.exception.UserNotFoundException;
 import co.mobileaction.example.web.model.User;
 import co.mobileaction.example.web.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +20,24 @@ public class UserService implements IUserService
     @Override
     public List<UserDto> findUsers(Pageable pageable)
     {
-        return userRepository.findAll(pageable).getContent().stream().map(user -> new UserDto(user.getName(), user.getUsername(), user.getEmail())).toList();
+        List<User> users = userRepository.findAll(pageable).getContent();
+
+        if(users.isEmpty()){ throw new UserNotFoundException(); }
+
+        return users.stream().map(user -> new UserDto(user.getName(), user.getUsername(), user.getEmail())).toList();
     }
 
     @Override
-    public void saveUser(User user) { userRepository.save(user); }
+    public void saveUser(User user)
+    {
+        if(userRepository.existsByUsername(user.getUsername()) || userRepository.existsByEmail(user.getEmail()))
+        {
+                throw new UserFoundException();
+        }
+
+        userRepository.save(user);
+    }
+
+
 
 }

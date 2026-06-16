@@ -24,15 +24,15 @@ public class UserController
     private final IUserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserDto>> getUsers(@PageableDefault(size = 10) @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
+    public ResponseEntity<List<UserDto>> getUsers(@PageableDefault @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
     {
         return ResponseEntity.ok(userService.findUsers(pageable));
     }
 
     @PostMapping
-    public ResponseEntity<Boolean> createUser(@RequestBody User user)
+    public ResponseEntity<Boolean> createUser(@RequestBody UserDto userDto)
     {
-        userService.saveUser(user);
+        userService.saveUser(new User(null, userDto.name(), userDto.username(), userDto.email()));
 
         return ResponseEntity.ok(true);
     }
