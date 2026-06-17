@@ -10,13 +10,13 @@ public class GlobalExceptionHandler
 {
 
     @ExceptionHandler(UserFoundException.class)
-    public ResponseEntity<String> handleResourceAlreadyExistsException(UserFoundException ex)
+    public ResponseEntity<String> handleUserFoundException(UserFoundException ex)
     {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<String> handleResourceAlreadyExistsException(UserNotFoundException ex)
+    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex)
     {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }

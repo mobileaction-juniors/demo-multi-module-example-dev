@@ -5,13 +5,11 @@ import co.mobileaction.example.web.exception.GlobalExceptionHandler;
 import co.mobileaction.example.web.exception.UserFoundException;
 import co.mobileaction.example.web.model.User;
 import co.mobileaction.example.web.service.IUserService;
-import co.mobileaction.example.web.util.SecurityUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
@@ -52,11 +50,11 @@ public class UserControllerTests extends ControllerTestsBase
     }
 
     @Test
-    public void createUser_duplicateUser_returnsNotFound() throws Exception
+    public void createUser_duplicateUser_returnsConflict() throws Exception
     {
         doThrow(new UserFoundException()).when(userService).saveUser(any(User.class));
 
-        this.mockMvc.perform(post("/api/users").contentType("application/json").content("{\"name\":\"name-1\",\"username\":\"username-1\",\"email\":\"email-1\"}")).andExpect(status().isNotFound());
+        this.mockMvc.perform(post("/api/users").contentType("application/json").content("{\"name\":\"name-1\",\"username\":\"username-1\",\"email\":\"email-1\"}")).andExpect(status().isConflict());
 
         verify(userService).saveUser(any(User.class));
     }
