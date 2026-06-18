@@ -1,3 +1,5 @@
 package co.mobileaction.example.common.dto;
 
-public record UserQueueRequestDto(Long userId) {}
+import lombok.NonNull;
+
+public record UserQueueRequestDto(@NonNull Long userId) {}
