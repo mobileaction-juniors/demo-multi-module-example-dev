@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService implements IUserService
 {
-    private final IPostRepository postRepository;
+    private final IPostService postService;
     private final IUserRepository userRepository;
 
     @Override
     public void deleteAllPostsOfUser(Long userId)
     {
-        postRepository.deleteAll(postRepository.findAllByUserId(userId));
+        postService.deleteAllPostsOfUser(userId);
     }
 
     @Override

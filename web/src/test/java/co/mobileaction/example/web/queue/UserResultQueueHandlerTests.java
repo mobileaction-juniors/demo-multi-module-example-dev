@@ -1,0 +1,47 @@
+package co.mobileaction.example.web.queue;
+
+import co.mobileaction.example.common.dto.UserDto;
+import co.mobileaction.example.web.service.IUserResultHandlerService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
+
+@ExtendWith(MockitoExtension.class)
+public class UserResultQueueHandlerTests
+{
+    @InjectMocks
+    private UserResultQueueHandler userResultQueueHandler;
+
+    @Mock
+    private IUserResultHandlerService userResultHandlerService;
+
+    @Test
+    public void handleMessage_success()
+    {
+        UserDto dto = new UserDto();
+        dto.setId(1L);
+
+        userResultQueueHandler.handleMessage(dto);
+
+        verify(userResultHandlerService).executeMessage(dto);
+    }
+
+    @Test
+    public void handleMessage_exception()
+    {
+        UserDto dto = new UserDto();
+        dto.setId(1L);
+
+        doThrow(RuntimeException.class).when(userResultHandlerService).executeMessage(dto);
+
+        // This should not throw an exception, as it's caught in the handler
+        userResultQueueHandler.handleMessage(dto);
+
+        verify(userResultHandlerService).executeMessage(dto);
+    }
+}

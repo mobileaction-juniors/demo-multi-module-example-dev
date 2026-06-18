@@ -3,11 +3,13 @@ package co.mobileaction.example.common.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserQueueRequestDto
 {
+    @NonNull
     private Long userId;
 }

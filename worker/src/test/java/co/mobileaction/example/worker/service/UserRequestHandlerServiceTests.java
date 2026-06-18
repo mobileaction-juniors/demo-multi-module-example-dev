@@ -46,3 +46,4 @@ public class UserRequestHandlerServiceTests
         verify(userResultQueueTemplate).convertAndSend(user);
     }
 }
+
