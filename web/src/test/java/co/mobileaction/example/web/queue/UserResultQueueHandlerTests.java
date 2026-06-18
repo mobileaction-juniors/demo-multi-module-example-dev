@@ -23,8 +23,7 @@ public class UserResultQueueHandlerTests
     @Test
     public void handleMessage_success()
     {
-        UserDto dto = new UserDto();
-        dto.setId(1L);
+        UserDto dto = new UserDto(1L, null, null, null);
 
         userResultQueueHandler.handleMessage(dto);
 
@@ -34,8 +33,7 @@ public class UserResultQueueHandlerTests
     @Test
     public void handleMessage_exception()
     {
-        UserDto dto = new UserDto();
-        dto.setId(1L);
+        UserDto dto = new UserDto(1L, null, null, null);
 
         doThrow(RuntimeException.class).when(userResultHandlerService).executeMessage(dto);
 

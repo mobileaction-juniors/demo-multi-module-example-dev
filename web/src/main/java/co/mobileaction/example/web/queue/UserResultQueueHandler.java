@@ -24,7 +24,7 @@ public class UserResultQueueHandler
         }
         catch (Exception e)
         {
-            log.error("Could not handle result for userId: {}", result.getId(), e);
+            log.error("Could not handle user result for user: {}", result.id(), e);
         }
     }
 }

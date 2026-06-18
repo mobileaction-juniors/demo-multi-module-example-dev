@@ -29,12 +29,7 @@ public class UserRequestHandlerServiceTests
     @Test
     public void executeMessage_fetchesUserAndSendsToResultQueue()
     {
-        UserDto user = UserDto.builder()
-                .id(1L)
-                .name("Leanne Graham")
-                .username("Bret")
-                .email("Sincere@april.biz")
-                .build();
+        UserDto user = new UserDto(1L, "Leanne Graham", "Bret", "Sincere@april.biz");
 
         when(crawlerClient.fetchUser(eq(1L))).thenReturn(user);
 
