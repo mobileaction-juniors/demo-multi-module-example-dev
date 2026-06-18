@@ -38,13 +38,6 @@ public class PostService implements IPostService
     }
 
     @Override
-    @org.springframework.transaction.annotation.Transactional
-    public void deleteAllPostsOfUser(Long userId)
-    {
-        postRepository.deleteAllByUserId(userId);
-    }
-
-    @Override
     public void deletePost(Long postId)
     {
         postRepository.deleteById(postId);
