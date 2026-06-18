@@ -18,7 +18,7 @@ public class UserRequestHandlerService implements IUserRequestHandlerService
     @Override
     public void executeMessage(UserQueueRequestDto request)
     {
-        UserDto user = crawlerClient.fetchUser(request.userId());
+        UserDto user = crawlerClient.fetchUser(request.getUserId());
 
         userResultQueueTemplate.convertAndSend(user);
     }

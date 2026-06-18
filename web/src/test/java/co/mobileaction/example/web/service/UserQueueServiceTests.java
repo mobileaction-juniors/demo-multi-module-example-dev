@@ -46,7 +46,7 @@ public class UserQueueServiceTests
 
         List<UserQueueRequestDto> sentRequests = requestCaptor.getAllValues();
         assertThat(sentRequests).hasSize(3);
-        assertThat(sentRequests).extracting(UserQueueRequestDto::userId)
+        assertThat(sentRequests).extracting(UserQueueRequestDto::getUserId)
                 .containsExactly(1L, 2L, 3L);
     }
 }

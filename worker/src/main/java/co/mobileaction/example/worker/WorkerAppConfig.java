@@ -28,9 +28,6 @@ public class WorkerAppConfig
     @Value("${messaging.consumer.request.auto-start}")
     private boolean CONSUMER_REQUEST_AUTO_START;
 
-    @Value("${messaging.queue.user.request.problem}")
-    private String MESSAGING_USER_REQUEST_PROBLEM_QUEUE;
-
     @Value("${messaging.consumer.request.max-size}")
     private int CONSUMER_REQUEST_MAX_SIZE;
 
@@ -59,16 +56,6 @@ public class WorkerAppConfig
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_REQUEST_PROBLEM_QUEUE);
-        template.setMessageConverter(messageConverter);
-        return template;
-    }
-
-    @Bean
-    public AmqpTemplate userRequestProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
-                                                    MessageConverter messageConverter)
-    {
-        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
-        template.setRoutingKey(MESSAGING_USER_REQUEST_PROBLEM_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }
