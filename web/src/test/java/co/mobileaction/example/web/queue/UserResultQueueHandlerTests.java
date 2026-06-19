@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.amqp.core.AmqpTemplate;
 
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
@@ -19,6 +20,9 @@ public class UserResultQueueHandlerTests
 
     @Mock
     private IUserResultHandlerService userResultHandlerService;
+
+    @Mock
+    private AmqpTemplate resultProblemQueueTemplate;
 
     @Test
     public void handleMessage_success()
@@ -37,9 +41,9 @@ public class UserResultQueueHandlerTests
 
         doThrow(RuntimeException.class).when(userResultHandlerService).executeMessage(dto);
 
-        // This should not throw an exception, as it's caught in the handler
         userResultQueueHandler.handleMessage(dto);
 
         verify(userResultHandlerService).executeMessage(dto);
+        verify(resultProblemQueueTemplate).convertAndSend(dto);
     }
 }

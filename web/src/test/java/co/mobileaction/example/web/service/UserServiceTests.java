@@ -1,6 +1,7 @@
 package co.mobileaction.example.web.service;
 
 import co.mobileaction.example.web.model.Post;
+import co.mobileaction.example.web.model.User;
 import co.mobileaction.example.web.repository.IPostRepository;
 import co.mobileaction.example.web.repository.IUserRepository;
 import org.junit.jupiter.api.Test;
@@ -39,7 +40,7 @@ public class UserServiceTests
     @Test
     public void saveUser()
     {
-        co.mobileaction.example.web.model.User user = co.mobileaction.example.web.model.User.builder()
+        User user = User.builder()
                 .id(1L)
                 .name("Leanne Graham")
                 .username("Bret")
@@ -48,7 +49,7 @@ public class UserServiceTests
 
         userService.saveUser(user);
 
-        List<co.mobileaction.example.web.model.User> list = userRepository.findAll();
+        List<User> list = userRepository.findAll();
 
         assertThat(list).hasSize(1);
         assertThat(list.get(0).getName()).isEqualTo("Leanne Graham");

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserRequestQueueHandler
 {
+    private final AmqpTemplate requestProblemQueueTemplate;
+
     private final IUserRequestHandlerService userRequestHandlerService;
 
     @RabbitListener(queues = "${messaging.queue.user.request}", containerFactory = "requestQueueListener")
@@ -25,6 +27,8 @@ public class UserRequestQueueHandler
         catch (Exception e)
         {
             log.error("Could not handle request for userId: {}", request.userId(), e);
+
+            requestProblemQueueTemplate.convertAndSend(request);
         }
     }
 }
