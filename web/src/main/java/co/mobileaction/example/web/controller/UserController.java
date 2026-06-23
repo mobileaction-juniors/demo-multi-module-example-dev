@@ -23,7 +23,7 @@ public class UserController
 {
     private final IUserService userService;
 
-    @DeleteMapping("{userId}/posts")
+    @DeleteMapping("/{userId}/posts")
     public ResponseEntity<Boolean> deleteAllPostsOfUser(@PathVariable Long userId)
     {
         userService.deleteAllPostsOfUser(userId);
