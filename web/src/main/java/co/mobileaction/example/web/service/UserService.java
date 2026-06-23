@@ -1,6 +1,5 @@
 package co.mobileaction.example.web.service;
 
-import co.mobileaction.example.web.repository.IPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +12,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService implements IUserService
 {
-    private final IPostRepository postRepository;
+    private final PostService postService;
 
     @Override
     public void deleteAllPostsOfUser(Long userId)
     {
-        postRepository.deleteAllByUserId(userId);
+        postService.deleteAllPostsOfUser(userId);
     }
 }
