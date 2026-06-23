@@ -31,7 +31,7 @@ public class UserResultQueueHandler
         }
         catch (Exception e)
         {
-            log.error("Could not handle result for userId: {}", result.getId(), e);
+            log.error("Could not handle result for userId: {}", result.id(), e);
 
             resultProblemQueueTemplate.convertAndSend(result);
         }

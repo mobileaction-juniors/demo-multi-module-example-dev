@@ -33,7 +33,7 @@ public class AdminController
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("queue/users")
+    @PostMapping("/queue/users")
     public ResponseEntity<Boolean> createUserQueueRequests()
     {
         userQueueService.sendUserRequestForDistinctItems();

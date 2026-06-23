@@ -61,6 +61,6 @@ public class CrawlerClientTests
 
         UserDto userDto = crawlerClient.fetchUser(userId);
 
-        assertEquals(userDto.getId(), 1L);
+        assertEquals(userDto.id(), 1L);
     }
 }

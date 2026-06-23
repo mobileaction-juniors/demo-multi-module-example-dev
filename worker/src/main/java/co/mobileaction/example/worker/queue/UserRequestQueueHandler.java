@@ -31,7 +31,7 @@ public class UserRequestQueueHandler
         }
         catch (Exception e)
         {
-            log.error("Could not handle request for userId: {}", request.getUserId(), e);
+            log.error("Could not handle request for userId: {}", request.userId(), e);
 
             requestProblemQueueTemplate.convertAndSend(request);
         }

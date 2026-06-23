@@ -32,7 +32,7 @@ public class UserResultQueueHandlerTests
     @Test
     public void handleMessage_success()
     {
-        UserDto dto = new UserDto();
+        UserDto dto = new UserDto(1L, "name-1", "username-1", "phone-1", "email-1", "website-1");
 
         userResultQueueHandler.handleMessage(dto);
 
@@ -42,7 +42,7 @@ public class UserResultQueueHandlerTests
     @Test
     public void handleMessage_fail()
     {
-        UserDto dto = new UserDto();
+        UserDto dto = new UserDto(1L, "name-1", "username-1", "phone-1", "email-1", "website-1");
 
         doThrow(RuntimeException.class).when(service).executeMessage(dto);
 

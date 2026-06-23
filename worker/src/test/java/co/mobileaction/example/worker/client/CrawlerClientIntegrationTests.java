@@ -38,6 +38,6 @@ public class CrawlerClientIntegrationTests
     {
         UserDto dto = crawlerClient.fetchUser(1L);
 
-        assertThat(dto.getId()).isEqualTo(1L);
+        assertThat(dto.id()).isEqualTo(1L);
     }
 }
