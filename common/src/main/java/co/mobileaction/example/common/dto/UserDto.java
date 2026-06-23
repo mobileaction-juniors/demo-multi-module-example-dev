@@ -8,12 +8,6 @@ import lombok.Builder;
  * @time 17:10
  */
 @Builder
-public record UserDto(Long id,
-                      String name,
-                      String username,
-                      String phone,
-                      String email,
-                      String website)
+public record UserDto(Long id, String name, String username, String phone, String email, String website)
 {
-
 }
