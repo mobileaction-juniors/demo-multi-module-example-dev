@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserService implements IUserService
 {
-    private final PostService postService;
+    private final IPostService postService;
 
     @Override
     @Transactional
