@@ -3,10 +3,7 @@ package co.mobileaction.example.web.service;
 import co.mobileaction.example.web.model.User;
 import co.mobileaction.example.web.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author berkturk

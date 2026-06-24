@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserQueueService implements IUserQueueService
 {
-    private final AmqpTemplate requestQueueTemplate;
+    private final AmqpTemplate userRequestQueueTemplate;
 
     private final PostService postService;
 
@@ -23,6 +23,6 @@ public class UserQueueService implements IUserQueueService
     {
         postService.findDistinctUserIds().stream()
                 .map(UserQueueRequestDto::new)
-                .forEach(requestQueueTemplate::convertAndSend);
+                .forEach(userRequestQueueTemplate::convertAndSend);
     }
 }

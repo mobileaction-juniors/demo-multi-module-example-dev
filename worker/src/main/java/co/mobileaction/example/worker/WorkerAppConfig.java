@@ -64,7 +64,7 @@ public class WorkerAppConfig
     }
 
     @Bean
-    public AmqpTemplate resultUserQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+    public AmqpTemplate userResultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                 MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
@@ -74,7 +74,7 @@ public class WorkerAppConfig
     }
 
     @Bean
-    public AmqpTemplate requestUserProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+    public AmqpTemplate userRequestProblemQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                                         MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);

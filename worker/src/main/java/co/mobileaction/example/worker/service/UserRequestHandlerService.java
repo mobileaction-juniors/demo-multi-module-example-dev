@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserRequestHandlerService implements IUserRequestHandlerService
 {
-    private final AmqpTemplate resultQueueTemplate;
+    private final AmqpTemplate userResultQueueTemplate;
 
     private final ICrawlerClient crawlerClient;
 
@@ -25,6 +25,6 @@ public class UserRequestHandlerService implements IUserRequestHandlerService
     {
         UserDto user = crawlerClient.fetchUser(request.userId());
 
-        resultQueueTemplate.convertAndSend(user);
+        userResultQueueTemplate.convertAndSend(user);
     }
 }
