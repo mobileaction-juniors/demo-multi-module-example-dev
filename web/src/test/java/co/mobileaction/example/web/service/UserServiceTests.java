@@ -4,6 +4,8 @@ import co.mobileaction.example.web.model.Post;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
@@ -30,8 +32,11 @@ public class UserServiceTests
     {
         userService.deleteAllPostsOfUser(1L);
 
-        List<Post> list = postService.findAllPostsOfUser(1L);
+        var page = PageRequest.of(0, 3, Sort.by(Sort.Direction.ASC, "id"));
 
-        assertThat(list).hasSize(0);
+        List<Post> listOfOtherUsers = postService.findPosts(page);
+
+        assertThat(listOfOtherUsers).hasSize(2);
+        assertThat(listOfOtherUsers).extracting(x -> x.getUserId()).containsExactlyInAnyOrder(2L, 3L);
     }
 }
