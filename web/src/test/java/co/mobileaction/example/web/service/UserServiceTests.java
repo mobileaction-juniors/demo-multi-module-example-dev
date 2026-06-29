@@ -3,7 +3,7 @@ package co.mobileaction.example.web.service;
 import co.mobileaction.example.web.model.Post;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @date 23.06.2026
  * @time 10:58
  */
-@DataJpaTest
+@SpringBootTest
 @Sql("/data/posts.sql")
 public class UserServiceTests
 {
