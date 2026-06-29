@@ -16,7 +16,7 @@ public class UserQueueService implements IUserQueueService
 {
     private final AmqpTemplate userRequestQueueTemplate;
 
-    private final PostService postService;
+    private final IPostService postService;
 
     @Override
     public void sendUserRequestForDistinctItems()
