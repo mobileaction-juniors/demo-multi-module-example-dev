@@ -1,6 +1,7 @@
 package co.mobileaction.example.web.repository;
 
 import co.mobileaction.example.web.model.Post;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -13,4 +14,7 @@ import java.util.List;
 public interface IPostRepository extends JpaRepository<Post, Long>
 {
     List<Post> findAllByUserId(Long userId);
+
+    @Transactional
+    void deleteAllByUserId(Long userId);
 }
