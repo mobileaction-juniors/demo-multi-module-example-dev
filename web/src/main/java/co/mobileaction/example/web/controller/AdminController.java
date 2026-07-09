@@ -29,4 +29,12 @@ public class AdminController
 
         return ResponseEntity.ok(true);
     }
+
+    /*
+    We nee
+     */
+    @PostMapping("/queue/users")
+    public ResponseEntity<Boolean> createQueueUsers(){
+        return null;
+    }
 }

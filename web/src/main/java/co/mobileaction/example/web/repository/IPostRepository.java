@@ -17,4 +17,6 @@ public interface IPostRepository extends JpaRepository<Post, Long>
 
     @Transactional
     void deleteAllByUserId(Long userId);
+
+    List<Long> findDistinctUserIds();
 }
