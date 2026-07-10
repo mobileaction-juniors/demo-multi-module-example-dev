@@ -83,4 +83,12 @@ public class PostServiceTests
 
         assertThat(user2List).hasSize(0);
     }
+
+    @Test
+    public void findAllDistinctUsers()
+    {
+        List<Long> userIds = postService.findAllDistinctUsers();
+
+        assertThat(userIds).containsExactlyInAnyOrder(1L, 2L, 3L);
+    }
 }

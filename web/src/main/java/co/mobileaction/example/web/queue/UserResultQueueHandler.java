@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class UserResultQueueHandler
 {
     private final AmqpTemplate userResultProblemQueueTemplate;
-    private final IUserResultHandlerService resultHandlerService;   // doesn't exist yet
+    private final IUserResultHandlerService resultHandlerService;
 
     @RabbitListener(queues = "${messaging.queue.user.result}", containerFactory = "userResultQueueListener")
     public void handleMessage(UserDto result)
