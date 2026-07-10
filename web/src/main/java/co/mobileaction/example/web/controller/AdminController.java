@@ -1,6 +1,7 @@
 package co.mobileaction.example.web.controller;
 
 import co.mobileaction.example.web.service.IPostQueueService;
+import co.mobileaction.example.web.service.IUserQueueService;
 import co.mobileaction.example.web.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController
 {
     private final IPostQueueService queueService;
+    private final IUserQueueService userQueueService;
 
     @PostMapping("queue/posts")
     public ResponseEntity<Boolean> createQueueRequests()
@@ -30,11 +32,11 @@ public class AdminController
         return ResponseEntity.ok(true);
     }
 
-    /*
-    We nee
-     */
+
     @PostMapping("/queue/users")
-    public ResponseEntity<Boolean> createQueueUsers(){
-        return null;
+    public ResponseEntity<Boolean> createQueueUsers()
+    {
+        userQueueService.sendUserRequestsForAllItems();
+        return ResponseEntity.ok(true);
     }
 }

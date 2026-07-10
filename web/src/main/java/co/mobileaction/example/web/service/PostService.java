@@ -49,7 +49,8 @@ public class PostService implements IPostService
     }
 
     @Override
-    public List<Long>  findAllDistinctUsers(){
+    public List<Long>  findAllDistinctUsers()
+    {
         return postRepository.findDistinctUserIds();
     }
 }
