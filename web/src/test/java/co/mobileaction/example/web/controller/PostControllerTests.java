@@ -57,4 +57,12 @@ public class PostControllerTests extends ControllerTestsBase
 
         verify(postService).deletePost(1L);
     }
+
+    @Test void deleteAllPostsOfUser() throws Exception{
+        this.mockMvc.perform(delete("/api/posts/user/2"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("true"));
+
+        verify(postService).deleteAllPostsOfUser(2L);
+    }
 }
