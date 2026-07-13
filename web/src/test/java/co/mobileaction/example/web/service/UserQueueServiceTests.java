@@ -15,6 +15,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -44,5 +45,16 @@ public class UserQueueServiceTests
         assertThat(requestCaptor.getAllValues())
                 .extracting(UserQueueRequestDto::getUserId)
                 .containsExactly(1L, 2L, 3L);
+    }
+
+    @Test
+    public void sendUserRequestForNoItems()
+    {
+        when(postService.findDistinctUserIds()).thenReturn(List.of());
+
+        userQueueService.sendUserRequestForAllItems();
+
+        verify(postService).findDistinctUserIds();
+        verifyNoInteractions(userRequestQueueTemplate);
     }
 }
