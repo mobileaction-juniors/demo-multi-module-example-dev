@@ -74,4 +74,26 @@ public class PostServiceTests
 
         assertThat(list).hasSize(3);
     }
+
+    @Test
+    public void deleteAllPostOfUser()
+    {
+        Post post1 = new Post();
+        post1.setId(-1L);
+        post1.setBody("post1");
+        post1.setUserId(-1L);
+        post1.setTitle("Post1");
+        postRepository.save(post1);
+
+        Post post2 = new Post();
+        post2.setId(-2L);
+        post2.setBody("post2");
+        post2.setUserId(-1L);
+        post2.setTitle("Post2");
+        postRepository.save(post2);
+
+        assertThat(postRepository.findAllByUserId(-1L)).hasSize(2);
+        postService.deleteAllPostOfUser(-1L);
+        assertThat(postRepository.findAllByUserId(-1L)).hasSize(0);
+    }
 }
