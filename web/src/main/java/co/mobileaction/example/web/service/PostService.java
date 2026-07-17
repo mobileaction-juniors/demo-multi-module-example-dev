@@ -46,5 +46,18 @@ public class PostService implements IPostService
 
     @Override
     @Transactional
-    public void deleteAllPostOfUser(Long userId) { postRepository.deleteAllByUserId(userId); }
+    public boolean deleteAllPostsOfUser(Long userId) {
+        if (!postRepository.existsByUserId(userId)) {
+            throw new RuntimeException(String.format("there are no posts for user: %d", userId));
+        }
+        try
+        {
+            postRepository.deleteAllByUserId(userId);
+            return true;
+        }
+        catch (Exception exception) {
+            return false;
+        }
+
+    }
 }
