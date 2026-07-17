@@ -43,10 +43,19 @@ public class PostController
     }
 
     @DeleteMapping("/user/{userId}")
-    public ResponseEntity<Boolean> deleteAllPostsOfUser(@PathVariable Long userId)
+    public ResponseEntity<String> deleteAllPostsOfUser(@PathVariable Long userId)
     {
-        postService.deleteAllPostOfUser(userId);
+        try
+        {
+            boolean isDeleted = postService.deleteAllPostsOfUser(userId);
+            if (!isDeleted) {
+                throw new Exception("something went wrong");
+            }
+        }
+        catch (Exception exception) {
+            return ResponseEntity.badRequest().body(exception.getMessage());
+        }
 
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok(String.format("all posts of user %d deleted", userId));
     }
 }
