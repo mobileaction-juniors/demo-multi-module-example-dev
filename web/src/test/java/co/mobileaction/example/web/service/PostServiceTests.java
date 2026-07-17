@@ -12,6 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * @author sa
@@ -73,5 +74,37 @@ public class PostServiceTests
         List<Post> list = postRepository.findAll();
 
         assertThat(list).hasSize(3);
+    }
+
+    @Test
+    public void deleteAllPostOfUser()
+    {
+        Post post1 = new Post();
+        post1.setId(-1L);
+        post1.setBody("post1");
+        post1.setUserId(-1L);
+        post1.setTitle("Post1");
+        postRepository.save(post1);
+
+        Post post2 = new Post();
+        post2.setId(-2L);
+        post2.setBody("post2");
+        post2.setUserId(-1L);
+        post2.setTitle("Post2");
+        postRepository.save(post2);
+
+        assertThat(postRepository.findAllByUserId(-1L)).hasSize(2);
+        postService.deleteAllPostsOfUser(-1L);
+        assertThat(postRepository.findAllByUserId(-1L)).hasSize(0);
+    }
+
+    @Test
+    public void deleteAllPostOfUserWithNoPostShouldThrownError()
+    {
+        Long userId = 999L;
+
+        assertThatThrownBy(() -> postService.deleteAllPostsOfUser(userId))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage(String.format("there are no posts for user: %d", userId));
     }
 }

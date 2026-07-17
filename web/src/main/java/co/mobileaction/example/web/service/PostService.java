@@ -5,6 +5,7 @@ import co.mobileaction.example.web.repository.IPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -41,5 +42,22 @@ public class PostService implements IPostService
     public void deletePost(Long postId)
     {
         postRepository.deleteById(postId);
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteAllPostsOfUser(Long userId) {
+        if (!postRepository.existsByUserId(userId)) {
+            throw new RuntimeException(String.format("there are no posts for user: %d", userId));
+        }
+        try
+        {
+            postRepository.deleteAllByUserId(userId);
+            return true;
+        }
+        catch (Exception exception) {
+            return false;
+        }
+
     }
 }
