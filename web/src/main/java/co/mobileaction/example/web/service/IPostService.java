@@ -20,5 +20,5 @@ public interface IPostService
 
     void deletePost(Long postId);
 
-    void deleteAllPostOfUser(Long userId);
+    boolean deleteAllPostsOfUser(Long userId);
 }
