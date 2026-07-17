@@ -66,4 +66,17 @@ public class PostControllerTests extends ControllerTestsBase
                 .andExpect(content().string("true"));
         verify(postService).deleteAllPostsOfUser(1L);
     }
+
+    @Test void deleteAllPostsOfUserWithNoPostsReturnError() throws Exception
+    {
+        String errorMessage = "there are no posts for user: 1";
+
+        when(postService.deleteAllPostsOfUser(1L)).thenThrow(new RuntimeException(errorMessage));
+
+        this.mockMvc.perform(delete("/api/posts/user/1"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(errorMessage));
+
+        verify(postService).deleteAllPostsOfUser(1L);
+    }
 }
