@@ -31,7 +31,7 @@ class UserResultHandlerServiceTests
         UserDto user = UserDto.builder()
                 .id(5L)
                 .username("user5")
-                .phone("5000000005")
+                .name("User Five")
                 .email("user5@gmail.com")
                 .build();
 

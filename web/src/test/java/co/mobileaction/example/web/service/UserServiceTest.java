@@ -30,7 +30,7 @@ class UserServiceTest
                 .id(5L)
                 .username("user5")
                 .email("user5@gmail.com")
-                .phone("5000000005")
+                .name("User Five")
                 .build();
 
         userService.saveUser(user);

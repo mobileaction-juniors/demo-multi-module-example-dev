@@ -48,7 +48,7 @@ public class CrawlerClientTests
         Long userId = 1L;
         String url = String.format(api_url, userId);
 
-        UserDto user = new UserDto(userId, "Bret", "Sincere@april.biz", "1-770-736-8031 x56442");
+        UserDto user = new UserDto(userId, "Bret", "Sincere@april.biz", "Leanne Graham");
 
         when(httpRequestExecutor.executeGetRequest(url, UserDto.class)).thenReturn(user);
 

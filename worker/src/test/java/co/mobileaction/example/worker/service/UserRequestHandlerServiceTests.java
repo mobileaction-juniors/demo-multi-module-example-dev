@@ -29,7 +29,7 @@ public class UserRequestHandlerServiceTests
     @Test
     public void test_executeMessage_fetchesUserAndSendsResult()
     {
-        UserDto user = new UserDto(1L, "Bret", "Sincere@april.biz", "1-770-736-8031 x56442");
+        UserDto user = new UserDto(1L, "Bret", "Sincere@april.biz", "Leanne Graham");
 
         when(crawlerClient.fetchUser(eq(1L))).thenReturn(user);
 
