@@ -37,12 +37,25 @@ public class WorkerAppConfig
     @Value("${messaging.queue.result}")
     private String MESSAGING_RESULT_QUEUE;
 
+    @Value("${messaging.queue.user.result}")
+    private String MESSAGING_USER_RESULT_QUEUE;
+
     @Bean
     public AmqpTemplate resultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
                                              MessageConverter messageConverter)
     {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
         template.setRoutingKey(MESSAGING_RESULT_QUEUE);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
+
+    @Bean
+    public AmqpTemplate userResultQueueTemplate(ConnectionFactory rabbitConnectionFactory,
+                                                MessageConverter messageConverter)
+    {
+        RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory);
+        template.setRoutingKey(MESSAGING_USER_RESULT_QUEUE);
         template.setMessageConverter(messageConverter);
         return template;
     }
