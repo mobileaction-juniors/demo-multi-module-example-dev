@@ -42,7 +42,7 @@ public class PostController
         return ResponseEntity.ok(true);
     }
 
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/users/{userId}")
     public ResponseEntity<String> deleteAllPostsOfUser(@PathVariable Long userId)
     {
         try
@@ -57,5 +57,12 @@ public class PostController
         }
 
         return ResponseEntity.ok(String.format("all posts of user %d deleted", userId));
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<Long>> getDistinctUsers()
+    {
+        List<Long> distinctUsers = postService.findDistinctUsers();
+        return ResponseEntity.ok(distinctUsers);
     }
 }
