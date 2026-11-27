@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.mobileaction.example.web.controller.PostControllerTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-27T08:02:14" hostname="Emre-Kaan-Surgun-MacBook-Pro" time="0.061">
+  <properties/>
+  <testcase name="deletePost()" classname="co.mobileaction.example.web.controller.PostControllerTests" time="0.01"/>
+  <testcase name="getPosts()" classname="co.mobileaction.example.web.controller.PostControllerTests" time="0.051"/>
+  <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.3)
+
+2026-11-27T11:02:14.151+03:00  INFO 11136 --- [    Test worker] c.m.e.w.controller.PostControllerTests   : Starting PostControllerTests using Java 17.0.21.1 with PID 11136 (started by emrekaansurgun in /Users/emrekaansurgun/Desktop/demo-multi-module-example-dev/web)
+2026-11-27T11:02:14.151+03:00  INFO 11136 --- [    Test worker] c.m.e.w.controller.PostControllerTests   : The following 1 profile is active: "test"
+2026-11-27T11:02:14.244+03:00  WARN 11136 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 4d9d44bb-bb62-4e9a-865f-6eb0b2317882
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-11-27T11:02:14.247+03:00  INFO 11136 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5941a2ad, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5bf1e07, org.springframework.security.web.context.SecurityContextHolderFilter@79ac02a9, org.springframework.security.web.header.HeaderWriterFilter@2d260f2a, org.springframework.security.web.csrf.CsrfFilter@2e9f8c8f, org.springframework.security.web.authentication.logout.LogoutFilter@48531d5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2a32be8d, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1e3469df, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@3ac60eeb, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7942987, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2b8502e7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@37669c4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1c38d025, org.springframework.security.web.access.ExceptionTranslationFilter@2cf09576, org.springframework.security.web.access.intercept.AuthorizationFilter@9cabd07]
+2026-11-27T11:02:14.250+03:00  INFO 11136 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-27T11:02:14.250+03:00  INFO 11136 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-27T11:02:14.250+03:00  INFO 11136 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-27T11:02:14.253+03:00  INFO 11136 --- [    Test worker] c.m.e.w.controller.PostControllerTests   : Started PostControllerTests in 0.112 seconds (process running for 2.146)
+2026-11-27T11:02:14.256+03:00  INFO 11136 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-27T11:02:14.257+03:00  INFO 11136 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-27T11:02:14.257+03:00  INFO 11136 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-27T11:02:14.266+03:00  INFO 11136 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-27T11:02:14.266+03:00  INFO 11136 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-27T11:02:14.267+03:00  INFO 11136 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

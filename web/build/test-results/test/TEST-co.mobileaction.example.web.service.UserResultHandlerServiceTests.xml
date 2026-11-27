@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.mobileaction.example.web.service.UserResultHandlerServiceTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-27T08:02:16" hostname="Emre-Kaan-Surgun-MacBook-Pro" time="0.017">
+  <properties/>
+  <testcase name="executeMessage_ValidUserDto_SavesConvertedUser()" classname="co.mobileaction.example.web.service.UserResultHandlerServiceTests" time="0.017"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

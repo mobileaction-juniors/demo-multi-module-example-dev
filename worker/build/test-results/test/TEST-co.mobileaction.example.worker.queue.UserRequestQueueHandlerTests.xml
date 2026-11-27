@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.mobileaction.example.worker.queue.UserRequestQueueHandlerTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-27T08:02:25" hostname="Emre-Kaan-Surgun-MacBook-Pro" time="0.011">
+  <properties/>
+  <testcase name="handleMessage_ValidRequest_DelegatesToService()" classname="co.mobileaction.example.worker.queue.UserRequestQueueHandlerTests" time="0.009"/>
+  <testcase name="handleMessage_ServiceThrowsException_SendsToProblemQueue()" classname="co.mobileaction.example.worker.queue.UserRequestQueueHandlerTests" time="0.001"/>
+  <system-out><![CDATA[11:02:25.417 [Test worker] ERROR co.mobileaction.example.worker.queue.UserRequestQueueHandler -- Could not handle request for userId: 1
+java.lang.RuntimeException: null
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

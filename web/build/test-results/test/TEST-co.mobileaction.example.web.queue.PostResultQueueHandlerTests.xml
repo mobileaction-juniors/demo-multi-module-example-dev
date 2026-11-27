@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.mobileaction.example.web.queue.PostResultQueueHandlerTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-27T08:02:14" hostname="Emre-Kaan-Surgun-MacBook-Pro" time="0.066">
+  <properties/>
+  <testcase name="handleMessage_fail()" classname="co.mobileaction.example.web.queue.PostResultQueueHandlerTests" time="0.064"/>
+  <testcase name="handleMessage_success()" classname="co.mobileaction.example.web.queue.PostResultQueueHandlerTests" time="0.001"/>
+  <system-out><![CDATA[2026-11-27T11:02:14.381+03:00 ERROR 11136 --- [    Test worker] c.m.e.web.queue.PostResultQueueHandler   : Could not handle result for postId: null
+
+java.lang.RuntimeException: null
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

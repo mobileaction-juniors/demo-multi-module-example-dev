@@ -10,6 +10,8 @@ ma-example-request-queue
 ma-example-result-queue
 ma-example-result-problem-queue
 ma-example-request-problem-queue
+ma-example-user-request-queue
+ma-example-user-result-queue
 ```
 
 #### Endpoint 1 - Queue-posts
@@ -34,4 +36,14 @@ DELETE /api/posts/{postId}
 Host: localhost:${PORT}
 Authorization: Basic base64(username:password)
 ```
+
+#### Endpoint 4 - Queue-users
+```
+POST /api/admin/queue/users
+Host: localhost:${PORT}
+Authorization: Basic base64(username:password)
+Content-Type: application/json
+```
+Crawls users of distinct userIds in posts table and saves them to DB.
+
 # demo-multi-module-example-dev

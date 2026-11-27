@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.mobileaction.example.worker.client.CrawlerClientIntegrationTests" tests="1" skipped="1" failures="0" errors="0" timestamp="2026-11-27T08:02:24" hostname="Emre-Kaan-Surgun-MacBook-Pro" time="0.0">
+  <properties/>
+  <testcase name="fetchPost_success()" classname="co.mobileaction.example.worker.client.CrawlerClientIntegrationTests" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

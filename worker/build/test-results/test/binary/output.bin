@@ -1,0 +1,4 @@
+	ˆ11:02:25.392 [Test worker] ERROR co.mobileaction.example.worker.queue.PostRequestQueueHandler -- Could not handle request for postId: 1
+	!java.lang.RuntimeException: null
+ˆ11:02:25.417 [Test worker] ERROR co.mobileaction.example.worker.queue.UserRequestQueueHandler -- Could not handle request for userId: 1
+!java.lang.RuntimeException: null

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/18bcea7d5df4d49227b4a0743a536208ce4825bb/lombok-1.18.20.jar" />
+        </processorPath>
+        <module name="demo-multi-module-example.web.test" />
+        <module name="demo-multi-module-example.worker.test" />
+        <module name="demo-multi-module-example.common.test" />
+        <module name="demo-multi-module-example.worker.main" />
+        <module name="demo-multi-module-example.common.main" />
+        <module name="demo-multi-module-example.web.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="17" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo-multi-module-example.common" options="-Xlint:-processing -parameters" />
+      <module name="demo-multi-module-example.common.main" options="-Xlint:-processing -parameters" />
+      <module name="demo-multi-module-example.common.test" options="-Xlint:-processing -parameters" />
+      <module name="demo-multi-module-example.web" options="-Xlint:-processing -parameters" />
+      <module name="demo-multi-module-example.web.main" options="-Xlint:-processing -parameters" />
+      <module name="demo-multi-module-example.web.test" options="-Xlint:-processing -parameters" />
+      <module name="demo-multi-module-example.worker" options="-Xlint:-processing -parameters" />
+      <module name="demo-multi-module-example.worker.main" options="-Xlint:-processing -parameters" />
+      <module name="demo-multi-module-example.worker.test" options="-Xlint:-processing -parameters" />
+    </option>
+  </component>
+</project>

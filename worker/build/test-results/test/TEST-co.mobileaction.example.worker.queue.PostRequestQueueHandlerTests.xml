@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="co.mobileaction.example.worker.queue.PostRequestQueueHandlerTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-27T08:02:25" hostname="Emre-Kaan-Surgun-MacBook-Pro" time="0.067">
+  <properties/>
+  <testcase name="handleMessage_fail()" classname="co.mobileaction.example.worker.queue.PostRequestQueueHandlerTests" time="0.065"/>
+  <testcase name="handleMessage_success()" classname="co.mobileaction.example.worker.queue.PostRequestQueueHandlerTests" time="0.002"/>
+  <system-out><![CDATA[11:02:25.392 [Test worker] ERROR co.mobileaction.example.worker.queue.PostRequestQueueHandler -- Could not handle request for postId: 1
+java.lang.RuntimeException: null
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
